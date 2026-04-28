@@ -7,7 +7,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Boton } from '../components/Boton';
 import { Card } from '../components/Card';
 import { Estado } from '../components/Estado';
@@ -28,6 +28,22 @@ type EstadoEnvio =
 
 export function CapturaInline({ online, onCambio }: { online: boolean; onCambio: () => void }) {
     const [codigoMesa, setCodigoMesa] = useState('');
+    
+    // Campos del acta (Izquierda)
+    const [habilitados, setHabilitados] = useState('');
+    const [papeletasAnfora, setPapeletasAnfora] = useState('');
+    
+    // Campos del acta (Centro Azul - Candidatos)
+    const [p1, setP1] = useState(''); // Daenerys Targaryen
+    const [p2, setP2] = useState(''); // Sansa Stark
+    const [p3, setP3] = useState(''); // Robert Baratheon
+    const [p4, setP4] = useState(''); // Tyrion Lannister
+    
+    // Campos del acta (Centro Azul - Abajo)
+    const [votosValidos, setVotosValidos] = useState('');
+    const [votosBlancos, setVotosBlancos] = useState('');
+    const [votosNulos, setVotosNulos] = useState('');
+
     const [imagen, setImagen] = useState<ImagePicker.ImagePickerAsset | null>(null);
     const [estado, setEstado] = useState<EstadoEnvio>({ tipo: 'idle' });
     const { tomarFoto, elegirDeGaleria, cargando } = useCamara();
@@ -105,6 +121,9 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
         setEstado({ tipo: 'subiendo' });
         try {
             const r = await api.enviarActaPdf(imagen.uri, codigoNumerico, mimeType);
+            
+            // Opcional: si la API soportara los votos manuales, se enviarían aquí.
+            
             await storage.agregarHistorial({
                 id,
                 codigo_mesa: codigoNumerico,
@@ -135,6 +154,9 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
 
     function reiniciar() {
         setImagen(null);
+        setP1(''); setP2(''); setP3(''); setP4('');
+        setHabilitados(''); setPapeletasAnfora('');
+        setVotosValidos(''); setVotosBlancos(''); setVotosNulos('');
         setEstado({ tipo: 'idle' });
     }
 
@@ -142,18 +164,101 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
         <Card titulo="Capturar nueva acta">
             <Pasos actual={paso} />
 
-            <Input
-                label="Código de mesa"
-                value={codigoMesa}
-                onChangeText={(v) => setCodigoMesa(v.replace(/\D/g, ''))}
-                placeholder="ej. 10101001001"
-                keyboardType="number-pad"
-                maxLength={11}
-                deshabilitado={estado.tipo === 'subiendo'}
-            />
+            {/* Formulario estructurado como el Acta Electoral */}
+            <View style={styles.actaContainer}>
+                
+                {/* Columna Izquierda: Información de Mesa */}
+                <View style={styles.columnaGris}>
+                    <Text style={styles.columnaTituloAlt}>MESA</Text>
+                    <Input
+                        label="Cód. Mesa"
+                        value={codigoMesa}
+                        onChangeText={(v) => setCodigoMesa(v.replace(/\D/g, ''))}
+                        placeholder="ej. 101112"
+                        keyboardType="number-pad"
+                        maxLength={11}
+                        deshabilitado={estado.tipo === 'subiendo'}
+                    />
+                    <Input
+                        label="Electores habilitados"
+                        value={habilitados}
+                        onChangeText={(v) => setHabilitados(v.replace(/\D/g, ''))}
+                        keyboardType="number-pad"
+                        deshabilitado={estado.tipo === 'subiendo'}
+                    />
+                    <Input
+                        label="Papeletas en ánfora"
+                        value={papeletasAnfora}
+                        onChangeText={(v) => setPapeletasAnfora(v.replace(/\D/g, ''))}
+                        keyboardType="number-pad"
+                        deshabilitado={estado.tipo === 'subiendo'}
+                    />
+                </View>
+
+                {/* Columna Derecha/Central: Franja Azul (Presidente) */}
+                <View style={styles.columnaAzul}>
+                    <Text style={styles.columnaTituloAzul}>PRESIDENTE</Text>
+                    
+                    <View style={styles.candidatosSection}>
+                        <Input
+                            label="Daenerys Targaryen"
+                            value={p1}
+                            onChangeText={(v) => setP1(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                        <Input
+                            label="Sansa Stark"
+                            value={p2}
+                            onChangeText={(v) => setP2(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                        <Input
+                            label="Robert Baratheon"
+                            value={p3}
+                            onChangeText={(v) => setP3(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                        <Input
+                            label="Tyrion Lannister"
+                            value={p4}
+                            onChangeText={(v) => setP4(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                    </View>
+
+                    <View style={styles.votosSection}>
+                        <Input
+                            label="VOTOS VÁLIDOS"
+                            value={votosValidos}
+                            onChangeText={(v) => setVotosValidos(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                        <Input
+                            label="VOTOS BLANCOS"
+                            value={votosBlancos}
+                            onChangeText={(v) => setVotosBlancos(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                        <Input
+                            label="VOTOS NULOS"
+                            value={votosNulos}
+                            onChangeText={(v) => setVotosNulos(v.replace(/\D/g, ''))}
+                            keyboardType="number-pad"
+                            deshabilitado={estado.tipo === 'subiendo'}
+                        />
+                    </View>
+                </View>
+
+            </View>
 
             {!imagen ? (
-                <View style={{ gap: spacing.md }}>
+                <View style={{ gap: spacing.md, marginTop: spacing.md }}>
                     <Boton
                         titulo="Tomar foto del acta"
                         icono="camera"
@@ -253,6 +358,56 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
 }
 
 const styles = StyleSheet.create({
+    actaContainer: {
+        flexDirection: 'row',
+        gap: spacing.md,
+        marginBottom: spacing.sm,
+    },
+    columnaGris: {
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: radius.md,
+        padding: spacing.sm,
+    },
+    columnaAzul: {
+        flex: 1.5,
+        backgroundColor: '#9fb3c8', // Azul grisáceo como en la imagen
+        borderColor: '#7a93b2',
+        borderWidth: 1,
+        borderRadius: radius.md,
+        padding: spacing.sm,
+    },
+    columnaTituloAlt: {
+        ...typography.label,
+        color: '#555',
+        textAlign: 'center',
+        marginBottom: spacing.sm,
+        fontWeight: 'bold',
+        backgroundColor: '#e0e0e0',
+        paddingVertical: 4,
+        borderRadius: 4,
+    },
+    columnaTituloAzul: {
+        ...typography.label,
+        color: '#224466',
+        textAlign: 'center',
+        marginBottom: spacing.md,
+        fontWeight: 'bold',
+        backgroundColor: '#7a93b2',
+        paddingVertical: 4,
+        borderRadius: 4,
+        overflow: 'hidden',
+    },
+    candidatosSection: {
+        marginBottom: spacing.md,
+    },
+    votosSection: {
+        borderTopWidth: 2,
+        borderTopColor: '#7a93b2',
+        paddingTop: spacing.md,
+    },
     preview: {
         borderRadius: radius.md,
         overflow: 'hidden',
@@ -260,6 +415,7 @@ const styles = StyleSheet.create({
         borderColor: colors.border,
         backgroundColor: 'black',
         marginBottom: spacing.md,
+        marginTop: spacing.sm,
     },
     imagen: {
         width: '100%',
@@ -282,3 +438,4 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
 });
+
