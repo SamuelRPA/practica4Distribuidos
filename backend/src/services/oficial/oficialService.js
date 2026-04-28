@@ -7,7 +7,7 @@ import { rrvRepo } from '../../repositories/rrvRepository.js';
 import { oficialRepo } from '../../repositories/oficialRepository.js';
 import { validarActa } from '../shared/validadores.js';
 
-const CAMPOS_CONSENSO = ['votos_emitidos','ausentismo','p1','p2','p3','p4','votos_blancos','votos_nulos'];
+const CAMPOS_CONSENSO = ['votos_emitidos','ausentismo','p1','p2','p3','p4','votos_blancos','votos_nulos', 'apertura_hora', 'apertura_minutos', 'cierre_hora', 'cierre_minutos'];
 
 export const oficialService = {
     /**
@@ -48,6 +48,16 @@ export const oficialService = {
             return { status: 'RECHAZADA', motivo: validacion.errores };
         }
 
+        // Calculo de duracion en minutos
+        let duracion_minutos = null;
+        if (input.apertura_hora != null && input.cierre_hora != null) {
+            const apertura = Number(input.apertura_hora) * 60 + Number(input.apertura_minutos || 0);
+            const cierre = Number(input.cierre_hora) * 60 + Number(input.cierre_minutos || 0);
+            duracion_minutos = cierre - apertura;
+            // Si el cierre es al día siguiente (poco probable pero posible)
+            if (duracion_minutos < 0) duracion_minutos += 24 * 60;
+        }
+
         // Validación de duplicados — si ya hay un acta, todas pasan a CUARENTENA
         const existentes = await oficialRepo.actasExistentesPorMesa(codigoMesa);
 
@@ -62,6 +72,7 @@ export const oficialService = {
                 codigo_mesa: codigoMesa,
                 habilitados: mesa.cantidad_habilitada,
                 ...pick(actaConHabilitados, CAMPOS_CONSENSO),
+                duracion_minutos,
                 estado: 'EN_CUARENTENA',
                 motivo_estado: motivo,
                 fuente: input.fuente || 'CSV',
@@ -102,6 +113,7 @@ export const oficialService = {
             codigo_mesa: codigoMesa,
             habilitados: mesa.cantidad_habilitada,
             ...pick(actaConHabilitados, CAMPOS_CONSENSO),
+            duracion_minutos,
             estado: 'APROBADA',
             discrepancia_rrv: discrepanciaRrv ? JSON.stringify(discrepanciaRrv) : null,
             fuente: input.fuente || 'CSV',
@@ -157,11 +169,20 @@ export const oficialService = {
 
         const estado = cuarentenaCampos.length > 0 ? 'EN_CUARENTENA' : 'APROBADA';
 
+        let duracion_minutos = null;
+        if (consenso.apertura_hora != null && consenso.cierre_hora != null) {
+            const apertura = Number(consenso.apertura_hora) * 60 + Number(consenso.apertura_minutos || 0);
+            const cierre = Number(consenso.cierre_hora) * 60 + Number(consenso.cierre_minutos || 0);
+            duracion_minutos = cierre - apertura;
+            if (duracion_minutos < 0) duracion_minutos += 24 * 60;
+        }
+
         const id = await oficialRepo.insertarActa({
             codigo_mesa: codigoMesa,
             session_id: sessionId,
             habilitados: mesa.cantidad_habilitada,
             ...consenso,
+            duracion_minutos,
             estado,
             motivo_estado: cuarentenaCampos.length > 0
                 ? `Campos sin resolver: ${cuarentenaCampos.join(', ')}`

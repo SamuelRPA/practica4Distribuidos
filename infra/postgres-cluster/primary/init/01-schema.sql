@@ -76,6 +76,10 @@ CREATE TABLE IF NOT EXISTS transcripciones_pendientes (
     p4              INTEGER,
     votos_blancos   INTEGER,
     votos_nulos     INTEGER,
+    apertura_hora   INTEGER,
+    apertura_minutos INTEGER,
+    cierre_hora     INTEGER,
+    cierre_minutos  INTEGER,
     creado_en       TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (session_id, operador_id)
 );
@@ -97,6 +101,11 @@ CREATE TABLE IF NOT EXISTS votos_oficiales (
     p4                  INTEGER DEFAULT 0,
     votos_blancos       INTEGER DEFAULT 0,
     votos_nulos         INTEGER DEFAULT 0,
+    apertura_hora       INTEGER,
+    apertura_minutos    INTEGER,
+    cierre_hora         INTEGER,
+    cierre_minutos      INTEGER,
+    duracion_minutos    INTEGER,
     estado              VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE'
         CHECK (estado IN ('PENDIENTE','APROBADA','EN_CUARENTENA','ANULADA','RECHAZADA')),
     motivo_estado       TEXT,
@@ -193,6 +202,20 @@ SELECT
 FROM votos_oficiales
 GROUP BY 1, 2
 ORDER BY 1 DESC;
+
+-- Tiempos de las mesas
+CREATE OR REPLACE VIEW v_tiempos_mesas AS
+SELECT 
+    vo.codigo_mesa,
+    me.nro_mesa,
+    vo.apertura_hora,
+    vo.apertura_minutos,
+    vo.cierre_hora,
+    vo.cierre_minutos,
+    vo.duracion_minutos
+FROM votos_oficiales vo
+JOIN mesas_electorales me ON vo.codigo_mesa = me.codigo_mesa
+WHERE vo.estado = 'APROBADA' AND vo.duracion_minutos IS NOT NULL;
 
 -- Top errores
 CREATE OR REPLACE VIEW v_top_errores AS

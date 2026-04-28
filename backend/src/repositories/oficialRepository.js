@@ -30,6 +30,7 @@ export const oficialRepo = {
         const cols = [
             'codigo_mesa','session_id','habilitados','votos_emitidos','ausentismo',
             'p1','p2','p3','p4','votos_blancos','votos_nulos',
+            'apertura_hora','apertura_minutos','cierre_hora','cierre_minutos','duracion_minutos',
             'estado','motivo_estado','discrepancia_rrv','discrepancias_3way','fuente','creado_por',
         ];
         const values = cols.map((c) => acta[c] ?? null);
@@ -77,13 +78,16 @@ export const oficialRepo = {
         await pgWrite.query(
             `INSERT INTO transcripciones_pendientes
              (session_id, codigo_mesa, operador_id,
-              votos_emitidos, ausentismo, p1, p2, p3, p4, votos_blancos, votos_nulos)
-             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+              votos_emitidos, ausentismo, p1, p2, p3, p4, votos_blancos, votos_nulos,
+              apertura_hora, apertura_minutos, cierre_hora, cierre_minutos)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
             [
                 sessionId, codigoMesa, operadorId,
                 datos.votos_emitidos, datos.ausentismo,
                 datos.p1, datos.p2, datos.p3, datos.p4,
                 datos.votos_blancos, datos.votos_nulos,
+                datos.apertura_hora, datos.apertura_minutos,
+                datos.cierre_hora, datos.cierre_minutos
             ]
         );
     },
@@ -130,6 +134,27 @@ export const oficialRepo = {
     async topErrores() {
         const r = await pgRead.query('SELECT * FROM v_top_errores LIMIT 10');
         return r.rows;
+    },
+
+    async metricasTiempos() {
+        // La mesa que más trabajo/horas tuvo
+        const mesaMasHoras = await pgRead.query(`
+            SELECT codigo_mesa, nro_mesa, duracion_minutos
+            FROM v_tiempos_mesas
+            ORDER BY duracion_minutos DESC
+            LIMIT 1
+        `);
+        // La última mesa en cerrar
+        const ultimaEnCerrar = await pgRead.query(`
+            SELECT codigo_mesa, nro_mesa, cierre_hora, cierre_minutos
+            FROM v_tiempos_mesas
+            ORDER BY cierre_hora DESC, cierre_minutos DESC
+            LIMIT 1
+        `);
+        return {
+            mesa_mas_horas: mesaMasHoras.rows[0] || null,
+            ultima_mesa_en_cerrar: ultimaEnCerrar.rows[0] || null
+        };
     },
 
     async actaPorMesa(codigoMesa) {

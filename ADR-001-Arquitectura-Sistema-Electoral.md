@@ -1,4 +1,4 @@
-# ADR-001 v2: Arquitectura del Sistema Nacional de Cómputo Electoral — Bolivia
+ y# ADR-001 v2: Arquitectura del Sistema Nacional de Cómputo Electoral — Bolivia
 
 **Status:** Aceptado (v2 — revisado)
 **Fecha:** 2026-04-26

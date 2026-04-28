@@ -13,7 +13,7 @@ export function validarActa(acta, modo) {
 
     // R1: votos_emitidos + ausentismo = habilitados
     if (num(acta.votos_emitidos) + num(acta.ausentismo) !== num(acta.habilitados)) {
-        const code = 'CUADRE_TOTAL_FAIL_R1';
+        const code = 'Anulado por: Inconsistencia aritmética (Art. 177 Ley 026) - El total de votos y ausentismo no cuadra con habilitados.';
         modo === 'OFICIAL' ? errores.push(code) : advertencias.push(code);
     }
 
@@ -22,7 +22,7 @@ export function validarActa(acta, modo) {
         num(acta.p1) + num(acta.p2) + num(acta.p3) + num(acta.p4) +
         num(acta.votos_blancos) + num(acta.votos_nulos);
     if (sumaParciales !== num(acta.votos_emitidos)) {
-        const code = 'CUADRE_PARCIALES_FAIL_R2';
+        const code = 'Anulado por: Inconsistencia aritmética (Art. 177 Ley 026) - La suma de votos parciales no iguala al total de votos emitidos.';
         modo === 'OFICIAL' ? errores.push(code) : advertencias.push(code);
     }
 
@@ -43,13 +43,19 @@ export function validarActa(acta, modo) {
 
     // R5: votos_emitidos <= habilitados
     if (num(acta.votos_emitidos) > num(acta.habilitados)) {
-        const code = 'VE_SUPERA_HABILITADOS_R5';
+        const code = 'Anulado por: Nulidad de Mesa (Art. 177 inciso c Ley 026) - El número de votos emitidos supera al número de inscritos en la mesa.';
         modo === 'OFICIAL' ? errores.push(code) : advertencias.push(code);
     }
 
     // R6: habilitados > 0
     if (num(acta.habilitados) <= 0) {
-        const code = 'HABILITADOS_CERO_R6';
+        const code = 'Anulado por: Inconsistencia en padrón (Art. 177 Ley 026) - Cantidad de habilitados es cero o menor.';
+        modo === 'OFICIAL' ? errores.push(code) : advertencias.push(code);
+    }
+
+    // Validación por observación de anulado explícito
+    if (acta.observaciones && acta.observaciones.toLowerCase().includes('anulado')) {
+        const code = 'Anulado por: Anulación explícita registrada en observaciones del acta.';
         modo === 'OFICIAL' ? errores.push(code) : advertencias.push(code);
     }
 

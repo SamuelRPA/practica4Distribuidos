@@ -16,6 +16,16 @@ dashboardRouter.get('/comparacion', async (_req, res) => {
     });
 });
 
+dashboardRouter.get('/tiempos', async (_req, res) => {
+    try {
+        const metricas = await oficialRepo.metricasTiempos();
+        res.json({ status: 'ok', data: metricas });
+    } catch (error) {
+        console.error('Error fetching tiempos:', error);
+        res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
+    }
+});
+
 dashboardRouter.get('/health', async (_req, res) => {
     res.json({
         status: 'ok',
