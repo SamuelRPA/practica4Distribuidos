@@ -108,6 +108,7 @@ practica4Distribuidos/
 ├── SMS-INTEGRATION.md                   ← integrar Telegram / Twilio / WhatsApp
 ├── TWILIO-QUICKSTART.md                 ← guía paso a paso de Twilio
 ├── README_INSTALACION_Y_AJUSTES.md      ← log de ajustes de instalación
+├── ACTUALIZACION_LEY026_METRICAS.md     ← ajustes Ley 026, métricas temporales, ruido PDFs
 ├── ADR-001-Arquitectura-Sistema-Electoral.md
 │
 ├── .env / .env.example                  ← variables de entorno (gitignored)
@@ -257,7 +258,7 @@ python load_all.py
 ```
 
 Carga: `distribucion_territorial`, `recintos_electorales`, `mesas_electorales`
-desde los PDFs de `Data/`. Es idempotente (ON CONFLICT DO NOTHING).
+desde los archivos inmutables `.csv` de `Data/`. Es idempotente y rechaza actas fuera del padrón (ON CONFLICT DO NOTHING).
 
 ### 4. Backend Node.js
 
@@ -351,11 +352,12 @@ CSV (n8n) o formulario web
         ▼
 Backend /api/oficial/acta
         │
-        ├─ valida existencia de mesa contra padrón Postgres
-        ├─ valida R1-R7 modo OFICIAL (bloqueante)
+        ├─ valida existencia de mesa contra padrón Postgres inmutable
+        ├─ valida reglas electorales estrictas (Ley 026 Art. 177)
         ├─ detecta duplicados → CUARENTENA si ya existe acta
+        ├─ detecta observación "anulado" explícita → ANULADA
         ├─ cross-check con RRV → guarda discrepancias en JSONB
-        └─ INSERT en votos_oficiales (Postgres primary)
+        └─ INSERT en votos_oficiales (Postgres primary) con cálculo de duracion_minutos
                                 │
                                 ▼ trigger fn_log_evento_acta
                           eventos_acta_oficial (append-only, Event Sourcing)
@@ -456,6 +458,7 @@ Para configurar proveedores reales: [SMS-INTEGRATION.md](SMS-INTEGRATION.md), [T
 | [SMS-INTEGRATION.md](SMS-INTEGRATION.md) | Conectar Telegram Bot, Twilio, WhatsApp y proveedores genéricos |
 | [TWILIO-QUICKSTART.md](TWILIO-QUICKSTART.md) | Guía paso a paso para Twilio (cuenta, número, ngrok, webhook) |
 | [README_INSTALACION_Y_AJUSTES.md](README_INSTALACION_Y_AJUSTES.md) | Log de ajustes hechos durante la instalación inicial |
+| [ACTUALIZACION_LEY026_METRICAS.md](ACTUALIZACION_LEY026_METRICAS.md) | **Nuevo:** Registro de adaptaciones normativas (Ley 026), métricas temporales de actas, aumento de datos en PDFs (manchas, arrugas) y data loaders en base a CSVs inmutables |
 | [ADR-001-Arquitectura-Sistema-Electoral.md](ADR-001-Arquitectura-Sistema-Electoral.md) | Decisión arquitectónica original (versión completa) |
 | [mobile-app/README.md](mobile-app/README.md) | Detalles de la app Expo + troubleshooting |
 | [n8n/README.md](n8n/README.md) | Importar workflow CSV → API oficial |
