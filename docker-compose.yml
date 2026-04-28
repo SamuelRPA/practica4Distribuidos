@@ -1,0 +1,163 @@
+# Stack completo: cluster Postgres + RabbitMQ + n8n
+# El cluster Postgres está aislado en infra/postgres-cluster con su propio compose
+# para que se pueda levantar/tirar independiente. Aquí lo importamos vía include.
+#
+# MongoDB NO está aquí: usamos MongoDB Atlas (en .env), ya es replica set managed.
+
+services:
+  # =========================================================
+  # PostgreSQL Primary
+  # =========================================================
+  pg_primary:
+    image: postgres:16-alpine
+    container_name: pg_primary
+    hostname: pg_primary
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_REPLICATION_USER: ${POSTGRES_REPLICATION_USER}
+      POSTGRES_REPLICATION_PASSWORD: ${POSTGRES_REPLICATION_PASSWORD}
+      PG_ROLE: primary
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_primary_data:/var/lib/postgresql/data
+      - ./infra/postgres-cluster/primary/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./infra/postgres-cluster/primary/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./infra/postgres-cluster/primary/init:/docker-entrypoint-initdb.d:ro
+    command: >
+      postgres
+      -c config_file=/etc/postgresql/postgresql.conf
+      -c hba_file=/etc/postgresql/pg_hba.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - pg_cluster
+
+  # =========================================================
+  # PostgreSQL Standby 1
+  # =========================================================
+  pg_standby_1:
+    image: postgres:16-alpine
+    container_name: pg_standby_1
+    hostname: pg_standby_1
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_REPLICATION_USER: ${POSTGRES_REPLICATION_USER}
+      POSTGRES_REPLICATION_PASSWORD: ${POSTGRES_REPLICATION_PASSWORD}
+      PG_PRIMARY_HOST: pg_primary
+      PG_ROLE: standby
+    ports:
+      - "5442:5432"
+    volumes:
+      - pg_standby_1_data:/var/lib/postgresql/data
+      - ./infra/postgres-cluster/standby/entrypoint.sh:/usr/local/bin/standby-entrypoint.sh:ro
+    entrypoint: ["/usr/local/bin/standby-entrypoint.sh"]
+    depends_on:
+      pg_primary:
+        condition: service_healthy
+    networks:
+      - pg_cluster
+
+  # =========================================================
+  # PostgreSQL Standby 2
+  # =========================================================
+  pg_standby_2:
+    image: postgres:16-alpine
+    container_name: pg_standby_2
+    hostname: pg_standby_2
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_REPLICATION_USER: ${POSTGRES_REPLICATION_USER}
+      POSTGRES_REPLICATION_PASSWORD: ${POSTGRES_REPLICATION_PASSWORD}
+      PG_PRIMARY_HOST: pg_primary
+      PG_ROLE: standby
+    ports:
+      - "5443:5432"
+    volumes:
+      - pg_standby_2_data:/var/lib/postgresql/data
+      - ./infra/postgres-cluster/standby/entrypoint.sh:/usr/local/bin/standby-entrypoint.sh:ro
+    entrypoint: ["/usr/local/bin/standby-entrypoint.sh"]
+    depends_on:
+      pg_primary:
+        condition: service_healthy
+    networks:
+      - pg_cluster
+
+  # =========================================================
+  # HAProxy — separa lecturas y escrituras
+  # =========================================================
+  lb_postgres:
+    image: haproxy:2.9-alpine
+    container_name: lb_postgres
+    ports:
+      - "5433:5433"   # Lecturas (standbys)
+      # El primary se expone directo en 5432 desde pg_primary, no pasamos por HAProxy
+      # para escrituras en este setup simplificado. Así, si el primary cambia,
+      # actualizas .env en la app y reinicias el backend.
+    volumes:
+      - ./infra/postgres-cluster/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - pg_standby_1
+      - pg_standby_2
+    networks:
+      - pg_cluster
+
+  # =========================================================
+  # RabbitMQ
+  # =========================================================
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pg_cluster
+
+  # =========================================================
+  # n8n para automatización (CSV → API oficial)
+  # =========================================================
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
+      N8N_HOST: ${N8N_HOST}
+      N8N_PORT: 5678
+      WEBHOOK_URL: ${N8N_WEBHOOK_URL}
+      GENERIC_TIMEZONE: America/La_Paz
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n/workflows:/workflows:ro
+    networks:
+      - pg_cluster
+
+volumes:
+  pg_primary_data:
+  pg_standby_1_data:
+  pg_standby_2_data:
+  rabbitmq_data:
+  n8n_data:
+
+networks:
+  pg_cluster:
+    driver: bridge

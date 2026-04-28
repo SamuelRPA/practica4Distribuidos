@@ -1,0 +1,94 @@
+{
+  "name": "Importar CSV de Actas al Cómputo Oficial",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/workflows/actas_sinteticas.csv",
+        "options": {}
+      },
+      "id": "read-file-1",
+      "name": "Read CSV File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [400, 300]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "csv-parse-1",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 2,
+      "position": [600, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:3001/api/oficial/acta",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "codigo_mesa", "value": "={{ $json.codigo_mesa }}" },
+            { "name": "votos_emitidos", "value": "={{ $json.votos_emitidos }}" },
+            { "name": "ausentismo", "value": "={{ $json.ausentismo }}" },
+            { "name": "p1", "value": "={{ $json.p1 }}" },
+            { "name": "p2", "value": "={{ $json.p2 }}" },
+            { "name": "p3", "value": "={{ $json.p3 }}" },
+            { "name": "p4", "value": "={{ $json.p4 }}" },
+            { "name": "votos_blancos", "value": "={{ $json.votos_blancos }}" },
+            { "name": "votos_nulos", "value": "={{ $json.votos_nulos }}" },
+            { "name": "fuente", "value": "N8N" },
+            { "name": "creado_por", "value": "n8n_workflow" }
+          ]
+        },
+        "options": {
+          "ignoreResponseCode": true
+        }
+      },
+      "id": "http-1",
+      "name": "POST a /api/oficial/acta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            { "name": "codigo_mesa", "stringValue": "={{ $json.codigo_mesa }}" },
+            { "name": "status", "stringValue": "={{ $json.status }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-1",
+      "name": "Resumen",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [1000, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger":   { "main": [[{ "node": "Read CSV File", "type": "main", "index": 0 }]] },
+    "Read CSV File":    { "main": [[{ "node": "Parse CSV", "type": "main", "index": 0 }]] },
+    "Parse CSV":        { "main": [[{ "node": "POST a /api/oficial/acta", "type": "main", "index": 0 }]] },
+    "POST a /api/oficial/acta": { "main": [[{ "node": "Resumen", "type": "main", "index": 0 }]] }
+  },
+  "settings": {},
+  "tags": []
+}

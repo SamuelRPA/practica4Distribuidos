@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "OEP Captura",
+    "slug": "oep-captura",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "oepcaptura",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0b1e3a"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "bo.oep.captura",
+      "infoPlist": {
+        "NSCameraUsageDescription": "La app necesita acceso a la cámara para capturar fotos de actas electorales.",
+        "NSPhotoLibraryUsageDescription": "La app necesita acceso a tus fotos para seleccionar imágenes de actas previamente tomadas.",
+        "NSLocationWhenInUseUsageDescription": "La app usa tu ubicación para registrar el recinto donde se tomó la foto."
+      }
+    },
+    "android": {
+      "package": "bo.oep.captura",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1457bd"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La app accede a tus fotos para subir actas.",
+          "cameraPermission": "La app usa la cámara para fotografiar actas."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "La app usa tu ubicación al capturar actas para asociarlas al recinto correcto."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiBaseUrl": "http://192.168.50.251:3001"
+    }
+  }
+}

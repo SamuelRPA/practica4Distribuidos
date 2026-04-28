@@ -1,0 +1,25 @@
+{
+  "name": "electoral-backend",
+  "version": "1.0.0",
+  "description": "Backend del Sistema Nacional de Cómputo Electoral — Práctica 4",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch --env-file=../.env src/server.js",
+    "start": "node --env-file=../.env src/server.js",
+    "worker:ocr": "node --env-file=../.env src/workers/ocrWorker.js",
+    "worker:validador": "node --env-file=../.env src/workers/validadorWorker.js",
+    "worker:escritura": "node --env-file=../.env src/workers/escrituraWorker.js",
+    "test": "echo 'tests pendientes' "
+  },
+  "dependencies": {
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mongodb": "^6.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.0",
+    "uuid": "^10.0.0"
+  }
+}

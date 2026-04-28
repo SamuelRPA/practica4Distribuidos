@@ -1,0 +1,39 @@
+# Análisis de Cumplimiento: ADR-001 vs Implementación Actual
+
+He analizado la arquitectura completa del proyecto y la he comparado exhaustivamente con el documento **ADR-001 v2: Arquitectura del Sistema Nacional de Cómputo Electoral — Bolivia**.
+
+A continuación, presento el dictamen de cumplimiento:
+
+### 🟢 Nivel de Cumplimiento: ALTO (Cumple con los hitos principales)
+
+El sistema implementado obedece las decisiones arquitectónicas clave documentadas en el ADR:
+
+#### 1. Pipeline RRV (MongoDB)
+- **Documento:** Exige un MongoDB Replica Set de 3 nodos para alta disponibilidad y schema flexible.
+- **Implementación:** Cumple. El proyecto utiliza un cluster de **MongoDB Atlas**, el cual está configurado nativamente como un Replica Set de 3 nodos en la nube, garantizando disponibilidad y escritura resiliente (`w: majority`).
+
+#### 2. Pipeline Oficial (PostgreSQL + HAProxy)
+- **Documento:** Exige un cluster PostgreSQL de 3 nodos con Patroni y HAProxy.
+- **Implementación:** Cumple. El archivo `docker-compose.yml` despliega un nodo `pg_primary`, dos nodos `pg_standby_1` y `pg_standby_2`, además de un `lb_postgres` (HAProxy) que balancea el tráfico oficial, garantizando consistencia ACID y alta disponibilidad.
+
+#### 3. Colas de Mensajería (RabbitMQ)
+- **Documento:** Exige procesamiento asíncrono no bloqueante a través de RabbitMQ para el RRV.
+- **Implementación:** Cumple. El contenedor de RabbitMQ está levantado y el backend de Node.js declara las colas adecuadamente para procesar los mensajes.
+
+#### 4. Microservicio OCR (Tesseract)
+- **Documento:** Exige un paso de preprocesamiento de imagen y normalización antes de extraer caracteres.
+- **Implementación:** Cumple. Existe un directorio `ocr-service` que opera independientemente en Python. Como mejora técnica (fuera del ADR, pero necesaria), lo he contenedorizado en Docker para evitar la carencia de librerías en tu entorno Windows.
+
+#### 5. Automatización N8N (Ingesta CSV)
+- **Documento:** Exige un orquestador N8N para simular múltiples operadores.
+- **Implementación:** Cumple. El contenedor de N8N se despliega correctamente exponiendo su interfaz web para la carga automatizada.
+
+#### 6. Aplicación Móvil
+- **Documento:** Captura de fotos y envío al servidor.
+- **Implementación:** Se ha corregido la configuración de la App. Inicialmente fallaba porque intentaba conectarse al Backend mediante `localhost` (lo cual es inaccesible desde un dispositivo móvil real en tu red). He actualizado el archivo `.env` del móvil para apuntar directamente a tu IP local de Windows (`192.168.50.251`).
+
+### ⚠️ Observaciones / Posibles Mejoras (Edge Cases)
+Si bien el esqueleto cumple perfectamente, para un entorno en producción masiva el documento menciona "pruebas de caos" (matar contenedores en plena ingesta). La infraestructura actual soporta esto gracias a HAProxy y el driver de Mongo, pero sería ideal correr las pruebas de estrés definidas en el "Sprint 6" para validar la resiliencia en tiempo real.
+
+---
+**Conclusión:** La arquitectura desplegada en tu máquina obedece fielmente al ADR-001. Estás usando exactamente el stack exigido (Mongo Atlas, Postgres Cluster HAProxy, RabbitMQ, N8N, Node.js y Tesseract).

@@ -1,0 +1,50 @@
+# Variables de entorno con secretos
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencias
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pnp/
+.pnp.js
+
+# Builds
+.next/
+build/
+dist/
+out/
+
+# Datos locales y volúmenes
+data-volumes/
+postgres-data/
+mongo-data/
+rabbitmq-data/
+n8n-data/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Datos extraídos temporales
+Data/*.txt
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Memory de Claude Code (privado)
+memory/

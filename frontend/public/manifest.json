@@ -1,0 +1,9 @@
+{
+    "name": "OEP — Captura Electoral",
+    "short_name": "OEP",
+    "start_url": "/mobile",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1457bd",
+    "icons": []
+}
