@@ -1,5 +1,5 @@
 #!/bin/bash
-# Muestra el estado del cluster — quién es primary, quién standby, lag de replicación.
+# Muestra el estado del cluster â€” quiÃ©n es primary, quiÃ©n standby, lag de replicaciÃ³n.
 
 echo "===== Estado del cluster Postgres ====="
 echo ""
@@ -20,9 +20,9 @@ for n in pg_primary pg_standby_1 pg_standby_2; do
 done
 
 echo ""
-echo "===== Replicación desde el primary actual ====="
+echo "===== ReplicaciÃ³n desde el primary actual ====="
 
-# Buscar quién es primary
+# Buscar quiÃ©n es primary
 for n in pg_primary pg_standby_1 pg_standby_2; do
     IN_RECOVERY=$(docker exec "$n" psql -U oep_admin -d electoral_oficial -tAc "SELECT pg_is_in_recovery();" 2>/dev/null || echo "")
     if [ "$IN_RECOVERY" = "f" ]; then

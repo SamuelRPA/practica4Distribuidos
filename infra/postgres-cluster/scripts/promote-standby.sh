@@ -14,10 +14,10 @@ echo "[promote] Verificando..."
 IN_RECOVERY=$(docker exec "$CONTAINER" psql -U oep_admin -d electoral_oficial -tAc "SELECT pg_is_in_recovery();")
 
 if [ "$IN_RECOVERY" = "f" ]; then
-    echo "[promote] OK — $CONTAINER ahora es primary."
+    echo "[promote] OK â€” $CONTAINER ahora es primary."
     echo "[promote] Actualiza .env: POSTGRES_PORT_WRITE=5442 (o el puerto del nuevo primary)."
     echo "[promote] Reinicia el backend para tomar el cambio."
 else
-    echo "[promote] FALLO — el nodo todavía está en recovery."
+    echo "[promote] FALLO â€” el nodo todavÃ­a estÃ¡ en recovery."
     exit 1
 fi

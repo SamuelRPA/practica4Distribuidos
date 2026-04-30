@@ -177,7 +177,7 @@ export default function SmsAdmin() {
                                         fontSize: 10, fontWeight: 700,
                                         color: m.resultado?.startsWith('ENCOLADO') ? '#0a0'
                                             : m.resultado?.includes('NO_AUTORIZADO') ? '#c80'
-                                            : '#c00',
+                                                : '#c00',
                                     }}>
                                         {m.resultado}
                                     </span>
@@ -200,7 +200,7 @@ export default function SmsAdmin() {
                 <h3>📡 Cómo conectar un proveedor real</h3>
                 <p>El backend expone webhooks para Twilio, Telegram, WhatsApp y un genérico:</p>
                 <pre style={{ background: '#fff', padding: 12, borderRadius: 6, fontSize: 12, overflow: 'auto' }}>
-{`POST /api/sms/webhook/twilio    ← payload Twilio (From, Body, ...)
+                    {`POST /api/sms/webhook/twilio    ← payload Twilio (From, Body, ...)
 POST /api/sms/webhook/telegram  ← payload Telegram (message.from.username, message.text)
 POST /api/sms/webhook/whatsapp  ← payload WhatsApp Cloud API
 POST /api/sms/webhook/generico  ← { numero_origen, texto }`}

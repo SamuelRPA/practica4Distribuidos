@@ -12,7 +12,13 @@ import { smsRouter } from './routes/sms.routes.js';
 const app = express();
 
 app.use(cors());
+
+// JSON normal
 app.use(express.json({ limit: '10mb' }));
+
+// IMPORTANTE PARA TWILIO
+// Twilio envía From y Body como application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_req, res) => {
     res.json({
@@ -38,11 +44,13 @@ async function start() {
     } catch (err) {
         console.error('[server] AVISO: Mongo no disponible —', err.message);
     }
+
     try {
         await pingPostgres();
     } catch (err) {
         console.error('[server] AVISO: Postgres no disponible —', err.message);
     }
+
     try {
         await connectRabbit();
     } catch (err) {
