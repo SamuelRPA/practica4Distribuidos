@@ -1,0 +1,4080 @@
+{
+  "jerarquia": {
+    "Chuquisaca": {
+      "Oropeza": {
+        "Sucre": [],
+        "Yotala": [
+          {
+            "codRecinto": "1010200001",
+            "nombre": "U.E. Padresama",
+            "direccion": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "numMesas": 9
+          }
+        ],
+        "Poroma": [
+          {
+            "codRecinto": "1010300010",
+            "nombre": "U.E. Guillermo Urquidi",
+            "direccion": "Av. Humboldt entre Av. Victor Ustariz y Av. Blanco Galindo",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "1010300011",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "1010300027",
+            "nombre": "(Corcel) Penitenciaria San Sebastian Varones",
+            "direccion": "Plaz. San Sebastion Acera Norte",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Azurduy": {
+        "Azurduy": [
+          {
+            "codRecinto": "1020100041",
+            "nombre": "U.E. Patria Nueva",
+            "direccion": "Zona Sud Barrio 1ro. De Mayo OTB El Palmar",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "1020100045",
+            "nombre": "Colegio Francisco Vignaud",
+            "direccion": "Capitan Ustariz entre Av. Juan Rivera y C. Hans Grether",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "1020100062",
+            "nombre": "U.E. Pedro Domingo Murillo",
+            "direccion": "Chiuchi Arriba",
+            "numMesas": 5
+          }
+        ],
+        "Tarvita": []
+      },
+      "Zudáñez": {
+        "Villa Zudáñez": [
+          {
+            "codRecinto": "1030100067",
+            "nombre": "Unidad Educativa Molinero",
+            "direccion": "Molinero",
+            "numMesas": 14
+          }
+        ],
+        "Presto": [
+          {
+            "codRecinto": "1030200081",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "1030200087",
+            "nombre": "Escuela Mixta Dr. Martin Cardenas",
+            "direccion": "Mina Asientos",
+            "numMesas": 10
+          }
+        ],
+        "Villa Mojocoya": [
+          {
+            "codRecinto": "1030300097",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 18
+          }
+        ],
+        "Icla": [
+          {
+            "codRecinto": "1030400115",
+            "nombre": "U.E. Joso Carlos Carrillo",
+            "direccion": "Comunidad Tirani?Final Av. Atahuallpa segunda circunvalacion",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "1030400121",
+            "nombre": "U.E. Carmen Rosa Salguero",
+            "direccion": "Calle Miguel Mercado Moreira esq. Circunvalacion",
+            "numMesas": 4
+          }
+        ]
+      },
+      "Tomina": {
+        "Padilla": [
+          {
+            "codRecinto": "1040100125",
+            "nombre": "Unidad Educativa Paracti (Villa Tunari)",
+            "direccion": "Paracti(Villa Tunari)",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "1040100132",
+            "nombre": "Unidad Educativa 1ro de Mayo",
+            "direccion": "Primero de Mayo",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "1040100143",
+            "nombre": "Nucleo Educativo Chapisirca",
+            "direccion": "Chapisirca",
+            "numMesas": 7
+          }
+        ],
+        "Tomina": [
+          {
+            "codRecinto": "1040200150",
+            "nombre": "U.E. San Antonio",
+            "direccion": "Comunidad San Antonio",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "1040200161",
+            "nombre": "Nucleo Escolar Laguna Grande",
+            "direccion": "Laguna Grande",
+            "numMesas": 17
+          }
+        ],
+        "Sopachuy": [
+          {
+            "codRecinto": "1040300178",
+            "nombre": "Nucleo Educativo Chapisirca",
+            "direccion": "Chapisirca",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "1040300181",
+            "nombre": "Unidad Educativa Moleto Icoya (V.Tunari)",
+            "direccion": "Moleto",
+            "numMesas": 5
+          }
+        ],
+        "Villa Alcalá": [
+          {
+            "codRecinto": "1040400186",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "1040400189",
+            "nombre": "Unidad Educativa Ramadas",
+            "direccion": "La Ramada",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "1040400197",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 9
+          }
+        ],
+        "El Villar": [
+          {
+            "codRecinto": "1040500206",
+            "nombre": "Unidad Educativa Rosendo Peoa",
+            "direccion": "OTB Urbanizacion PIL Sarcobamba Calle Luis Zegarra entre Luis Montaoo y Jorge Udaeta",
+            "numMesas": 12
+          }
+        ]
+      },
+      "Hernando Siles": {
+        "Monteagudo": [],
+        "Huacareta": []
+      },
+      "Yamparáez": {
+        "Tarabuco": [
+          {
+            "codRecinto": "1060100218",
+            "nombre": "Instituto Tecnologico El Paso",
+            "direccion": "Avenida Elias Meneces",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "1060100221",
+            "nombre": "U.E. Combuyo",
+            "direccion": "Calle de Combuyo",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "1060100231",
+            "nombre": "Centro Integral Nioo Jesus Fe y Alegria",
+            "direccion": "Calle 4 y Miraflores",
+            "numMesas": 11
+          }
+        ],
+        "Yamparáez": [
+          {
+            "codRecinto": "1060200242",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "1060200261",
+            "nombre": "Nucleo Escolar Villa Granado",
+            "direccion": "Villa Granado",
+            "numMesas": 9
+          }
+        ]
+      },
+      "Nor Cinti": {
+        "Camargo": [
+          {
+            "codRecinto": "1070100270",
+            "nombre": "(Corcel) Penitenciaria San Antonio",
+            "direccion": "Av. Ayacucho Frente a La Terminal",
+            "numMesas": 2
+          }
+        ],
+        "San Lucas": [
+          {
+            "codRecinto": "1070200272",
+            "nombre": "Centro Internado Misicuni",
+            "direccion": "Misicuni",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "1070200274",
+            "nombre": "U.E. Nacional San Isidro",
+            "direccion": "Zona Alto Buena Vista Otb Kasa Wasa",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "1070200285",
+            "nombre": "U.E. Adolfo Mercado",
+            "direccion": "Tacopaya",
+            "numMesas": 10
+          }
+        ],
+        "Incahuasi": [
+          {
+            "codRecinto": "1070300295",
+            "nombre": "Colegio Boliviano Argentino",
+            "direccion": "Baptista y Colombia",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "1070300300",
+            "nombre": "U.E. Bartolina Sisa",
+            "direccion": "Calle Innominada",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "1070300318",
+            "nombre": "Nucleo Escolar Villa Granado",
+            "direccion": "Villa Granado",
+            "numMesas": 8
+          }
+        ],
+        "Villa Charcas": [
+          {
+            "codRecinto": "1070400326",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "1070400342",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 7
+          }
+        ]
+      },
+      "Belisario Boeto": {
+        "Villa Serrano": []
+      },
+      "Sud Cinti": {
+        "Villa Abecia": [
+          {
+            "codRecinto": "1090100349",
+            "nombre": "Escuela Seccional Waripucara",
+            "direccion": "Waripucara",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "1090100363",
+            "nombre": "Nucleo Escolar Laguna Grande",
+            "direccion": "Laguna Grande",
+            "numMesas": 2
+          }
+        ],
+        "Culpina": [
+          {
+            "codRecinto": "1090200365",
+            "nombre": "U.E. Genoveva Roos",
+            "direccion": "Calle Los Robles entre Av. Segunda Circunvalacion y Calle Sofocles",
+            "numMesas": 5
+          }
+        ],
+        "Las Carreras": [
+          {
+            "codRecinto": "1090300370",
+            "nombre": "Instituto Tecnologico El Paso",
+            "direccion": "Avenida Elias Meneces",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "1090300384",
+            "nombre": "U.E. Padresama",
+            "direccion": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "1090300396",
+            "nombre": "Nucleo Educativo Tipajara",
+            "direccion": "Tipajara",
+            "numMesas": 5
+          }
+        ]
+      },
+      "Luis Calvo": {
+        "Villa Vaca Guzmán (Muyupampa)": [
+          {
+            "codRecinto": "1100100401",
+            "nombre": "Unidad Educativa Waca Playa",
+            "direccion": "Waca Playa",
+            "numMesas": 9
+          }
+        ],
+        "Huacaya": [
+          {
+            "codRecinto": "1100200410",
+            "nombre": "U.E. Coracaba",
+            "direccion": "Coracaba",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "1100200417",
+            "nombre": "Unidad Educativa Iglesiani",
+            "direccion": "Iglesiani",
+            "numMesas": 6
+          }
+        ],
+        "Macharetí": []
+      }
+    },
+    "La Paz": {
+      "Murillo": {
+        "La Paz": [],
+        "Palca": [
+          {
+            "codRecinto": "2010200423",
+            "nombre": "U.E. Zenobio Gallardo",
+            "direccion": "Distrito Ramadas",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "2010200441",
+            "nombre": "U.E. Cochabamba",
+            "direccion": "Calle Jordon No 236",
+            "numMesas": 3
+          }
+        ],
+        "Mecapaca": [],
+        "Achocalla": [
+          {
+            "codRecinto": "2010400444",
+            "nombre": "U.E. Combuyo",
+            "direccion": "Calle de Combuyo",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "2010400449",
+            "nombre": "Escuela Tomas Bata",
+            "direccion": "Av. 12 de Enero entre martin Cardenas Y Pacheco",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "2010400465",
+            "nombre": "Nucleo Escolar Laguna Grande",
+            "direccion": "Laguna Grande",
+            "numMesas": 19
+          }
+        ],
+        "El Alto": [
+          {
+            "codRecinto": "2010500484",
+            "nombre": "Unidad Educativa 1ro de Mayo",
+            "direccion": "Primero de Mayo",
+            "numMesas": 9
+          }
+        ]
+      },
+      "Omasuyos": {
+        "Achacachi": [
+          {
+            "codRecinto": "2020100493",
+            "nombre": "U.E. San Miguel",
+            "direccion": "Av. Ustariz S/N",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "2020100495",
+            "nombre": "Nucleo Joso Claure (U. E. San Vicente)",
+            "direccion": "San Vicente",
+            "numMesas": 2
+          }
+        ],
+        "Ancoraimes": [
+          {
+            "codRecinto": "2020200497",
+            "nombre": "Unidad Educativa Chaqui Mayu",
+            "direccion": "Ch Aquimayu",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2020200505",
+            "nombre": "U.E. Avispas",
+            "direccion": "Carretera Cochabamba a Santa Cruz KM/144 Sindicato Avispas",
+            "numMesas": 4
+          }
+        ],
+        "Chua Cocani": [
+          {
+            "codRecinto": "2020300509",
+            "nombre": "U.E. Humberto Portocarrero",
+            "direccion": "Zona Pampa San Miguel",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "2020300522",
+            "nombre": "Instituto Eduardo Laredo",
+            "direccion": "Av. Ramon Rivero",
+            "numMesas": 11
+          }
+        ],
+        "Huarina": [
+          {
+            "codRecinto": "2020400533",
+            "nombre": "Escuela Walter Vallejo",
+            "direccion": "Av. 9 de Abril",
+            "numMesas": 20
+          }
+        ],
+        "Santiago de Huata": [],
+        "Huatajata": [
+          {
+            "codRecinto": "2020600553",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "2020600556",
+            "nombre": "Unidad Educativa 1ro de Mayo",
+            "direccion": "Primero de Mayo",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "2020600570",
+            "nombre": "U.E. Lacolaconi",
+            "direccion": "Lacolaconi",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Pacajes": {
+        "Coro Coro": [
+          {
+            "codRecinto": "2030100590",
+            "nombre": "Unidad Educativa La Sagrada Familia",
+            "direccion": "Av. 16 de Julio",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "2030100591",
+            "nombre": "Escuela La Estrella (San Gabriel)",
+            "direccion": "San Gabriel",
+            "numMesas": 18
+          }
+        ],
+        "Caquiaviri": [
+          {
+            "codRecinto": "2030200609",
+            "nombre": "Unidad Educativa Ivirizu Vandiola",
+            "direccion": "Ivirizu Vandiola",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "2030200615",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "2030200622",
+            "nombre": "U.E. Patria Nueva",
+            "direccion": "Zona Sud Barrio 1ro. De Mayo OTB El Palmar",
+            "numMesas": 1
+          }
+        ],
+        "Calacoto": [
+          {
+            "codRecinto": "2030300623",
+            "nombre": "Unidad Educativa Simon Bolivar (Sumunpaya)",
+            "direccion": "Zona Sumunpuya Sud",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "2030300642",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "2030300656",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 5
+          }
+        ],
+        "Comanche": [],
+        "Charaña": [
+          {
+            "codRecinto": "2030500661",
+            "nombre": "Unidad Educativa 14 de Septiembre",
+            "direccion": "Calle Francisco Suarez entre Rigoberto Sains y Cesar Achaval",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "2030500664",
+            "nombre": "U.E. Serrano",
+            "direccion": "Sindicato Agrarario Serrano?Carretera Troncal Cochabamba Mizque",
+            "numMesas": 12
+          }
+        ],
+        "Waldo Ballivián": [
+          {
+            "codRecinto": "2030600676",
+            "nombre": "Unidad Educativa Molinero",
+            "direccion": "Molinero",
+            "numMesas": 14
+          }
+        ],
+        "Nazacara de Pacajes": [
+          {
+            "codRecinto": "2030700690",
+            "nombre": "U.E. Abraham Flores Velasquez",
+            "direccion": "Alalay",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "2030700699",
+            "nombre": "U.E. Cuatro Esquinas",
+            "direccion": "Comunidad 4 Esquinas",
+            "numMesas": 3
+          }
+        ],
+        "Callapa": [
+          {
+            "codRecinto": "2030800702",
+            "nombre": "U.E. Prof. Benedicto Duron Ortoz",
+            "direccion": "La Florida",
+            "numMesas": 12
+          }
+        ]
+      },
+      "Camacho": {
+        "Puerto Acosta": [
+          {
+            "codRecinto": "2040100714",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "2040100726",
+            "nombre": "U.E.T.H. Mariscal Sucre",
+            "direccion": "Entre Calle el Deber y Los Andes (entrada por la Av. La Resistencia)",
+            "numMesas": 13
+          }
+        ],
+        "Mocomoco": [
+          {
+            "codRecinto": "2040200739",
+            "nombre": "U.E. Chillca Grande",
+            "direccion": "Chillca Grande",
+            "numMesas": 10
+          }
+        ],
+        "Puerto Carabuco": [
+          {
+            "codRecinto": "2040300749",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "2040300769",
+            "nombre": "Sede Social De Tipa Tipa",
+            "direccion": "Tipa Tipa",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "2040300782",
+            "nombre": "U.E. Padre Luis Diez del Pozo",
+            "direccion": "Av. Zofraco",
+            "numMesas": 9
+          }
+        ],
+        "Humanata": [
+          {
+            "codRecinto": "2040400791",
+            "nombre": "Colegio Sebastian Pagador",
+            "direccion": "Villa Sebastian Pagador Av. Machacamarca",
+            "numMesas": 4
+          }
+        ],
+        "Escoma": [
+          {
+            "codRecinto": "2040500795",
+            "nombre": "U.E. Madre De La Divina Providencia",
+            "direccion": "Otb Villa Armonia",
+            "numMesas": 16
+          }
+        ]
+      },
+      "Muñecas": {
+        "Chuma": [
+          {
+            "codRecinto": "2050100811",
+            "nombre": "Unidad Educativa Quturi",
+            "direccion": "Quturi",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "2050100818",
+            "nombre": "(Corcel) Penitenciaria San Antonio",
+            "direccion": "Av. Ayacucho Frente a La Terminal",
+            "numMesas": 17
+          }
+        ],
+        "Ayata": [
+          {
+            "codRecinto": "2050200835",
+            "nombre": "Unidad Educativa Paracti (Villa Tunari)",
+            "direccion": "Paracti(Villa Tunari)",
+            "numMesas": 4
+          }
+        ],
+        "Aucapata": [
+          {
+            "codRecinto": "2050300839",
+            "nombre": "U.E. Padre Luis Diez del Pozo",
+            "direccion": "Av. Zofraco",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "2050300844",
+            "nombre": "Rodriguez",
+            "direccion": "Bolovar y 16 de Julio",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Larecaja": {
+        "Sorata": [
+          {
+            "codRecinto": "2060100861",
+            "nombre": "Centro Internado Misicuni",
+            "direccion": "Misicuni",
+            "numMesas": 10
+          }
+        ],
+        "Guanay": [
+          {
+            "codRecinto": "2060200871",
+            "nombre": "Colegio Padre Andros Cuschieri",
+            "direccion": "Calle Kanaut S/N",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "2060200888",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "2060200889",
+            "nombre": "U. E. Titos Linde",
+            "direccion": "Av. Malteria C/ Innominada a una cuadra y media del Instituto Oncologico Nacional",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "2060200900",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 9
+          }
+        ],
+        "Tacacoma": [
+          {
+            "codRecinto": "2060300909",
+            "nombre": "(Corcel) Penitenciaria San Sebastian Mujeres",
+            "direccion": "Plaz. San Sebastion Acera Oeste",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "2060300926",
+            "nombre": "U.E. Tocnico Humanostico San Rafael",
+            "direccion": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "numMesas": 14
+          }
+        ],
+        "Quiabaya": [
+          {
+            "codRecinto": "2060400940",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2060400948",
+            "nombre": "Unidad Educativa Paracti (Villa Tunari)",
+            "direccion": "Paracti(Villa Tunari)",
+            "numMesas": 1
+          }
+        ],
+        "Combaya": [
+          {
+            "codRecinto": "2060500949",
+            "nombre": "Sede Social Sombrerito",
+            "direccion": "Sindicato Agrarario Sombrerito? Carretera Troncal Cochabamba Mizque",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "2060500962",
+            "nombre": "Unidad Educativa Estados Unidos",
+            "direccion": "Isiboro y Todos Santos",
+            "numMesas": 9
+          }
+        ],
+        "Tipuani": [
+          {
+            "codRecinto": "2060600971",
+            "nombre": "Unidad Educativa Jesus Maestro",
+            "direccion": "Zona Chiquicollo",
+            "numMesas": 6
+          }
+        ],
+        "Mapiri": [
+          {
+            "codRecinto": "2060700977",
+            "nombre": "Escuela Chuou Chuoini",
+            "direccion": "Chuou Chuouni",
+            "numMesas": 5
+          }
+        ],
+        "Teoponte": [
+          {
+            "codRecinto": "2060800982",
+            "nombre": "U. E. Nuestra Seoora del Rosario",
+            "direccion": "Pasaje Bolovar?Tarija",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Franz Tamayo": {
+        "Apolo": [
+          {
+            "codRecinto": "2070100996",
+            "nombre": "Unidad Educativa 14 de Septiembre",
+            "direccion": "Calle Francisco Suarez entre Rigoberto Sains y Cesar Achaval",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "2070101009",
+            "nombre": "Unidad Educativa 14 de Septiembre",
+            "direccion": "Calle Francisco Suarez entre Rigoberto Sains y Cesar Achaval",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "2070101015",
+            "nombre": "Unidad Educativa Iglesiani",
+            "direccion": "Iglesiani",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "2070101020",
+            "nombre": "U.E. Prof. Benedicto Duron Ortoz",
+            "direccion": "La Florida",
+            "numMesas": 8
+          }
+        ],
+        "Pelechuco": []
+      },
+      "Ingavi": {
+        "Viacha": [
+          {
+            "codRecinto": "2080101028",
+            "nombre": "Unidad Educativa Nataniel Aguirre",
+            "direccion": "Av Benemeritos del Chaco y Calle Walter Rocha",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "2080101034",
+            "nombre": "Hogar Comunitario Disneylandia",
+            "direccion": "Zona Sud",
+            "numMesas": 3
+          }
+        ],
+        "Guaqui": [
+          {
+            "codRecinto": "2080201037",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "2080201046",
+            "nombre": "U.E. El Mirador",
+            "direccion": "Zona 5 Alto Mirador",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "2080201066",
+            "nombre": "U.E. Padresama",
+            "direccion": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "numMesas": 4
+          }
+        ],
+        "Tiahuanaco": [
+          {
+            "codRecinto": "2080301070",
+            "nombre": "Escuela Seccional Waripucara",
+            "direccion": "Waripucara",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "2080301086",
+            "nombre": "U.E. Ayni Pacha",
+            "direccion": "C. Santa Elena entre Av. Pisiga y C. Innominada ? OTB Alalay Alto Mirador",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "2080301089",
+            "nombre": "Unidad Educativa El Sausalito",
+            "direccion": "Santa Rosa (Colcapirhua) c/ Martin Cardenas y Oscar Alfaro",
+            "numMesas": 14
+          }
+        ],
+        "Desaguadero": [
+          {
+            "codRecinto": "2080401103",
+            "nombre": "Unidad Educativa Hno Pacifico Feletti",
+            "direccion": "Villa 1o de Mayo",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "2080401107",
+            "nombre": "Kinder San Joaquon",
+            "direccion": "C. Viloma entre C. Colomi y Av. De la Fuerza Aerea",
+            "numMesas": 1
+          }
+        ],
+        "San Andrés de Machaca": [
+          {
+            "codRecinto": "2080501108",
+            "nombre": "U.E. San Francisco Javier",
+            "direccion": "Zona Alto Buena Vista OTB ISIDRO",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "2080501126",
+            "nombre": "U.E. Bartolina Sisa",
+            "direccion": "Calle Innominada",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "2080501128",
+            "nombre": "U.E. Prof. Jaime Alfonso Escalante Gutierrez",
+            "direccion": "Barrio Magisterio Las Delicias",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2080501136",
+            "nombre": "Nucleo Educativo Chapisirca",
+            "direccion": "Chapisirca",
+            "numMesas": 13
+          }
+        ],
+        "Jesús de Machaca": [
+          {
+            "codRecinto": "2080601149",
+            "nombre": "U.E. Padresama",
+            "direccion": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "numMesas": 20
+          }
+        ],
+        "Taraco": [
+          {
+            "codRecinto": "2080701169",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "2080701175",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 3
+          }
+        ]
+      },
+      "Loayza": {
+        "Luribay": [
+          {
+            "codRecinto": "2090101178",
+            "nombre": "Unidad Educativa Eje Pampa",
+            "direccion": "Eje Pampa",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "2090101180",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2090101188",
+            "nombre": "Colegio Evangelico Emanuel",
+            "direccion": "C. Baptista entre C. La Paz y C. J. de la Reza",
+            "numMesas": 5
+          }
+        ],
+        "Sapahaqui": [],
+        "Yaco": [
+          {
+            "codRecinto": "2090301193",
+            "nombre": "Nucleo Escolar Ismael Montes",
+            "direccion": "Conda Baja",
+            "numMesas": 9
+          }
+        ],
+        "Malla": [],
+        "Cairoma": [
+          {
+            "codRecinto": "2090501202",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 11
+          }
+        ]
+      },
+      "Inquisivi": {
+        "Inquisivi": [
+          {
+            "codRecinto": "2100101213",
+            "nombre": "U.E. Prof. Jaime Alfonso Escalante Gutierrez",
+            "direccion": "Barrio Magisterio Las Delicias",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "2100101220",
+            "nombre": "Unidad Educativa Huanacuni Grande",
+            "direccion": "Huanacuni Chico",
+            "numMesas": 20
+          }
+        ],
+        "Quime": [
+          {
+            "codRecinto": "2100201240",
+            "nombre": "U.E. Lacuyo",
+            "direccion": "Challa",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "2100201253",
+            "nombre": "(Corcel) Penitenciaria San Antonio",
+            "direccion": "Av. Ayacucho Frente a La Terminal",
+            "numMesas": 19
+          }
+        ],
+        "Cajuata": [
+          {
+            "codRecinto": "2100301272",
+            "nombre": "Sede Sindical De Chahuarani Chico",
+            "direccion": "En la Sede de Chahuarani Chico",
+            "numMesas": 19
+          }
+        ],
+        "Colquiri": [],
+        "Ichoca": [
+          {
+            "codRecinto": "2100501291",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 9
+          }
+        ],
+        "Licoma Pampa": [
+          {
+            "codRecinto": "2100601300",
+            "nombre": "Colegio Padre Andros Cuschieri",
+            "direccion": "Calle Kanaut S/N",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2100601308",
+            "nombre": "U.E. 27 de Mayo",
+            "direccion": "Reno Barrientos Ortuoo",
+            "numMesas": 10
+          }
+        ]
+      },
+      "Sud Yungas": {
+        "Chulumani": [
+          {
+            "codRecinto": "2110101318",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "2110101332",
+            "nombre": "Nucleo Escolar Ismael Montes",
+            "direccion": "Conda Baja",
+            "numMesas": 15
+          }
+        ],
+        "Irupana": [
+          {
+            "codRecinto": "2110201347",
+            "nombre": "U.E. 14 de Septiembre",
+            "direccion": "Villa 14 de Septiembre",
+            "numMesas": 6
+          }
+        ],
+        "Yanacachi": [
+          {
+            "codRecinto": "2110301353",
+            "nombre": "Escuela Cristal Mayu",
+            "direccion": "Cristal Mayu",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "2110301363",
+            "nombre": "U.E. Nacional San Isidro",
+            "direccion": "Zona Alto Buena Vista Otb Kasa Wasa",
+            "numMesas": 10
+          }
+        ],
+        "Palos Blancos": [
+          {
+            "codRecinto": "2110401373",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "2110401381",
+            "nombre": "Unidad Educativa Quiroga",
+            "direccion": "Quiroga",
+            "numMesas": 3
+          }
+        ],
+        "La Asunta": [
+          {
+            "codRecinto": "2110501384",
+            "nombre": "U.E. Nacional San Isidro",
+            "direccion": "Zona Alto Buena Vista Otb Kasa Wasa",
+            "numMesas": 3
+          }
+        ]
+      },
+      "Los Andes": {
+        "Pucarani": [
+          {
+            "codRecinto": "2120101387",
+            "nombre": "Colegio Padre Andros Cuschieri",
+            "direccion": "Calle Kanaut S/N",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "2120101399",
+            "nombre": "Escuela Seccional Rene Barrientos",
+            "direccion": "Ventilla",
+            "numMesas": 2
+          }
+        ],
+        "Laja": [],
+        "Batallas": [
+          {
+            "codRecinto": "2120301401",
+            "nombre": "U.E. San Antonio",
+            "direccion": "Comunidad San Antonio",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "2120301417",
+            "nombre": "Centro Integral Nioo Jesus Fe y Alegria",
+            "direccion": "Calle 4 y Miraflores",
+            "numMesas": 1
+          }
+        ],
+        "Puerto Pérez": [
+          {
+            "codRecinto": "2120401418",
+            "nombre": "U.E. San Crispin",
+            "direccion": "Calle final Sucre del Municipio de Colcapirhua",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Aroma": {
+        "Sica Sica": [
+          {
+            "codRecinto": "2130101435",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 8
+          }
+        ],
+        "Umala": [
+          {
+            "codRecinto": "2130201443",
+            "nombre": "U.E. Tipa Pampa",
+            "direccion": "Comunidad Tipa Pampa",
+            "numMesas": 1
+          }
+        ],
+        "Ayo Ayo": [
+          {
+            "codRecinto": "2130301444",
+            "nombre": "Colegio La Salle Fiscal",
+            "direccion": "Av. Tiahuanaco Frente a Tronsito",
+            "numMesas": 14
+          }
+        ],
+        "Calamarca": [
+          {
+            "codRecinto": "2130401458",
+            "nombre": "Sede Social de OTB Cerro San Miguel Alto",
+            "direccion": "Calle Ayllu esquina calle Bonifacio",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "2130401462",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 18
+          }
+        ],
+        "Patacamaya": [],
+        "Colquencha": [],
+        "Collana": []
+      },
+      "Nor Yungas": {
+        "Coroico": [
+          {
+            "codRecinto": "2140101480",
+            "nombre": "U.E. Nacional San Isidro",
+            "direccion": "Zona Alto Buena Vista Otb Kasa Wasa",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "2140101499",
+            "nombre": "Unidad Educativa 1ro de Mayo",
+            "direccion": "Primero de Mayo",
+            "numMesas": 8
+          }
+        ],
+        "Coripata": [
+          {
+            "codRecinto": "2140201507",
+            "nombre": "Unidad Educativa Daniel Salamanca",
+            "direccion": "Colcapirhua",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "2140201511",
+            "nombre": "Unidad Educativa Nataniel Aguirre",
+            "direccion": "Av Benemeritos del Chaco y Calle Walter Rocha",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Iturralde": {
+        "Ixiamas": [
+          {
+            "codRecinto": "2150101528",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "2150101544",
+            "nombre": "Escuela Cristal Mayu",
+            "direccion": "Cristal Mayu",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "2150101558",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 7
+          }
+        ],
+        "San Buenaventura": [
+          {
+            "codRecinto": "2150201565",
+            "nombre": "Unidad Educativa de La Fuerza Aerea",
+            "direccion": "Av de La Fuerza Aerea entre Calle Cap. Luis Garcia y Moto Mendez",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "2150201575",
+            "nombre": "U.E. Padresama",
+            "direccion": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Bautista Saavedra": {
+        "Charazani": [
+          {
+            "codRecinto": "2160101576",
+            "nombre": "Colegio Boliviano Argentino",
+            "direccion": "Baptista y Colombia",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "2160101577",
+            "nombre": "U.E. Vilomilla",
+            "direccion": "Vilomilla",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "2160101597",
+            "nombre": "Instituto Tecnologico El Paso",
+            "direccion": "Avenida Elias Meneces",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "2160101617",
+            "nombre": "Venezuela",
+            "direccion": "Liceo Adela Zamudio",
+            "numMesas": 7
+          }
+        ],
+        "Curva": [
+          {
+            "codRecinto": "2160201624",
+            "nombre": "Escuela Monseoor Angel Gelmi",
+            "direccion": "Tita Gallo",
+            "numMesas": 6
+          }
+        ]
+      },
+      "Manco Kapac": {
+        "Copacabana": [],
+        "San Pedro de Tiquina": [
+          {
+            "codRecinto": "2170201630",
+            "nombre": "Unidad Educativa Molinero",
+            "direccion": "Molinero",
+            "numMesas": 15
+          }
+        ],
+        "Tito Yupanqui": [
+          {
+            "codRecinto": "2170301645",
+            "nombre": "Colegio Boliviano Argentino",
+            "direccion": "Baptista y Colombia",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "2170301659",
+            "nombre": "Sede Social de OTB Cerro San Miguel Alto",
+            "direccion": "Calle Ayllu esquina calle Bonifacio",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Gualberto Villarroel": {
+        "San Pedro de Curahuara": [
+          {
+            "codRecinto": "2180101679",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "2180101682",
+            "nombre": "U.E. Pedro Domingo Murillo",
+            "direccion": "Chiuchi Arriba",
+            "numMesas": 3
+          }
+        ],
+        "Papel Pampa": [
+          {
+            "codRecinto": "2180201685",
+            "nombre": "U.E. Zenobio Gallardo",
+            "direccion": "Distrito Ramadas",
+            "numMesas": 2
+          }
+        ],
+        "Chacarilla": [
+          {
+            "codRecinto": "2180301687",
+            "nombre": "Unidad Educativa Molinero",
+            "direccion": "Molinero",
+            "numMesas": 18
+          }
+        ]
+      },
+      "General José Manuel Pando": {
+        "Santiago de Machaca": [],
+        "Catacora": [
+          {
+            "codRecinto": "2190201705",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 12
+          }
+        ]
+      },
+      "Caranavi": {
+        "Caranavi": [],
+        "Alto Beni": [
+          {
+            "codRecinto": "2200201717",
+            "nombre": "Colegio Evangelico Emanuel",
+            "direccion": "C. Baptista entre C. La Paz y C. J. de la Reza",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "2200201728",
+            "nombre": "U.E. El Paso A",
+            "direccion": "Zona Central El Paso",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "2200201731",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 19
+          }
+        ]
+      }
+    },
+    "Cochabamba": {
+      "Cercado": {
+        "Cochabamba": []
+      },
+      "Campero": {
+        "Aiquile": [
+          {
+            "codRecinto": "3020101750",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 11
+          }
+        ],
+        "Pasorapa": [
+          {
+            "codRecinto": "3020201761",
+            "nombre": "Colegio Pedro Ignacio Rivero",
+            "direccion": "Mizque",
+            "numMesas": 15
+          },
+          {
+            "codRecinto": "3020201776",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "3020201793",
+            "nombre": "Unidad Educativa Bolivia (La Maica)",
+            "direccion": "La Maica Central",
+            "numMesas": 19
+          }
+        ],
+        "Omereque": [
+          {
+            "codRecinto": "3020301812",
+            "nombre": "(Corcel) Penitenciaria San Antonio",
+            "direccion": "Av. Ayacucho Frente a La Terminal",
+            "numMesas": 8
+          }
+        ]
+      },
+      "Ayopaya": {
+        "Independencia": [],
+        "Morochata": [
+          {
+            "codRecinto": "3030201820",
+            "nombre": "Unidad Educativa Santiago",
+            "direccion": "Achandara y Calle Imnominada",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "3030201826",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "3030201836",
+            "nombre": "Unidad Educativa Moleto Icoya (V.Tunari)",
+            "direccion": "Moleto",
+            "numMesas": 15
+          }
+        ],
+        "Cocapata": [
+          {
+            "codRecinto": "3030301851",
+            "nombre": "U.E. Israel",
+            "direccion": "Zona Villa Israel",
+            "numMesas": 19
+          }
+        ]
+      },
+      "Esteban Arze": {
+        "Tarata": [
+          {
+            "codRecinto": "3040101870",
+            "nombre": "Unidad Educativa Estados Unidos",
+            "direccion": "Isiboro y Todos Santos",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "3040101880",
+            "nombre": "Unidad Educativa Antonio Diez",
+            "direccion": "Itocta",
+            "numMesas": 8
+          }
+        ],
+        "Anzaldo": [
+          {
+            "codRecinto": "3040201888",
+            "nombre": "Escuela Eugenia Ravasco",
+            "direccion": "Av. Esperanza?Rumi Mayu (Tiquipaya)",
+            "numMesas": 2
+          }
+        ],
+        "Arbieto": [
+          {
+            "codRecinto": "3040301890",
+            "nombre": "Unidad Educativa Panama",
+            "direccion": "Panamo",
+            "numMesas": 5
+          }
+        ],
+        "Sacabamba": []
+      },
+      "Arani": {
+        "Arani": [
+          {
+            "codRecinto": "3050101895",
+            "nombre": "Colegio Franz Tamayo",
+            "direccion": "Calle Rafael Pavon entre Av",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "3050101897",
+            "nombre": "Colegio La Salle Fiscal",
+            "direccion": "Av. Tiahuanaco Frente a Tronsito",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "3050101908",
+            "nombre": "Colegio Franz Tamayo",
+            "direccion": "Calle Rafael Pavon entre Av",
+            "numMesas": 12
+          }
+        ],
+        "Vacas": []
+      },
+      "Arque": {
+        "Arque": [],
+        "Tacopaya": [
+          {
+            "codRecinto": "3060201920",
+            "nombre": "Unidad Educativa Domingo Savio (Ex Lorenzo Filho)",
+            "direccion": "Av. Aniceto Arce Nro 804 entre N. Morales",
+            "numMesas": 13
+          }
+        ]
+      },
+      "Capinota": {
+        "Capinota": [],
+        "Santiváñez": [
+          {
+            "codRecinto": "3070201933",
+            "nombre": "Kinder San Joaquon",
+            "direccion": "C. Viloma entre C. Colomi y Av. De la Fuerza Aerea",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "3070201936",
+            "nombre": "Unidad Educativa Antonio Diez",
+            "direccion": "Itocta",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "3070201941",
+            "nombre": "Unidad Educativa Thago Thago",
+            "direccion": "Thago Thago",
+            "numMesas": 15
+          },
+          {
+            "codRecinto": "3070201956",
+            "nombre": "Hogar Comunitario Disneylandia",
+            "direccion": "Zona Sud",
+            "numMesas": 19
+          }
+        ],
+        "Sicaya": []
+      },
+      "Germán Jordán": {
+        "Cliza": [
+          {
+            "codRecinto": "3080101975",
+            "nombre": "Escuela Melchor Cuadros",
+            "direccion": "Av. Pairumani?Vinto",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "3080101984",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "3080101991",
+            "nombre": "Unidad Educativa Tocopilla",
+            "direccion": "Tocopilla",
+            "numMesas": 12
+          }
+        ],
+        "Toco": [
+          {
+            "codRecinto": "3080202003",
+            "nombre": "U.E. San Antonio",
+            "direccion": "Comunidad San Antonio",
+            "numMesas": 7
+          }
+        ],
+        "Tolata": [
+          {
+            "codRecinto": "3080302010",
+            "nombre": "Centro de Atencion Al Turista",
+            "direccion": "Incallajta",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Quillacollo": {
+        "Quillacollo": [
+          {
+            "codRecinto": "3090102030",
+            "nombre": "Unidad Educativa Club De Leones",
+            "direccion": "Circunvalacion 375 Enrique Arce",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "3090102049",
+            "nombre": "Unidad Educativa Central Villa Pereira",
+            "direccion": "Villa Pereira",
+            "numMesas": 2
+          }
+        ],
+        "Sipe Sipe": [
+          {
+            "codRecinto": "3090202051",
+            "nombre": "Escuela Manuel De Ugarte",
+            "direccion": "Aiquile",
+            "numMesas": 17
+          }
+        ],
+        "Tiquipaya": [
+          {
+            "codRecinto": "3090302068",
+            "nombre": "Escuela Gualberto Villarroel",
+            "direccion": "Arani",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "3090302072",
+            "nombre": "Unidad Educativa Iglesiani",
+            "direccion": "Iglesiani",
+            "numMesas": 3
+          }
+        ],
+        "Vinto": [],
+        "Colcapirhua": []
+      },
+      "Chapare": {
+        "Sacaba": [
+          {
+            "codRecinto": "3100102075",
+            "nombre": "U.E. Prof. Benedicto Duron Ortoz",
+            "direccion": "La Florida",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "3100102076",
+            "nombre": "U.E. Tiquirani",
+            "direccion": "OTB Tiquirani",
+            "numMesas": 20
+          }
+        ],
+        "Colomi": [
+          {
+            "codRecinto": "3100202096",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "3100202104",
+            "nombre": "Unidad Educativa Jesus Maestro",
+            "direccion": "Zona Chiquicollo",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "3100202116",
+            "nombre": "Unidad Educativa Ramadas",
+            "direccion": "La Ramada",
+            "numMesas": 13
+          }
+        ],
+        "Villa Tunari": [
+          {
+            "codRecinto": "3100302129",
+            "nombre": "Unidad Educativa Eje Pampa",
+            "direccion": "Eje Pampa",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "3100302139",
+            "nombre": "U.E. Joso Carlos Carrillo",
+            "direccion": "Comunidad Tirani?Final Av. Atahuallpa segunda circunvalacion",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Tapacarí": {
+        "Tapacarí": [
+          {
+            "codRecinto": "3110102159",
+            "nombre": "Unidad Educativa Domingo Savio (Ex Lorenzo Filho)",
+            "direccion": "Av. Aniceto Arce Nro 804 entre N. Morales",
+            "numMesas": 11
+          }
+        ]
+      },
+      "Carrasco": {
+        "Totora": [],
+        "Pojo": [
+          {
+            "codRecinto": "3120202170",
+            "nombre": "Unidad Educativa Libertad",
+            "direccion": "C/ Porvenir y C/ Mejillones",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "3120202190",
+            "nombre": "Colegio Franz Tamayo",
+            "direccion": "Calle Rafael Pavon entre Av",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "3120202199",
+            "nombre": "Nucleo Escolar Ismael Montes",
+            "direccion": "Conda Baja",
+            "numMesas": 10
+          }
+        ],
+        "Pocona": [
+          {
+            "codRecinto": "3120302209",
+            "nombre": "Escuela Fiscal Juan XXIII A",
+            "direccion": "Av. Guido Brault Omi y Mons. Francisco Cano",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "3120302214",
+            "nombre": "Sede Social de OTB Cerro San Miguel Alto",
+            "direccion": "Calle Ayllu esquina calle Bonifacio",
+            "numMesas": 9
+          }
+        ],
+        "Chimoré": [
+          {
+            "codRecinto": "3120402223",
+            "nombre": "Escuela Aguada",
+            "direccion": "Aguada",
+            "numMesas": 18
+          }
+        ],
+        "Puerto Villarroel": [
+          {
+            "codRecinto": "3120502241",
+            "nombre": "U.E. Chillca Grande",
+            "direccion": "Chillca Grande",
+            "numMesas": 5
+          }
+        ],
+        "Entre Ríos": [
+          {
+            "codRecinto": "3120602246",
+            "nombre": "Unidad Educativa Chaqui Mayu",
+            "direccion": "Ch Aquimayu",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Mizque": {
+        "Mizque": [
+          {
+            "codRecinto": "3130102263",
+            "nombre": "Unidad Educativa Chaqui Mayu",
+            "direccion": "Ch Aquimayu",
+            "numMesas": 13
+          }
+        ],
+        "Vila Vila": [],
+        "Alalay": [
+          {
+            "codRecinto": "3130302276",
+            "nombre": "Unidad Educativa Rosendo Peoa",
+            "direccion": "OTB Urbanizacion PIL Sarcobamba Calle Luis Zegarra entre Luis Montaoo y Jorge Udaeta",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Punata": {
+        "Punata": [
+          {
+            "codRecinto": "3140102277",
+            "nombre": "Sede Sindical Yajo Pampa",
+            "direccion": "Comunidad Yajo Pampa",
+            "numMesas": 20
+          }
+        ],
+        "Villa Rivero": [
+          {
+            "codRecinto": "3140202297",
+            "nombre": "Unidad Educativa Panama",
+            "direccion": "Panamo",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "3140202313",
+            "nombre": "Instituto Tecnologico El Paso",
+            "direccion": "Avenida Elias Meneces",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "3140202320",
+            "nombre": "Unidad Educativa Estados Unidos",
+            "direccion": "Isiboro y Todos Santos",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "3140202333",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 18
+          }
+        ],
+        "San Benito": [
+          {
+            "codRecinto": "3140302351",
+            "nombre": "Escuela Seccional Waripucara",
+            "direccion": "Waripucara",
+            "numMesas": 12
+          }
+        ],
+        "Tacachi": [
+          {
+            "codRecinto": "3140402363",
+            "nombre": "U.E. Prof. Jaime Alfonso Escalante Gutierrez",
+            "direccion": "Barrio Magisterio Las Delicias",
+            "numMesas": 17
+          }
+        ],
+        "Cuchumuela": [
+          {
+            "codRecinto": "3140502380",
+            "nombre": "U.E. San Francisco Javier",
+            "direccion": "Zona Alto Buena Vista OTB ISIDRO",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "3140502396",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 8
+          }
+        ]
+      },
+      "Bolívar": {
+        "Bolívar": [
+          {
+            "codRecinto": "3150102404",
+            "nombre": "U.E. San Francisco Javier",
+            "direccion": "Zona Alto Buena Vista OTB ISIDRO",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Tiraque": {
+        "Tiraque": [
+          {
+            "codRecinto": "3160102405",
+            "nombre": "Escuela Chuou Chuoini",
+            "direccion": "Chuou Chuouni",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "3160102417",
+            "nombre": "U.E. Serrano",
+            "direccion": "Sindicato Agrarario Serrano?Carretera Troncal Cochabamba Mizque",
+            "numMesas": 16
+          }
+        ],
+        "Shinahota": [
+          {
+            "codRecinto": "3160202433",
+            "nombre": "Unidad Educativa El Sausalito",
+            "direccion": "Santa Rosa (Colcapirhua) c/ Martin Cardenas y Oscar Alfaro",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "3160202443",
+            "nombre": "Centro Internado Misicuni",
+            "direccion": "Misicuni",
+            "numMesas": 11
+          }
+        ]
+      }
+    },
+    "Oruro": {
+      "Cercado": {
+        "Oruro": [
+          {
+            "codRecinto": "4010102454",
+            "nombre": "Unidad Educativa Ramadas",
+            "direccion": "La Ramada",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "4010102470",
+            "nombre": "U.E. Tocnico Humanostico San Rafael",
+            "direccion": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "numMesas": 17
+          }
+        ],
+        "Caracollo": [
+          {
+            "codRecinto": "4010202487",
+            "nombre": "Nucleo Escolar Beta Raqay Pampa",
+            "direccion": "Raqay Pampa",
+            "numMesas": 17
+          }
+        ],
+        "El Choro": [
+          {
+            "codRecinto": "4010302504",
+            "nombre": "Unidad Educativa Nataniel Aguirre",
+            "direccion": "Av Benemeritos del Chaco y Calle Walter Rocha",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "4010302516",
+            "nombre": "Unidad Educativa Kewioal",
+            "direccion": "Qhewioal",
+            "numMesas": 9
+          }
+        ],
+        "Paria": []
+      },
+      "Abaroa": {
+        "Challapata": [
+          {
+            "codRecinto": "4020102525",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "4020102528",
+            "nombre": "U.E. Lacolaconi",
+            "direccion": "Lacolaconi",
+            "numMesas": 17
+          }
+        ],
+        "Quillacas": [
+          {
+            "codRecinto": "4020202545",
+            "nombre": "U.E. Jose Nabo Quintana Navia",
+            "direccion": "Calle Cochabamba frente a la capilla Virgen de Guadalupe",
+            "numMesas": 6
+          }
+        ]
+      },
+      "Carangas": {
+        "Corque": [
+          {
+            "codRecinto": "4030102551",
+            "nombre": "U.E. El Paso A",
+            "direccion": "Zona Central El Paso",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "4030102558",
+            "nombre": "Colegio La Salle",
+            "direccion": "Junon y Mayor Rocha",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "4030102577",
+            "nombre": "U.E. Prof. Jaime Alfonso Escalante Gutierrez",
+            "direccion": "Barrio Magisterio Las Delicias",
+            "numMesas": 6
+          }
+        ],
+        "Choquecota": [
+          {
+            "codRecinto": "4030202583",
+            "nombre": "Nucleo Escolar Beta Raqay Pampa",
+            "direccion": "Raqay Pampa",
+            "numMesas": 18
+          }
+        ]
+      },
+      "Sajama": {
+        "Curahuara de Carangas": [
+          {
+            "codRecinto": "4040102601",
+            "nombre": "Centro de Atencion Al Turista",
+            "direccion": "Incallajta",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "4040102619",
+            "nombre": "Unidad Educativa Libertad",
+            "direccion": "C/ Porvenir y C/ Mejillones",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "4040102626",
+            "nombre": "U.E. 14 de Septiembre",
+            "direccion": "Villa 14 de Septiembre",
+            "numMesas": 14
+          }
+        ],
+        "Turco": []
+      },
+      "Litoral": {
+        "Huachacalla": [
+          {
+            "codRecinto": "4050102640",
+            "nombre": "Escuela Manuel De Ugarte",
+            "direccion": "Aiquile",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "4050102643",
+            "nombre": "Unidad Educativa Atiy",
+            "direccion": "Por San Isidro",
+            "numMesas": 3
+          }
+        ],
+        "Escara": [],
+        "Cruz de Machacamarca": [
+          {
+            "codRecinto": "4050302646",
+            "nombre": "Unidad Educativa Sagrada Familia",
+            "direccion": "Vinto",
+            "numMesas": 19
+          }
+        ],
+        "Yunguyo de Litoral": [
+          {
+            "codRecinto": "4050402665",
+            "nombre": "Unidad Educativa Keraya",
+            "direccion": "Keraya",
+            "numMesas": 20
+          }
+        ],
+        "Esmeralda": [
+          {
+            "codRecinto": "4050502685",
+            "nombre": "Nucleo Escolar Beta Raqay Pampa",
+            "direccion": "Raqay Pampa",
+            "numMesas": 2
+          }
+        ]
+      },
+      "Poopó": {
+        "Poopó": [
+          {
+            "codRecinto": "4060102687",
+            "nombre": "Unidad Educativa La Sagrada Familia",
+            "direccion": "Av. 16 de Julio",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "4060102688",
+            "nombre": "U.E. San Miguel",
+            "direccion": "Av. Ustariz S/N",
+            "numMesas": 15
+          }
+        ],
+        "Pazña": [
+          {
+            "codRecinto": "4060202703",
+            "nombre": "U.E. Combuyo",
+            "direccion": "Calle de Combuyo",
+            "numMesas": 20
+          }
+        ],
+        "Antequera": [
+          {
+            "codRecinto": "4060302723",
+            "nombre": "U.E. San Crispin",
+            "direccion": "Calle final Sucre del Municipio de Colcapirhua",
+            "numMesas": 4
+          }
+        ]
+      },
+      "Dalence": {
+        "Huanuni": [
+          {
+            "codRecinto": "4070102727",
+            "nombre": "Unidad Educativa de La Fuerza Aerea",
+            "direccion": "Av de La Fuerza Aerea entre Calle Cap. Luis Garcia y Moto Mendez",
+            "numMesas": 11
+          }
+        ],
+        "Machacamarca": []
+      },
+      "Ladislao Cabrera": {
+        "Salinas de Garci Mendoza": [
+          {
+            "codRecinto": "4080102738",
+            "nombre": "U.E.T.H. Mariscal Sucre",
+            "direccion": "Entre Calle el Deber y Los Andes (entrada por la Av. La Resistencia)",
+            "numMesas": 11
+          }
+        ],
+        "Pampa Aullagas": [
+          {
+            "codRecinto": "4080202749",
+            "nombre": "U.E. El Mirador",
+            "direccion": "Zona 5 Alto Mirador",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Sabaya": {
+        "Sabaya": [
+          {
+            "codRecinto": "4090102764",
+            "nombre": "Colegio Padre Andros Cuschieri",
+            "direccion": "Calle Kanaut S/N",
+            "numMesas": 16
+          }
+        ],
+        "Coipasa": [
+          {
+            "codRecinto": "4090202780",
+            "nombre": "Unidad Educativa Paracti (Villa Tunari)",
+            "direccion": "Paracti(Villa Tunari)",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "4090202793",
+            "nombre": "Sede Social De Tipa Tipa",
+            "direccion": "Tipa Tipa",
+            "numMesas": 19
+          }
+        ],
+        "Chipaya": [
+          {
+            "codRecinto": "4090302812",
+            "nombre": "Colegio San Miguel (Tiquipaya)",
+            "direccion": "C/T. Torrico?C.Beni",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Saucarí": {
+        "Toledo": []
+      },
+      "Tomás Barrón": {
+        "Eucaliptus": [
+          {
+            "codRecinto": "4110102832",
+            "nombre": "Instituto Tecnologico El Paso",
+            "direccion": "Avenida Elias Meneces",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "4110102852",
+            "nombre": "Unidad Educativa Hno Pacifico Feletti",
+            "direccion": "Villa 1o de Mayo",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Sud Carangas": {
+        "Santiago de Andamarca": [
+          {
+            "codRecinto": "4120102867",
+            "nombre": "Rodriguez",
+            "direccion": "Bolovar y 16 de Julio",
+            "numMesas": 12
+          }
+        ],
+        "Belén de Andamarca": [
+          {
+            "codRecinto": "4120202879",
+            "nombre": "Unidad Educativa 1ro de Mayo",
+            "direccion": "Primero de Mayo",
+            "numMesas": 6
+          }
+        ]
+      },
+      "San Pedro de Totora": {
+        "Totora": [
+          {
+            "codRecinto": "4130102885",
+            "nombre": "(Corcel) Penitenciaria San Sebastian Varones",
+            "direccion": "Plaz. San Sebastion Acera Norte",
+            "numMesas": 13
+          }
+        ]
+      },
+      "Sebastián Pagador": {
+        "Santiago de Huari": [
+          {
+            "codRecinto": "4140102898",
+            "nombre": "U.E. Tocnico Humanostico San Rafael",
+            "direccion": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "4140102909",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "4140102928",
+            "nombre": "U.E. El Mirador",
+            "direccion": "Zona 5 Alto Mirador",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Mejillones": {
+        "La Rivera": [
+          {
+            "codRecinto": "4150102945",
+            "nombre": "U.E. Coracaba",
+            "direccion": "Coracaba",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "4150102956",
+            "nombre": "Centro Integral Nioo Jesus Fe y Alegria",
+            "direccion": "Calle 4 y Miraflores",
+            "numMesas": 16
+          }
+        ],
+        "Todos Santos": [
+          {
+            "codRecinto": "4150202972",
+            "nombre": "Unidad Educativa Rosendo Peoa",
+            "direccion": "OTB Urbanizacion PIL Sarcobamba Calle Luis Zegarra entre Luis Montaoo y Jorge Udaeta",
+            "numMesas": 10
+          }
+        ],
+        "Carangas": [
+          {
+            "codRecinto": "4150302982",
+            "nombre": "Escuela Ismael Montes",
+            "direccion": "La Chulla",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "4150302985",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 8
+          }
+        ]
+      },
+      "Nor Carangas": {
+        "Huayllamarca": []
+      }
+    },
+    "Potosí": {
+      "Tomás Frías": {
+        "Potosí": [
+          {
+            "codRecinto": "5010102993",
+            "nombre": "Unidad Educativa Moleto Icoya (V.Tunari)",
+            "direccion": "Moleto",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "5010103004",
+            "nombre": "Centro de Atencion Al Turista",
+            "direccion": "Incallajta",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "5010103008",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 2
+          }
+        ],
+        "Tinguipaya": [
+          {
+            "codRecinto": "5010203010",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "5010203029",
+            "nombre": "Nucleo Escolar Ismael Montes",
+            "direccion": "Conda Baja",
+            "numMesas": 13
+          }
+        ],
+        "Yocalla": [
+          {
+            "codRecinto": "5010303042",
+            "nombre": "Unidad Educativa Humamarca",
+            "direccion": "Comunidad de Humamarca",
+            "numMesas": 9
+          }
+        ],
+        "Urmiri": [
+          {
+            "codRecinto": "5010403051",
+            "nombre": "Unidad Educativa Panama",
+            "direccion": "Panamo",
+            "numMesas": 3
+          }
+        ]
+      },
+      "Rafael Bustillo": {
+        "Uncía": [
+          {
+            "codRecinto": "5020103054",
+            "nombre": "U.E. Avelino Morida",
+            "direccion": "Zubieta",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "5020103064",
+            "nombre": "U.E. Ana Maroa Romero de Campero",
+            "direccion": "Villa Victoria",
+            "numMesas": 16
+          }
+        ],
+        "Chayanta": [
+          {
+            "codRecinto": "5020203080",
+            "nombre": "Unidad Educativa Tocopilla",
+            "direccion": "Tocopilla",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "5020203087",
+            "nombre": "Escuela Dr. Demetrio Canelas",
+            "direccion": "Ayapampa",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "5020203097",
+            "nombre": "U.E. 5 de Septiembre",
+            "direccion": "OTB 21 de Septiembre?Calle Tte. Benavides",
+            "numMesas": 7
+          }
+        ],
+        "Llallagua": [
+          {
+            "codRecinto": "5020303104",
+            "nombre": "Nucleo Escolar Confital",
+            "direccion": "Confital",
+            "numMesas": 5
+          }
+        ],
+        "Chuquihuta": [
+          {
+            "codRecinto": "5020403109",
+            "nombre": "U.E. Madre De La Divina Providencia",
+            "direccion": "Otb Villa Armonia",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "5020403111",
+            "nombre": "Unidad Educativa David Arzabe",
+            "direccion": "Vinto",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "5020403127",
+            "nombre": "U.E. Rumy Corral",
+            "direccion": "Comunidad Rumy Corral Centro",
+            "numMesas": 11
+          }
+        ]
+      },
+      "Cornelio Saavedra": {
+        "Betanzos": [
+          {
+            "codRecinto": "5030103138",
+            "nombre": "Nucleo Educativo Chapisirca",
+            "direccion": "Chapisirca",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "5030103140",
+            "nombre": "U. E. Nuestra Seoora del Rosario",
+            "direccion": "Pasaje Bolovar?Tarija",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "5030103159",
+            "nombre": "Unidad Educativa Central Villa Pereira",
+            "direccion": "Villa Pereira",
+            "numMesas": 11
+          }
+        ],
+        "Chaquí": [],
+        "Tacobamba": [
+          {
+            "codRecinto": "5030303170",
+            "nombre": "U.E. Simon I. Patioo",
+            "direccion": "Avenida Pairumani",
+            "numMesas": 16
+          }
+        ]
+      },
+      "Chayanta": {
+        "Colquechaca": [
+          {
+            "codRecinto": "5040103186",
+            "nombre": "U.E. Canaon",
+            "direccion": "Municipio Cochabamba Av. Pedro de Toledo entre Calle Juan de la Cruz Monje y Huanchaca",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "5040103192",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "5040103193",
+            "nombre": "Escuela Seccional Waripucara",
+            "direccion": "Waripucara",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "5040103194",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 9
+          }
+        ],
+        "Ravelo": [
+          {
+            "codRecinto": "5040203203",
+            "nombre": "Escuela Seccional Waripucara",
+            "direccion": "Waripucara",
+            "numMesas": 5
+          }
+        ],
+        "Pocoata": [
+          {
+            "codRecinto": "5040303208",
+            "nombre": "Unidad Educativa Maria Emilia Riquelme (Ex Maria Cristina)",
+            "direccion": "Av. Cap. Victor Ustariz",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "5040303221",
+            "nombre": "U.E. Pedro Domingo Murillo",
+            "direccion": "Chiuchi Arriba",
+            "numMesas": 11
+          }
+        ],
+        "Ocurí": [
+          {
+            "codRecinto": "5040403232",
+            "nombre": "Nucleo Escolar Ismael Montes",
+            "direccion": "Conda Baja",
+            "numMesas": 15
+          },
+          {
+            "codRecinto": "5040403247",
+            "nombre": "U.E. San Miguel",
+            "direccion": "Av. Ustariz S/N",
+            "numMesas": 13
+          }
+        ],
+        "San Pedro de Macha": [
+          {
+            "codRecinto": "5040503260",
+            "nombre": "Sede Sindical Yajo Pampa",
+            "direccion": "Comunidad Yajo Pampa",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "5040503263",
+            "nombre": "U.E. Molle Pampa",
+            "direccion": "Comunidad Molle Pampa",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "5040503283",
+            "nombre": "Colegio La Salle",
+            "direccion": "Junon y Mayor Rocha",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Charcas": {
+        "San Pedro de Buena Vista": [],
+        "Toro Toro": [
+          {
+            "codRecinto": "5050203297",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "5050203314",
+            "nombre": "U.E. Combuyo",
+            "direccion": "Calle de Combuyo",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Nor Chichas": {
+        "Cotagaita": [],
+        "Vitichi": []
+      },
+      "Alonso de Ibáñez": {
+        "Sacaca": [],
+        "Caripuyo": [
+          {
+            "codRecinto": "5070203329",
+            "nombre": "U.E. Ayni Pacha",
+            "direccion": "C. Santa Elena entre Av. Pisiga y C. Innominada ? OTB Alalay Alto Mirador",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "5070203345",
+            "nombre": "U.E. 14 de Septiembre",
+            "direccion": "Villa 14 de Septiembre",
+            "numMesas": 3
+          }
+        ]
+      },
+      "Sud Chichas": {
+        "Tupiza": [
+          {
+            "codRecinto": "5080103348",
+            "nombre": "Unidad Educativa Chaqui Mayu",
+            "direccion": "Ch Aquimayu",
+            "numMesas": 18
+          }
+        ],
+        "Atocha": [
+          {
+            "codRecinto": "5080203366",
+            "nombre": "U.E. 14 de Septiembre",
+            "direccion": "Villa 14 de Septiembre",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Nor Lípez": {
+        "Colcha K": [
+          {
+            "codRecinto": "5090103383",
+            "nombre": "Escuela Felix Martinez",
+            "direccion": "Av. 31 de Octubre y Av. Mira Flores",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "5090103391",
+            "nombre": "Unidad Educativa Eje Pampa",
+            "direccion": "Eje Pampa",
+            "numMesas": 3
+          }
+        ],
+        "San Pedro de Quemes": [
+          {
+            "codRecinto": "5090203394",
+            "nombre": "U.E. Cochabamba",
+            "direccion": "Calle Jordon No 236",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "5090203410",
+            "nombre": "Nucleo Escolar Simon Bolivar (Thiomoko)",
+            "direccion": "Cleomedes blanco y Atacama",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Sud Lípez": {
+        "San Pablo de Lípez": [
+          {
+            "codRecinto": "5100103425",
+            "nombre": "Escuela Ladislao Cabrera",
+            "direccion": "Chilicchi",
+            "numMesas": 13
+          }
+        ],
+        "Mojinete": [],
+        "San Antonio de Esmoruco": []
+      },
+      "Linares": {
+        "Puna": [
+          {
+            "codRecinto": "5110103438",
+            "nombre": "U.E. Zenobio Gallardo",
+            "direccion": "Distrito Ramadas",
+            "numMesas": 20
+          }
+        ],
+        "Caiza D": [
+          {
+            "codRecinto": "5110203458",
+            "nombre": "U.E. El Paso A",
+            "direccion": "Zona Central El Paso",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "5110203471",
+            "nombre": "Unidad Educativa Rosendo Peoa",
+            "direccion": "OTB Urbanizacion PIL Sarcobamba Calle Luis Zegarra entre Luis Montaoo y Jorge Udaeta",
+            "numMesas": 5
+          }
+        ],
+        "Ckochas": [
+          {
+            "codRecinto": "5110303476",
+            "nombre": "Colegio Franz Tamayo",
+            "direccion": "Calle Rafael Pavon entre Av",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "5110303494",
+            "nombre": "U.E. Lacolaconi",
+            "direccion": "Lacolaconi",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Quijarro": {
+        "Uyuni": [
+          {
+            "codRecinto": "5120103508",
+            "nombre": "U.E.T.H. Mariscal Sucre",
+            "direccion": "Entre Calle el Deber y Los Andes (entrada por la Av. La Resistencia)",
+            "numMesas": 14
+          }
+        ],
+        "Tomave": [
+          {
+            "codRecinto": "5120203522",
+            "nombre": "Unidad Educativa Domingo Savio (Ex Lorenzo Filho)",
+            "direccion": "Av. Aniceto Arce Nro 804 entre N. Morales",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "5120203536",
+            "nombre": "Escuela Melchor Cuadros",
+            "direccion": "Av. Pairumani?Vinto",
+            "numMesas": 1
+          }
+        ],
+        "Porco": [
+          {
+            "codRecinto": "5120303537",
+            "nombre": "Colegio Pio XII",
+            "direccion": "25 de Mayo entre Punata",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "U.E. San Adalberto Fe y Alegroa",
+            "nombre": "Zona Cementerio Calle Sucre Final",
+            "direccion": "",
+            "numMesas": 15
+          }
+        ]
+      },
+      "General Bilbao": {
+        "Arampampa": [
+          {
+            "codRecinto": "Unidad Educativa Paracti (Villa Tunari)",
+            "nombre": "Paracti(Villa Tunari)",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Colegio Pedro Ignacio Rivero",
+            "nombre": "Mizque",
+            "direccion": "",
+            "numMesas": 3
+          }
+        ],
+        "Acasio": [
+          {
+            "codRecinto": "Colegio La Salle Fiscal",
+            "nombre": "Av. Tiahuanaco Frente a Tronsito",
+            "direccion": "",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "Colegio Pio XII",
+            "nombre": "25 de Mayo entre Punata",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Daniel Campos": {
+        "Llica": [
+          {
+            "codRecinto": "U.E. Rodolfo Illanes",
+            "nombre": "Comunidad 16 de Julio Capihuara",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ],
+        "Tahua": []
+      },
+      "Modesto Omiste": {
+        "Villazón": [
+          {
+            "codRecinto": "Escuela Gualberto Villarroel",
+            "nombre": "Arani",
+            "direccion": "",
+            "numMesas": 1
+          },
+          {
+            "codRecinto": "Colegio Pio XII",
+            "nombre": "25 de Mayo entre Punata",
+            "direccion": "",
+            "numMesas": 4
+          }
+        ]
+      },
+      "Enrique Baldivieso": {
+        "San Agustín": [
+          {
+            "codRecinto": "Escuela Gualberto Villarroel",
+            "nombre": "Arani",
+            "direccion": "",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "Unidad Educativa Paracti (Villa Tunari)",
+            "nombre": "Paracti(Villa Tunari)",
+            "direccion": "",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "U.E. Avelino Morida",
+            "nombre": "Zubieta",
+            "direccion": "",
+            "numMesas": 20
+          }
+        ]
+      }
+    },
+    "Tarija": {
+      "Cercado": {
+        "Tarija": []
+      },
+      "Arce": {
+        "Padcaya": [
+          {
+            "codRecinto": "Unidad Educativa Jatun Pampa",
+            "nombre": "Jatun Pampa",
+            "direccion": "",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "Colegio Evangelico Emanuel",
+            "nombre": "C. Baptista entre C. La Paz y C. J. de la Reza",
+            "direccion": "",
+            "numMesas": 6
+          }
+        ],
+        "Bermejo": []
+      },
+      "Gran Chaco": {
+        "Yacuiba": [
+          {
+            "codRecinto": "Escuela Mixta Dr. Martin Cardenas",
+            "nombre": "Mina Asientos",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "U.E. Rodolfo Illanes",
+            "nombre": "Comunidad 16 de Julio Capihuara",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Nucleo Escolar Confital",
+            "nombre": "Confital",
+            "direccion": "",
+            "numMesas": 13
+          }
+        ],
+        "Caraparí": [
+          {
+            "codRecinto": "U.E. Combuyo",
+            "nombre": "Calle de Combuyo",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "Unidad Educativa El Sausalito",
+            "nombre": "Santa Rosa (Colcapirhua) c/ Martin Cardenas y Oscar Alfaro",
+            "direccion": "",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "Nucleo Escolar Villa Granado",
+            "nombre": "Villa Granado",
+            "direccion": "",
+            "numMesas": 20
+          }
+        ],
+        "Villa Montes": [
+          {
+            "codRecinto": "Nucleo Escolar Beta Raqay Pampa",
+            "nombre": "Raqay Pampa",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "Unidad Educ. Eduardo Lopez O E.Don Bosco",
+            "nombre": "Champa Rancho",
+            "direccion": "",
+            "numMesas": 19
+          }
+        ]
+      },
+      "José María Avilés": {
+        "Uriondo": [],
+        "Yunchará": [
+          {
+            "codRecinto": "Nucleo Escolar Laguna Grande",
+            "nombre": "Laguna Grande",
+            "direccion": "",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Méndez": {
+        "San Lorenzo": [
+          {
+            "codRecinto": "U.E. Vilomilla",
+            "nombre": "Vilomilla",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "El Puente": [
+          {
+            "codRecinto": "U.E. El Mirador",
+            "nombre": "Zona 5 Alto Mirador",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ]
+      },
+      "O'Connor": {
+        "Entre Ríos": [
+          {
+            "codRecinto": "Colegio Martin Cardenas",
+            "nombre": "Villa Alalay Av. Siglo Xx y 10 de Noviembre",
+            "direccion": "",
+            "numMesas": 7
+          }
+        ]
+      }
+    },
+    "Santa Cruz": {
+      "Andrés Ibáñez": {
+        "Santa Cruz de la Sierra": [
+          {
+            "codRecinto": "U.E. Soledad Rivas",
+            "nombre": "OTB Cercado-Vinto",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Colegio Mixto Tecnico Hum. Villa Bolivar",
+            "nombre": "Villa Bolivar",
+            "direccion": "",
+            "numMesas": 20
+          }
+        ],
+        "Cotoca": [
+          {
+            "codRecinto": "Centro Internado Misicuni",
+            "nombre": "Misicuni",
+            "direccion": "",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "Kinder San Joaquon",
+            "nombre": "C. Viloma entre C. Colomi y Av. De la Fuerza Aerea",
+            "direccion": "",
+            "numMesas": 6
+          }
+        ],
+        "Porongo": [
+          {
+            "codRecinto": "Escuela Gualberto Villarroel",
+            "nombre": "Arani",
+            "direccion": "",
+            "numMesas": 13
+          }
+        ],
+        "La Guardia": [
+          {
+            "codRecinto": "Escuela Marton Cardenas",
+            "nombre": "Av. Miguel Mercado Moreira?Vinto",
+            "direccion": "",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "Escuela Dr. Demetrio Canelas",
+            "nombre": "Ayapampa",
+            "direccion": "",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "Escuela Eugenia Ravasco",
+            "nombre": "Av. Esperanza?Rumi Mayu (Tiquipaya)",
+            "direccion": "",
+            "numMesas": 7
+          }
+        ],
+        "El Torno": []
+      },
+      "Warnes": {
+        "Warnes": [],
+        "Okinawa Uno": [
+          {
+            "codRecinto": "Unidad Educativa Club De Leones",
+            "nombre": "Circunvalacion 375 Enrique Arce",
+            "direccion": "",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Velasco": {
+        "San Ignacio de Velasco": [],
+        "San Miguel de Velasco": [
+          {
+            "codRecinto": "Escuela Eugenia Ravasco",
+            "nombre": "Av. Esperanza?Rumi Mayu (Tiquipaya)",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Eje Pampa",
+            "nombre": "Eje Pampa",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Colegio La Salle Fiscal",
+            "nombre": "Av. Tiahuanaco Frente a Tronsito",
+            "direccion": "",
+            "numMesas": 6
+          }
+        ],
+        "San Rafael de Velasco": [
+          {
+            "codRecinto": "U.E. 27 de Mayo",
+            "nombre": "Av. Elias Meneses entre Agapito Gamboa y Pasaje Innominada",
+            "direccion": "",
+            "numMesas": 11
+          }
+        ]
+      },
+      "Ichilo": {
+        "Buena Vista": [
+          {
+            "codRecinto": "Unidad Educativa Central Villa Pereira",
+            "nombre": "Villa Pereira",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "San Carlos": [
+          {
+            "codRecinto": "Unidad Educativa 14 de Septiembre",
+            "nombre": "Calle Francisco Suarez entre Rigoberto Sains y Cesar Achaval",
+            "direccion": "",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "Unidad Educativa Jose Ignacio Sanjines",
+            "nombre": "Final D? Orbigni Oeste Serca a La Laguna Cooa Cooa",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "U.E. Tocnico Humanostico San Rafael",
+            "nombre": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "Villa Yapacaní": [],
+        "San Juan de Yapacaní": [
+          {
+            "codRecinto": "U.E. Jose Nabo Quintana Navia",
+            "nombre": "Calle Cochabamba frente a la capilla Virgen de Guadalupe",
+            "direccion": "",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "Unidad Educativa Nataniel Aguirre",
+            "nombre": "Av Benemeritos del Chaco y Calle Walter Rocha",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Aniceto Arce",
+            "nombre": "San Miguel de Aquerani",
+            "direccion": "",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "Unidad Educativa Chaqui Mayu",
+            "nombre": "Ch Aquimayu",
+            "direccion": "",
+            "numMesas": 16
+          }
+        ]
+      },
+      "Chiquitos": {
+        "San José de Chiquitos": [
+          {
+            "codRecinto": "Escuela Ismael Montes",
+            "nombre": "La Chulla",
+            "direccion": "",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "Unidad Educativa Chaqui Mayu",
+            "nombre": "Ch Aquimayu",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "Unidad Educativa Atiy",
+            "nombre": "Por San Isidro",
+            "direccion": "",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "Unidad Educativa 1ro de Mayo",
+            "nombre": "Primero de Mayo",
+            "direccion": "",
+            "numMesas": 3
+          }
+        ],
+        "Pailón": [
+          {
+            "codRecinto": "Sede Comunal Kalliri",
+            "nombre": "Calliri",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "Roboré": [
+          {
+            "codRecinto": "U.E. San Miguel",
+            "nombre": "Av. Ustariz S/N",
+            "direccion": "",
+            "numMesas": 20
+          }
+        ]
+      },
+      "Sara": {
+        "Portachuelo": [
+          {
+            "codRecinto": "Sede Sindical De Chahuarani Chico",
+            "nombre": "En la Sede de Chahuarani Chico",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "Unidad Educativa Lagarpampa",
+            "nombre": "Lagarpampa",
+            "direccion": "",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "Colegio Martin Cardenas",
+            "nombre": "Villa Alalay Av. Siglo Xx y 10 de Noviembre",
+            "direccion": "",
+            "numMesas": 17
+          }
+        ],
+        "Santa Rosa del Sara": [
+          {
+            "codRecinto": "Unidad Educativa Villa Nueva",
+            "nombre": "Norte Galilea",
+            "direccion": "",
+            "numMesas": 17
+          }
+        ],
+        "Colpa Bélgica": [
+          {
+            "codRecinto": "U.E. Bolivia Japon Tarde",
+            "nombre": "Calle Santa Lucia entre Av. Santo Domingo y calle Nuestra Sra. de Lourdes",
+            "direccion": "",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "Escuela Gualberto Villarroel",
+            "nombre": "Arani",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "Centro Integral Nioo Jesus Fe y Alegria",
+            "nombre": "Calle 4 y Miraflores",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ]
+      },
+      "Cordillera": {
+        "Lagunillas": [
+          {
+            "codRecinto": "Colegio La Salle Fiscal",
+            "nombre": "Av. Tiahuanaco Frente a Tronsito",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ],
+        "Charagua": [
+          {
+            "codRecinto": "U.E. San Adalberto Fe y Alegroa",
+            "nombre": "Zona Cementerio Calle Sucre Final",
+            "direccion": "",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "U.E. Carmen Rosa Salguero",
+            "nombre": "Calle Miguel Mercado Moreira esq. Circunvalacion",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ],
+        "Cabezas": [
+          {
+            "codRecinto": "U.E. Guillermo Urquidi",
+            "nombre": "Av. Humboldt entre Av. Victor Ustariz y Av. Blanco Galindo",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "(Corcel) Penitenciaria San Antonio",
+            "nombre": "Av. Ayacucho Frente a La Terminal",
+            "direccion": "",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "Unidad Educativa Lagarpampa",
+            "nombre": "Lagarpampa",
+            "direccion": "",
+            "numMesas": 15
+          }
+        ],
+        "Cuevo": [
+          {
+            "codRecinto": "Escuela Monseoor Angel Gelmi",
+            "nombre": "Tita Gallo",
+            "direccion": "",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "U.E. Tocnico Humanostico San Rafael",
+            "nombre": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "direccion": "",
+            "numMesas": 10
+          }
+        ],
+        "Gutiérrez (Kereimba Iyambae)": [
+          {
+            "codRecinto": "U.E. El Paso A",
+            "nombre": "Zona Central El Paso",
+            "direccion": "",
+            "numMesas": 18
+          }
+        ],
+        "Camiri": [
+          {
+            "codRecinto": "Sede Social de La O.T.B. Martin Cardenas (Ex Complejo El Carmen)",
+            "nombre": "Rumi Mayu (Colcapirhua)",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ],
+        "Boyuibe": [
+          {
+            "codRecinto": "U. E. Nuestra Seoora del Rosario",
+            "nombre": "Pasaje Bolovar?Tarija",
+            "direccion": "",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "Escuela Melchor Cuadros",
+            "nombre": "Av. Pairumani?Vinto",
+            "direccion": "",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Vallegrande": {
+        "Vallegrande": [
+          {
+            "codRecinto": "U.E. Arani",
+            "nombre": "Arani",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "El Trigal": [
+          {
+            "codRecinto": "Unidad Educativa Club De Leones",
+            "nombre": "Circunvalacion 375 Enrique Arce",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "Unidad Educativa Panama",
+            "nombre": "Panamo",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "U.E. Ana Maroa Romero de Campero",
+            "nombre": "Villa Victoria",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ],
+        "Moro Moro": [
+          {
+            "codRecinto": "U.E. Rumy Corral",
+            "nombre": "Comunidad Rumy Corral Centro",
+            "direccion": "",
+            "numMesas": 8
+          }
+        ],
+        "Postrervalle": [
+          {
+            "codRecinto": "Sede Social de La O.T.B. Martin Cardenas (Ex Complejo El Carmen)",
+            "nombre": "Rumi Mayu (Colcapirhua)",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "Unidad Educativa 14 de Septiembre",
+            "nombre": "Calle Francisco Suarez entre Rigoberto Sains y Cesar Achaval",
+            "direccion": "",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "Unidad Educativa Simon Bolivar (Sumunpaya)",
+            "nombre": "Zona Sumunpuya Sud",
+            "direccion": "",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "Unidad Educativa 1ro de Mayo",
+            "nombre": "Primero de Mayo",
+            "direccion": "",
+            "numMesas": 20
+          }
+        ],
+        "Pucará": [
+          {
+            "codRecinto": "Colegio Aleman Santa Maria",
+            "nombre": "Antezana y Colombia",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ]
+      },
+      "Florida": {
+        "Samaipata": [
+          {
+            "codRecinto": "U.E. San Francisco Javier",
+            "nombre": "Zona Alto Buena Vista OTB ISIDRO",
+            "direccion": "",
+            "numMesas": 10
+          }
+        ],
+        "Pampagrande": [
+          {
+            "codRecinto": "U.E. 27 de Mayo",
+            "nombre": "Av. Elias Meneses entre Agapito Gamboa y Pasaje Innominada",
+            "direccion": "",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "U.E. Ana Maroa Romero de Campero",
+            "nombre": "Villa Victoria",
+            "direccion": "",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "U.E. Arasaya",
+            "nombre": "Arasaya",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ],
+        "Mairana": [
+          {
+            "codRecinto": "U.E. Rumy Corral",
+            "nombre": "Comunidad Rumy Corral Centro",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "Quirusillas": [
+          {
+            "codRecinto": "Nucleo Escolar Ismael Montes",
+            "nombre": "Conda Baja",
+            "direccion": "",
+            "numMesas": 11
+          }
+        ]
+      },
+      "Obispo Santistevan": {
+        "Montero": [
+          {
+            "codRecinto": "Escuela La Estrella (San Gabriel)",
+            "nombre": "San Gabriel",
+            "direccion": "",
+            "numMesas": 18
+          }
+        ],
+        "General Saavedra": [
+          {
+            "codRecinto": "Escuela Manuel De Ugarte",
+            "nombre": "Aiquile",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "Mineros": [
+          {
+            "codRecinto": "U.E. San Antonio",
+            "nombre": "Comunidad San Antonio",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "U.E. 14 de Septiembre",
+            "nombre": "Villa 14 de Septiembre",
+            "direccion": "",
+            "numMesas": 10
+          }
+        ],
+        "Fernández Alonso": [
+          {
+            "codRecinto": "Unidad Educativa Iglesiani",
+            "nombre": "Iglesiani",
+            "direccion": "",
+            "numMesas": 19
+          }
+        ],
+        "San Pedro": [
+          {
+            "codRecinto": "Unidad Educativa Central Villa Pereira",
+            "nombre": "Villa Pereira",
+            "direccion": "",
+            "numMesas": 15
+          },
+          {
+            "codRecinto": "Unidad Educativa Prof. Oscar Rojas Caballero",
+            "nombre": "Rio Yacuma y Prolongacion Rio Caine",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ]
+      },
+      "Ñuflo de Chaves": {
+        "Concepción": [
+          {
+            "codRecinto": "Escuela Vicente Donoso (Aguas Calientes)",
+            "nombre": "Aguas Calientes",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "U.E. Canaon",
+            "nombre": "Municipio Cochabamba Av. Pedro de Toledo entre Calle Juan de la Cruz Monje y Huanchaca",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "San Javier": [
+          {
+            "codRecinto": "U.E. 14 de Septiembre",
+            "nombre": "Barrio Molle Aguada",
+            "direccion": "",
+            "numMesas": 13
+          }
+        ],
+        "San Julián": [
+          {
+            "codRecinto": "U.E. Rodolfo Illanes",
+            "nombre": "Comunidad 16 de Julio Capihuara",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "San Ramón": [
+          {
+            "codRecinto": "U.E. ADRA Juan XXIII",
+            "nombre": "Calle Agramont francisco cano",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ],
+        "San Antonio de Lomerío": [
+          {
+            "codRecinto": "Unidad Educativa Estanzuela",
+            "nombre": "Estanzuela",
+            "direccion": "",
+            "numMesas": 18
+          }
+        ],
+        "Cuatro Cañadas": [
+          {
+            "codRecinto": "Colegio San Francisco (Villa Pagador)",
+            "nombre": "Villa Sebastian Pagador C/Riobamba y Morochata",
+            "direccion": "",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "Unidad Educativa Cauta",
+            "nombre": "Cauta",
+            "direccion": "",
+            "numMesas": 15
+          }
+        ]
+      },
+      "Ángel Sandóval": {
+        "San Matías": []
+      },
+      "Caballero": {
+        "Comarapa": [
+          {
+            "codRecinto": "U.E. Avelino Morida",
+            "nombre": "Zubieta",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "Saipina": [
+          {
+            "codRecinto": "U.E. Cochabamba",
+            "nombre": "Calle Jordon No 236",
+            "direccion": "",
+            "numMesas": 19
+          },
+          {
+            "codRecinto": "Unidad Educativa Ramadas",
+            "nombre": "La Ramada",
+            "direccion": "",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "Unidad Educativa Estados Unidos",
+            "nombre": "Isiboro y Todos Santos",
+            "direccion": "",
+            "numMesas": 16
+          }
+        ]
+      },
+      "Germán Busch": {
+        "Puerto Suárez": [
+          {
+            "codRecinto": "Sede Sindical Yajo Pampa",
+            "nombre": "Comunidad Yajo Pampa",
+            "direccion": "",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "Unidad Educativa Jatun Pampa",
+            "nombre": "Jatun Pampa",
+            "direccion": "",
+            "numMesas": 7
+          }
+        ],
+        "Puerto Quijarro": [
+          {
+            "codRecinto": "Colegio Fe y Alegria",
+            "nombre": "Chipiriri",
+            "direccion": "",
+            "numMesas": 13
+          }
+        ],
+        "El Carmen Rivero Tórrez": [
+          {
+            "codRecinto": "U.E. Simon Bolivar",
+            "nombre": "Calle Sucre a lado del Cementerio General",
+            "direccion": "",
+            "numMesas": 1
+          }
+        ]
+      },
+      "Guarayos": {
+        "Ascensión de Guarayos": [
+          {
+            "codRecinto": "Escuela San Jose (V. Tunari)",
+            "nombre": "San Jose",
+            "direccion": "",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "Nucleo Escolar Beta Raqay Pampa",
+            "nombre": "Raqay Pampa",
+            "direccion": "",
+            "numMesas": 11
+          }
+        ],
+        "Urubichá": [
+          {
+            "codRecinto": "U.E. Pedro Domingo Murillo",
+            "nombre": "Chiuchi Arriba",
+            "direccion": "",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "U. E. Titos Linde",
+            "nombre": "Av. Malteria C/ Innominada a una cuadra y media del Instituto Oncologico Nacional",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "El Puente": [
+          {
+            "codRecinto": "Unidad Educ. Eduardo Lopez O E.Don Bosco",
+            "nombre": "Champa Rancho",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Club De Leones",
+            "nombre": "Circunvalacion 375 Enrique Arce",
+            "direccion": "",
+            "numMesas": 7
+          }
+        ]
+      }
+    },
+    "Beni": {
+      "Cercado": {
+        "Trinidad": [
+          {
+            "codRecinto": "Colegio Padre Andros Cuschieri",
+            "nombre": "Calle Kanaut S/N",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "Unidad Educativa Hno Pacifico Feletti",
+            "nombre": "Villa 1o de Mayo",
+            "direccion": "",
+            "numMesas": 10
+          }
+        ],
+        "San Javier": []
+      },
+      "Vaca Díez": {
+        "Riberalta": [
+          {
+            "codRecinto": "U.E. Zenobio Gallardo",
+            "nombre": "Distrito Ramadas",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Escuela Ismael Montes",
+            "nombre": "La Chulla",
+            "direccion": "",
+            "numMesas": 8
+          }
+        ],
+        "Guayaramerín": []
+      },
+      "General José Ballivián": {
+        "Reyes": [
+          {
+            "codRecinto": "Colegio Ismael Montes O Luis Espinal",
+            "nombre": "Cerro Verde-Martin Fierro y Yawar Mallku",
+            "direccion": "",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "U.E. Prof. Jaime Alfonso Escalante Gutierrez",
+            "nombre": "Barrio Magisterio Las Delicias",
+            "direccion": "",
+            "numMesas": 1
+          }
+        ],
+        "San Borja": [
+          {
+            "codRecinto": "Escuela Felix Martinez",
+            "nombre": "Av. 31 de Octubre y Av. Mira Flores",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Sede Social de OTB Cerro San Miguel Alto",
+            "nombre": "Calle Ayllu esquina calle Bonifacio",
+            "direccion": "",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "Unidad Educativa Ibuelo",
+            "nombre": "Ibuelo",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "Santa Rosa": [
+          {
+            "codRecinto": "Colegio Abaroa",
+            "nombre": "Av. Ayacucho y Santivaoez",
+            "direccion": "",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "Colegio Aleman Santa Maria",
+            "nombre": "Antezana y Colombia",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ],
+        "Rurrenabaque": [
+          {
+            "codRecinto": "U.E. 14 de Septiembre",
+            "nombre": "Villa 14 de Septiembre",
+            "direccion": "",
+            "numMesas": 18
+          }
+        ]
+      },
+      "Yacuma": {
+        "Santa Ana del Yacuma": [
+          {
+            "codRecinto": "(Corcel) Penitenciaria San Sebastian Mujeres",
+            "nombre": "Plaz. San Sebastion Acera Oeste",
+            "direccion": "",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "Instituto Particular Quillacollo",
+            "nombre": "Calle Gral. Pando entre Santa Cruz y Beni",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ],
+        "Exaltación": [
+          {
+            "codRecinto": "U.E. Padresama",
+            "nombre": "Se encuentra sobre la carretera cochabamba a Santa Cruz km 150",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ]
+      },
+      "Moxos": {
+        "San Ignacio de Moxos": [
+          {
+            "codRecinto": "Unidad Educativa 1ro de Mayo",
+            "nombre": "Primero de Mayo",
+            "direccion": "",
+            "numMesas": 8
+          },
+          {
+            "codRecinto": "Nucleo Escolar Beta Raqay Pampa",
+            "nombre": "Raqay Pampa",
+            "direccion": "",
+            "numMesas": 13
+          }
+        ]
+      },
+      "Marbán": {
+        "Loreto": [
+          {
+            "codRecinto": "(Corcel) Penitenciaria San Antonio",
+            "nombre": "Av. Ayacucho Frente a La Terminal",
+            "direccion": "",
+            "numMesas": 15
+          }
+        ],
+        "San Andrés": [
+          {
+            "codRecinto": "U.E. Avelino Morida",
+            "nombre": "Zubieta",
+            "direccion": "",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "Sede Social de La O.T.B. Martin Cardenas (Ex Complejo El Carmen)",
+            "nombre": "Rumi Mayu (Colcapirhua)",
+            "direccion": "",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "Sede Social de OTB Cerro San Miguel Alto",
+            "nombre": "Calle Ayllu esquina calle Bonifacio",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ]
+      },
+      "Mamoré": {
+        "San Joaquín": [
+          {
+            "codRecinto": "Unidad Educativa Maria Emilia Riquelme (Ex Maria Cristina)",
+            "nombre": "Av. Cap. Victor Ustariz",
+            "direccion": "",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "Unidad Educativa Panama",
+            "nombre": "Panamo",
+            "direccion": "",
+            "numMesas": 1
+          }
+        ],
+        "San Ramón": [
+          {
+            "codRecinto": "Nucleo Educativo Chapisirca",
+            "nombre": "Chapisirca",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "Nucleo Joso Claure (U. E. San Vicente)",
+            "nombre": "San Vicente",
+            "direccion": "",
+            "numMesas": 4
+          },
+          {
+            "codRecinto": "U.E. Carmen Rosa Salguero",
+            "nombre": "Calle Miguel Mercado Moreira esq. Circunvalacion",
+            "direccion": "",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "U.E. Lacolaconi",
+            "nombre": "Lacolaconi",
+            "direccion": "",
+            "numMesas": 19
+          }
+        ],
+        "Puerto Siles": [
+          {
+            "codRecinto": "Unidad Educativa Rosendo Peoa",
+            "nombre": "OTB Urbanizacion PIL Sarcobamba Calle Luis Zegarra entre Luis Montaoo y Jorge Udaeta",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Jesus Maestro",
+            "nombre": "Zona Chiquicollo",
+            "direccion": "",
+            "numMesas": 6
+          },
+          {
+            "codRecinto": "Escuela Manuel De Ugarte",
+            "nombre": "Aiquile",
+            "direccion": "",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "U.E. Simon I. Patioo",
+            "nombre": "Avenida Pairumani",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "Escuela Seccional Waripucara",
+            "nombre": "Waripucara",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Maria Emilia Riquelme (Ex Maria Cristina)",
+            "nombre": "Av. Cap. Victor Ustariz",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ]
+      },
+      "Iténez": {
+        "Magdalena": [
+          {
+            "codRecinto": "Colegio Martin Cardenas",
+            "nombre": "Villa Alalay Av. Siglo Xx y 10 de Noviembre",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "U.E. Ayni Pacha",
+            "nombre": "C. Santa Elena entre Av. Pisiga y C. Innominada ? OTB Alalay Alto Mirador",
+            "direccion": "",
+            "numMesas": 10
+          },
+          {
+            "codRecinto": "Instituto Tecnologico El Paso",
+            "nombre": "Avenida Elias Meneces",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Unidad Educativa David Arzabe",
+            "nombre": "Vinto",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "U.E. Nuestra Seoora de la Merced A",
+            "nombre": "Av. Capiton Voctor Ustariz entre calle Sir Roonald Ross y Calle Antenor de la V?a Garcia",
+            "direccion": "",
+            "numMesas": 11
+          }
+        ],
+        "Baures": [
+          {
+            "codRecinto": "Unidad Educativa Estanzuela",
+            "nombre": "Estanzuela",
+            "direccion": "",
+            "numMesas": 4
+          }
+        ],
+        "Huacaraje": [
+          {
+            "codRecinto": "U.E. Adolfo Mercado",
+            "nombre": "Tacopaya",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "Colegio San Francisco (Villa Pagador)",
+            "nombre": "Villa Sebastian Pagador C/Riobamba y Morochata",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Sede Social Sombrerito",
+            "nombre": "Sindicato Agrarario Sombrerito? Carretera Troncal Cochabamba Mizque",
+            "direccion": "",
+            "numMesas": 2
+          }
+        ]
+      }
+    },
+    "Pando": {
+      "Nicolás Suárez": {
+        "Cobija": [
+          {
+            "codRecinto": "U.E. San Francisco Javier",
+            "nombre": "Zona Alto Buena Vista OTB ISIDRO",
+            "direccion": "",
+            "numMesas": 15
+          },
+          {
+            "codRecinto": "U.E. Lacolaconi",
+            "nombre": "Lacolaconi",
+            "direccion": "",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "U.E. Ana Maroa Romero de Campero",
+            "nombre": "Villa Victoria",
+            "direccion": "",
+            "numMesas": 12
+          }
+        ],
+        "Porvenir": [
+          {
+            "codRecinto": "U.E. 5 de Septiembre",
+            "nombre": "OTB 21 de Septiembre?Calle Tte. Benavides",
+            "direccion": "",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "Escuela Simon Rodriguez",
+            "nombre": "Aiquile",
+            "direccion": "",
+            "numMesas": 4
+          }
+        ],
+        "Bolpebra": [
+          {
+            "codRecinto": "Unidad Educativa Hno Pacifico Feletti",
+            "nombre": "Villa 1o de Mayo",
+            "direccion": "",
+            "numMesas": 12
+          },
+          {
+            "codRecinto": "Unidad Educativa Chaqui Mayu",
+            "nombre": "Ch Aquimayu",
+            "direccion": "",
+            "numMesas": 10
+          }
+        ],
+        "Bella Flor": [
+          {
+            "codRecinto": "Colegio San Miguel (Tiquipaya)",
+            "nombre": "C/T. Torrico?C.Beni",
+            "direccion": "",
+            "numMesas": 16
+          }
+        ]
+      },
+      "Manuripi": {
+        "Puerto Rico": [
+          {
+            "codRecinto": "Colegio Martin Cardenas",
+            "nombre": "Villa Alalay Av. Siglo Xx y 10 de Noviembre",
+            "direccion": "",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "Unidad Educativa Villa Nueva",
+            "nombre": "Norte Galilea",
+            "direccion": "",
+            "numMesas": 2
+          },
+          {
+            "codRecinto": "Unidad Educativa Chaqui Mayu",
+            "nombre": "Ch Aquimayu",
+            "direccion": "",
+            "numMesas": 7
+          },
+          {
+            "codRecinto": "Instituto Tecnologico El Paso",
+            "nombre": "Avenida Elias Meneces",
+            "direccion": "",
+            "numMesas": 11
+          }
+        ],
+        "San Pedro": [
+          {
+            "codRecinto": "U.E. Genoveva Roos",
+            "nombre": "Calle Los Robles entre Av. Segunda Circunvalacion y Calle Sofocles",
+            "direccion": "",
+            "numMesas": 6
+          }
+        ],
+        "Filadelfia": [
+          {
+            "codRecinto": "U.E. Bartolina Sisa",
+            "nombre": "Calle Innominada",
+            "direccion": "",
+            "numMesas": 18
+          },
+          {
+            "codRecinto": "Unidad Educativa Chaqui Mayu",
+            "nombre": "Ch Aquimayu",
+            "direccion": "",
+            "numMesas": 17
+          }
+        ]
+      },
+      "Madre de Dios": {
+        "Puerto Gonzalo Moreno": [
+          {
+            "codRecinto": "Unidad Educativa Aniceto Arce",
+            "nombre": "San Miguel de Aquerani",
+            "direccion": "",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "U.E. El Paso A",
+            "nombre": "Zona Central El Paso",
+            "direccion": "",
+            "numMesas": 5
+          },
+          {
+            "codRecinto": "Unidad Educativa Jatun Pampa",
+            "nombre": "Jatun Pampa",
+            "direccion": "",
+            "numMesas": 8
+          }
+        ],
+        "San Lorenzo": [
+          {
+            "codRecinto": "U.E. Ana Maroa Romero de Campero",
+            "nombre": "Villa Victoria",
+            "direccion": "",
+            "numMesas": 9
+          }
+        ],
+        "Sena": [
+          {
+            "codRecinto": "Colegio San Francisco (Villa Pagador)",
+            "nombre": "Villa Sebastian Pagador C/Riobamba y Morochata",
+            "direccion": "",
+            "numMesas": 13
+          },
+          {
+            "codRecinto": "Unidad Educativa Aniceto Arce",
+            "nombre": "San Miguel de Aquerani",
+            "direccion": "",
+            "numMesas": 20
+          },
+          {
+            "codRecinto": "U.E. Carmen Rosa Salguero",
+            "nombre": "Calle Miguel Mercado Moreira esq. Circunvalacion",
+            "direccion": "",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "Unidad Educativa Huanacuni Grande",
+            "nombre": "Huanacuni Chico",
+            "direccion": "",
+            "numMesas": 14
+          },
+          {
+            "codRecinto": "Unidad Educativa Ramadas",
+            "nombre": "La Ramada",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ]
+      },
+      "Abuná": {
+        "Santa Rosa del Abuná": [
+          {
+            "codRecinto": "Unidad Educativa Villa Nueva",
+            "nombre": "Norte Galilea",
+            "direccion": "",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "(Corcel) Penitenciaria San Antonio",
+            "nombre": "Av. Ayacucho Frente a La Terminal",
+            "direccion": "",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "Escuela Bolivar",
+            "nombre": "Ayacucho y Punata",
+            "direccion": "",
+            "numMesas": 4
+          }
+        ],
+        "Ingavi": [
+          {
+            "codRecinto": "U.E. Tocnico Humanostico San Rafael",
+            "nombre": "Av. Los Molles lado Sud Posgrado Agronomia UMSS.",
+            "direccion": "",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "U.E. Rumy Corral",
+            "nombre": "Comunidad Rumy Corral Centro",
+            "direccion": "",
+            "numMesas": 3
+          },
+          {
+            "codRecinto": "Colegio Pio XII",
+            "nombre": "25 de Mayo entre Punata",
+            "direccion": "",
+            "numMesas": 14
+          }
+        ]
+      },
+      "General Federico Román": {
+        "Nueva Esperanza": [
+          {
+            "codRecinto": "Sede Social Sombrerito",
+            "nombre": "Sindicato Agrarario Sombrerito? Carretera Troncal Cochabamba Mizque",
+            "direccion": "",
+            "numMesas": 9
+          },
+          {
+            "codRecinto": "Unidad Educativa Santiago",
+            "nombre": "Achandara y Calle Imnominada",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ],
+        "Villa Nueva": [
+          {
+            "codRecinto": "U.E. Joso Carlos Carrillo",
+            "nombre": "Comunidad Tirani?Final Av. Atahuallpa segunda circunvalacion",
+            "direccion": "",
+            "numMesas": 11
+          },
+          {
+            "codRecinto": "U.E. 14 de Septiembre",
+            "nombre": "Villa 14 de Septiembre",
+            "direccion": "",
+            "numMesas": 5
+          }
+        ],
+        "Santos Mercado": [
+          {
+            "codRecinto": "U.E. Zenobio Gallardo",
+            "nombre": "Distrito Ramadas",
+            "direccion": "",
+            "numMesas": 17
+          },
+          {
+            "codRecinto": "U.E. Arasaya",
+            "nombre": "Arasaya",
+            "direccion": "",
+            "numMesas": 16
+          },
+          {
+            "codRecinto": "U.E. Simon I. Patioo",
+            "nombre": "Avenida Pairumani",
+            "direccion": "",
+            "numMesas": 3
+          }
+        ]
+      }
+    }
+  }
+}
