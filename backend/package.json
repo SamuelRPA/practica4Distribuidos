@@ -10,6 +10,7 @@
     "worker:ocr": "node --env-file=../.env src/workers/ocrWorker.js",
     "worker:validador": "node --env-file=../.env src/workers/validadorWorker.js",
     "worker:escritura": "node --env-file=../.env src/workers/escrituraWorker.js",
+    "test:flow": "node --env-file=../.env scripts/test-flow.mjs",
     "test": "echo 'tests pendientes' "
   },
   "dependencies": {

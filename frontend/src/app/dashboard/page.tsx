@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import {
-    Bar, BarChart, CartesianGrid, Legend, Line, LineChart,
+    Bar, BarChart, CartesianGrid, Legend,
     PieChart, Pie, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import { api } from '@/lib/api';
@@ -12,7 +12,9 @@ const COLORS = ['#1457bd', '#e94e1b', '#1aaa55', '#a557d0', '#999', '#444'];
 export default function Dashboard() {
     const [rrv, setRrv] = useState<any>(null);
     const [oficial, setOficial] = useState<any>(null);
-    const [comp, setComp] = useState<any>(null);
+    const [, setComp] = useState<any>(null);
+    const [ultimaActualizacion, setUltimaActualizacion] = useState<Date | null>(null);
+    const [estadoConexion, setEstadoConexion] = useState<'conectando' | 'ok' | 'error'>('conectando');
 
     useEffect(() => {
         const cargar = async () => {
@@ -23,8 +25,11 @@ export default function Dashboard() {
                     api.comparacion(),
                 ]);
                 setRrv(r); setOficial(o); setComp(c);
+                setUltimaActualizacion(new Date());
+                setEstadoConexion('ok');
             } catch (err) {
-                console.error(err);
+                console.error('[dashboard] error fetching:', err);
+                setEstadoConexion('error');
             }
         };
         cargar();
@@ -32,7 +37,7 @@ export default function Dashboard() {
         return () => clearInterval(t);
     }, []);
 
-    if (!rrv && !oficial) return <div>Cargando...</div>;
+    if (!rrv && !oficial && estadoConexion === 'conectando') return <div>Cargando datos del backend...</div>;
 
     const totalesRrv = rrv?.totales || {};
     const totalesOf = oficial?.totales || {};
@@ -51,9 +56,38 @@ export default function Dashboard() {
         fill: COLORS[i],
     }));
 
+    const colorBadge = estadoConexion === 'ok' ? '#06d6a0'
+                     : estadoConexion === 'error' ? '#ef476f'
+                     : '#ffb74d';
+    const txtBadge = estadoConexion === 'ok' ? 'Conectado al backend'
+                   : estadoConexion === 'error' ? 'Sin conexión al backend'
+                   : 'Conectando...';
+
     return (
         <div>
-            <h1>Dashboard Analítico</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+                <h1 style={{ margin: 0 }}>Dashboard Analítico</h1>
+                <div style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '6px 12px', borderRadius: 999,
+                    background: colorBadge + '22', border: `1px solid ${colorBadge}`,
+                    fontSize: 12, fontWeight: 600,
+                }}>
+                    <span style={{
+                        width: 8, height: 8, borderRadius: 4, background: colorBadge,
+                        boxShadow: `0 0 8px ${colorBadge}`,
+                    }} />
+                    {txtBadge}
+                    {ultimaActualizacion && (
+                        <span style={{ color: '#888', fontWeight: 400 }}>
+                            · actualizado {ultimaActualizacion.toLocaleTimeString()}
+                        </span>
+                    )}
+                </div>
+            </div>
+            <p style={{ color: '#666', marginTop: 4, fontSize: 13 }}>
+                Auto-refresh cada 5s · Datos directos del backend (Mongo + Postgres)
+            </p>
 
             <div className="grid">
                 <div className="card kpi">

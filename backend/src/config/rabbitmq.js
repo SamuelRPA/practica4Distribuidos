@@ -36,19 +36,30 @@ export function getChannel() {
     return channel;
 }
 
+export function isRabbitConnected() {
+    return channel != null;
+}
+
 /**
  * Publica un mensaje en una cola con prioridad.
- * @param {string} queue
- * @param {object} payload
- * @param {{priority?: number, persistent?: boolean}} opts
+ * Devuelve true si se encoló, false si RabbitMQ no está disponible.
+ * NO tira excepciones — el caller decide qué hacer.
  */
 export function publish(queue, payload, opts = {}) {
-    const ch = getChannel();
-    return ch.sendToQueue(queue, Buffer.from(JSON.stringify(payload)), {
-        persistent: true,
-        priority: opts.priority ?? 5,
-        ...opts,
-    });
+    if (!channel) {
+        console.error('[rabbit] publish() llamado pero el channel no está conectado');
+        return false;
+    }
+    try {
+        return channel.sendToQueue(queue, Buffer.from(JSON.stringify(payload)), {
+            persistent: true,
+            priority: opts.priority ?? 5,
+            ...opts,
+        });
+    } catch (err) {
+        console.error('[rabbit] sendToQueue falló:', err.message);
+        return false;
+    }
 }
 
 export async function closeRabbit() {

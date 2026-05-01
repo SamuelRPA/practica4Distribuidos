@@ -4,21 +4,24 @@ import { config } from './config/env.js';
 import { connectMongo } from './config/mongo.js';
 import { connectRabbit } from './config/rabbitmq.js';
 import { pingPostgres } from './config/postgres.js';
+import { banner, makeLogger } from './lib/logger.js';
 import { rrvRouter } from './routes/rrv.routes.js';
 import { oficialRouter } from './routes/oficial.routes.js';
 import { dashboardRouter } from './routes/dashboard.routes.js';
 import { smsRouter } from './routes/sms.routes.js';
 
+const log = makeLogger('server');
 const app = express();
 
 app.use(cors());
-
-// JSON normal
 app.use(express.json({ limit: '10mb' }));
 
-// IMPORTANTE PARA TWILIO
-// Twilio envía From y Body como application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use((req, _res, next) => {
+    if (req.path !== '/api/dashboard/health' && !req.path.startsWith('/_next')) {
+        log.info(`${req.method} ${req.path}`);
+    }
+    next();
+});
 
 app.get('/', (_req, res) => {
     res.json({
@@ -34,31 +37,40 @@ app.use('/api/dashboard', dashboardRouter);
 app.use('/api/sms', smsRouter);
 
 app.use((err, _req, res, _next) => {
-    console.error('[server] error no manejado:', err);
+    log.error('Error no manejado', err);
     res.status(500).json({ error: err.message || 'error interno' });
 });
 
 async function start() {
+    banner('BACKEND OEP — Sistema Nacional de Cómputo Electoral');
+
     try {
         await connectMongo();
+        log.success('MongoDB Atlas conectado');
     } catch (err) {
-        console.error('[server] AVISO: Mongo no disponible —', err.message);
+        log.error('MongoDB no disponible', err);
     }
-
     try {
         await pingPostgres();
+        log.success('PostgreSQL cluster conectado');
     } catch (err) {
-        console.error('[server] AVISO: Postgres no disponible —', err.message);
+        log.error('PostgreSQL no disponible', err);
     }
-
     try {
         await connectRabbit();
+        log.success('RabbitMQ conectado, colas declaradas');
     } catch (err) {
-        console.error('[server] AVISO: RabbitMQ no disponible —', err.message);
+        log.error('RabbitMQ no disponible', err);
     }
 
     app.listen(config.backend.port, () => {
-        console.log(`[server] escuchando en :${config.backend.port} (env=${config.backend.nodeEnv})`);
+        log.success(`API HTTP escuchando en :${config.backend.port} (env=${config.backend.nodeEnv})`);
+        log.info('Endpoints:');
+        log.info(`  POST  /api/rrv/acta-pdf         ← uploads desde la app móvil`);
+        log.info(`  POST  /api/rrv/sms              ← SMS legacy directo`);
+        log.info(`  POST  /api/sms/webhook/:proveedor ← webhook universal`);
+        log.info(`  POST  /api/oficial/acta         ← cómputo oficial (CSV/n8n)`);
+        log.info(`  GET   /api/rrv/resumen          ← lo lee el dashboard`);
     });
 }
 

@@ -8,10 +8,13 @@ import { Router } from 'express';
 import multer from 'multer';
 import { config } from '../config/env.js';
 import { publish } from '../config/rabbitmq.js';
+import { makeLogger } from '../lib/logger.js';
 import { rrvRepo } from '../repositories/rrvRepository.js';
 import { rrvService } from '../services/rrv/rrvService.js';
 import { parsearSms, smsAutorizado } from '../services/rrv/smsParser.js';
 import { hashBuffer } from '../services/shared/hash.js';
+
+const log = makeLogger('rrv-routes');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
 
@@ -23,26 +26,56 @@ export const rrvRouter = Router();
  * El procesamiento real se hace asincrónicamente vía RabbitMQ.
  */
 rrvRouter.post('/acta-pdf', upload.single('file'), async (req, res) => {
-    if (!req.file) return res.status(400).json({ error: 'archivo PDF requerido' });
-    const codigoMesa = parseInt(req.body.codigo_mesa, 10);
-    if (!codigoMesa) return res.status(400).json({ error: 'codigo_mesa requerido' });
+    try {
+        if (!req.file) {
+            log.warn('Foto rechazada: archivo no presente en multipart');
+            return res.status(400).json({ error: 'archivo PDF requerido' });
+        }
+        const codigoMesa = parseInt(req.body.codigo_mesa, 10);
+        if (!codigoMesa) {
+            log.warn('Foto rechazada: codigo_mesa ausente');
+            return res.status(400).json({ error: 'codigo_mesa requerido' });
+        }
 
-    const hashPdf = hashBuffer(req.file.buffer);
+        const hashPdf = hashBuffer(req.file.buffer);
+        const sizeKb = Math.round(req.file.size / 1024);
+        const userAgent = req.headers['user-agent'] || 'desconocido';
 
-    publish(config.rabbitmq.queues.ingesta, {
-        tipo: 'PDF',
-        codigo_mesa: codigoMesa,
-        hash_pdf: hashPdf,
-        // En producción guardarías el buffer en S3/disco; aquí lo embebemos en base64
-        pdf_b64: req.file.buffer.toString('base64'),
-        recibido_en: new Date().toISOString(),
-    }, { priority: 5 });
+        log.photo(`Foto recibida desde móvil — mesa ${codigoMesa}`, {
+            hash: hashPdf.slice(0, 16) + '...',
+            size_kb: sizeKb,
+            mime: req.file.mimetype,
+            origen: userAgent.includes('Expo') ? 'Expo Go' : userAgent.slice(0, 40),
+        });
 
-    res.status(202).json({
-        status: 'ENCOLADO',
-        codigo_mesa: codigoMesa,
-        hash_pdf: hashPdf,
-    });
+        const ok = publish(config.rabbitmq.queues.ingesta, {
+            tipo: 'PDF',
+            codigo_mesa: codigoMesa,
+            hash_pdf: hashPdf,
+            pdf_b64: req.file.buffer.toString('base64'),
+            recibido_en: new Date().toISOString(),
+        }, { priority: 5 });
+
+        if (!ok) {
+            log.error('No se pudo encolar — RabbitMQ no disponible');
+            return res.status(503).json({
+                status: 'RABBIT_NO_DISPONIBLE',
+                codigo_mesa: codigoMesa,
+                hash_pdf: hashPdf,
+            });
+        }
+
+        log.send(`Encolada en q_ingesta (priority=5) — esperando OCR worker`);
+
+        res.status(202).json({
+            status: 'ENCOLADO',
+            codigo_mesa: codigoMesa,
+            hash_pdf: hashPdf,
+        });
+    } catch (err) {
+        log.error('Error en /acta-pdf', err);
+        res.status(500).json({ error: err.message });
+    }
 });
 
 /**
@@ -50,7 +83,14 @@ rrvRouter.post('/acta-pdf', upload.single('file'), async (req, res) => {
  * ya se hizo en otro lado (n8n, app móvil con OCR local, etc.)
  */
 rrvRouter.post('/acta-directa', async (req, res) => {
+    log.recv(`Acta directa recibida — mesa ${req.body?.codigo_mesa}`);
     const r = await rrvService.procesar(req.body);
+    if (r.status === 'INSERTADA') {
+        log.success(`Acta insertada en MongoDB — estado=${r.estado}`, {
+            ingreso_id: String(r.ingreso_id),
+            advertencias: r.advertencias?.length || 0,
+        });
+    }
     res.status(r.status === 'DESCARTADO' ? 422 : 200).json(r);
 });
 
@@ -59,19 +99,26 @@ rrvRouter.post('/acta-directa', async (req, res) => {
  * Body: { numero_origen, texto }
  */
 rrvRouter.post('/sms', async (req, res) => {
+  try {
     const { numero_origen, texto } = req.body || {};
 
+    log.sms(`SMS legacy recibido de ${numero_origen}`, {
+        texto: texto?.slice(0, 80),
+    });
+
     if (!smsAutorizado(numero_origen, config.sms.numerosAutorizados)) {
+        log.warn(`Número ${numero_origen} NO autorizado — ignorado silenciosamente`);
         await rrvRepo.logEvento({
             tipo_error: 'SMS_NUMERO_NO_AUTORIZADO',
             detalle: `Número ${numero_origen} no está en la lista blanca`,
-        });
-        return res.status(204).end(); // ignorado silenciosamente
+        }).catch((e) => log.error('logEvento falló', e));
+        return res.status(204).end();
     }
 
     const { datos, faltantes, reconocidos } = parsearSms(texto || '');
 
     if (faltantes.length > 0) {
+        log.warn(`SMS de ${numero_origen} incompleto`, { faltantes, reconocidos });
         await rrvRepo.logEvento({
             tipo_error: 'SMS_CAMPOS_FALTANTES',
             detalle: `Campos faltantes: ${faltantes.join(', ')}`,
@@ -83,6 +130,10 @@ rrvRouter.post('/sms', async (req, res) => {
             mensaje: `Faltan: ${faltantes.join(', ')}. Reenvía con todos los campos.`,
         });
     }
+
+    log.success(`SMS parseado OK — mesa ${datos.codigo_mesa}`, {
+        campos_reconocidos: reconocidos,
+    });
 
     // SMS prioridad alta — ya viene como texto, se procesa más rápido que un PDF
     publish(config.rabbitmq.queues.validacion, {
@@ -97,11 +148,16 @@ rrvRouter.post('/sms', async (req, res) => {
             votos_blancos: datos.votos_blancos,
             votos_nulos: datos.votos_nulos,
         },
-        confianza_global: 0.95, // SMS es texto estructurado, alta confianza
+        confianza_global: 0.95,
         recibido_en: new Date().toISOString(),
     }, { priority: 10 });
 
+    log.send(`SMS encolado en q_validacion (priority=10) — mesa ${datos.codigo_mesa}`);
     res.json({ status: 'SMS_ACEPTADO_PARA_PROCESAMIENTO', codigo_mesa: datos.codigo_mesa });
+  } catch (err) {
+    log.error('Error en /sms', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 /**

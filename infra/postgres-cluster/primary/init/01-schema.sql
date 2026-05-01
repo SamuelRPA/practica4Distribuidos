@@ -1,9 +1,9 @@
--- =====================================================================
--- Schema del Cómputo Oficial — PostgreSQL
--- Se aplica solo en el primary; se replica automáticamente a los standbys.
+﻿-- =====================================================================
+-- Schema del CÃ³mputo Oficial â€” PostgreSQL
+-- Se aplica solo en el primary; se replica automÃ¡ticamente a los standbys.
 -- =====================================================================
 
--- ----------- Datos maestros (inmutables después de la carga) ------------
+-- ----------- Datos maestros (inmutables despuÃ©s de la carga) ------------
 
 CREATE TABLE IF NOT EXISTS distribucion_territorial (
     codigo_territorial   INTEGER PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS recintos_electorales (
 CREATE TABLE IF NOT EXISTS mesas_electorales (
     codigo_mesa          BIGINT PRIMARY KEY,
     nro_mesa             INTEGER NOT NULL,
-    cantidad_habilitada  INTEGER NOT NULL,    -- INMUTABLE — viene del padrón
+    cantidad_habilitada  INTEGER NOT NULL,    -- INMUTABLE â€” viene del padrÃ³n
     id_recinto           BIGINT NOT NULL REFERENCES recintos_electorales(id_recinto),
     UNIQUE (id_recinto, nro_mesa)
 );
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS operadores (
     creado_en     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- Operadores especiales reservados para automatización
+-- Operadores especiales reservados para automatizaciÃ³n
 INSERT INTO operadores (username, nombre, rol) VALUES
     ('n8n_001', 'N8N Bot OCR Variant 1', 'N8N'),
     ('n8n_002', 'N8N Bot OCR Variant 2', 'N8N'),
@@ -49,7 +49,7 @@ INSERT INTO operadores (username, nombre, rol) VALUES
     ('sistema', 'Sistema (RRV cross-check)', 'SISTEMA')
 ON CONFLICT (username) DO NOTHING;
 
--- ----------- Sesiones de transcripción (3 operadores por acta) ----------
+-- ----------- Sesiones de transcripciÃ³n (3 operadores por acta) ----------
 
 CREATE TABLE IF NOT EXISTS sesiones_transcripcion (
     session_id    UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS transcripciones_pendientes (
 
 CREATE INDEX idx_trans_session ON transcripciones_pendientes(session_id);
 
--- ----------- Acta oficial consolidada (después de validación cruzada) ----------
+-- ----------- Acta oficial consolidada (despuÃ©s de validaciÃ³n cruzada) ----------
 
 CREATE TABLE IF NOT EXISTS votos_oficiales (
     id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -171,7 +171,7 @@ SELECT
 FROM votos_oficiales
 WHERE estado = 'APROBADA';
 
--- Participación por departamento
+-- ParticipaciÃ³n por departamento
 CREATE OR REPLACE VIEW v_participacion_departamento AS
 SELECT
     dt.departamento,
@@ -193,7 +193,7 @@ SELECT
 FROM votos_oficiales
 GROUP BY estado;
 
--- Ingesta por hora (para gráfica de tendencia)
+-- Ingesta por hora (para grÃ¡fica de tendencia)
 CREATE OR REPLACE VIEW v_ingesta_por_hora AS
 SELECT
     DATE_TRUNC('hour', creado_en) AS hora,
