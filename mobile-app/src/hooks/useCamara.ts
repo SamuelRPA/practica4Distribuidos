@@ -35,7 +35,6 @@ export function useCamara() {
             const result = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
-                aspect: [3, 4],
                 quality: 0.85, // balance calidad / tamaño para subir más rápido
                 exif: false,
             });
@@ -53,7 +52,6 @@ export function useCamara() {
             const result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
-                aspect: [3, 4],
                 quality: 0.85,
             });
             if (result.canceled || !result.assets?.[0]) return null;

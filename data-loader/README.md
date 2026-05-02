@@ -1,29 +1,27 @@
-# Data Loader
+# 🗃️ Data Loader (Carga de Datos Electorales)
 
-Scripts que parsean los PDFs de `Data/` (DistribucionTerritorial,
-RecintosElectorales, ActasImpresas) y cargan los datos maestros en PostgreSQL.
+Esta carpeta contiene todos los scripts necesarios para poblar las bases de datos (PostgreSQL/MongoDB) e inyectar archivos masivos para pruebas de estrés.
 
-## Uso
+## 🚀 1. Carga Masiva de PDFs al Backend (Recomendado)
+Para estresar el sistema y probar el OCR en RabbitMQ, puedes inyectar automáticamente una carpeta llena de PDFs.
 
+### Requisitos previos:
+Tener el `backend` encendido y corriendo en el puerto 3001.
+
+### Ejecución:
+No necesitas instalar nada en Python, el script usa Node.js nativo (v18+).
 ```bash
-cd data-loader
-python -m venv .venv
-source .venv/Scripts/activate     # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python load_all.py
+node upload_pdfs.js <ruta-a-tu-carpeta-de-pdfs>
 ```
+*Ejemplo:*
+```bash
+node upload_pdfs.js ../Data/pdf
+```
+> **Importante:** Los archivos dentro de la carpeta deben tener en su nombre el código de la mesa correspondiente (ej: `acta_10101001001.pdf`).
 
-`load_all.py` ejecuta los scripts en orden:
-1. `parse_distribucion.py` → tabla `distribucion_territorial`
-2. `parse_recintos.py` → tabla `recintos_electorales`
-3. `parse_mesas.py` → tabla `mesas_electorales` (lee de actas + recintos)
+---
 
-Los scripts son idempotentes — usan `INSERT ... ON CONFLICT DO NOTHING`,
-así que ejecutarlos varias veces no rompe nada (útil para saltar llaves duplicadas generadas en la conversión del PDF).
+## 🐍 2. Scripts Nativos de Python (Opcional)
+Contiene scripts (como `load_csv.py`) que se conectan directamente a PostgreSQL a través de `psycopg2` para insertar recintos y padrones. 
 
-**Nota Técnica (2026):** Se actualizó el engine de lectura de archivos a `latin-1` (ISO-8859-1) dado que los `pdftotext` generados en Windows producían caracteres no-UTF8 que crasheaban el loader.
-
-## ¿De dónde leen?
-
-Asumen que los PDFs ya fueron convertidos a TXT con `pdftotext -layout`.
-Si los .txt no existen, ejecutarlos intentará hacer la conversión (requiere poppler-utils/xpdf-tools).
+*(Nota para Windows: Requiere Python 3.11/3.12 y herramientas de compilación C++ para psycopg2. Si usas Node.js, muchas de estas tablas se auto-generan en el esquema, por lo que su uso es opcional).*

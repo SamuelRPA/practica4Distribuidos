@@ -22,6 +22,18 @@ export const api = {
         totales: any; participacion: any[]; estados: any[]; ingesta: any[]; errores: any[];
     }>('/api/oficial/resumen'),
     comparacion: () => jsonGet<{ rrv: any; oficial: any }>('/api/dashboard/comparacion'),
+    tiempos: (depto?: string, prov?: string) => {
+        let url = '/api/dashboard/tiempos';
+        if (depto && prov) {
+            url += `?depto=${encodeURIComponent(depto)}&prov=${encodeURIComponent(prov)}`;
+        }
+        return jsonGet<any>(url);
+    },
+    
+    getProvincias: (depto: string) => jsonGet<string[]>(`/api/dashboard/jerarquia/provincias?depto=${encodeURIComponent(depto)}`),
+    getRecintos: (depto: string, prov: string) => jsonGet<any[]>(`/api/dashboard/jerarquia/recintos?depto=${encodeURIComponent(depto)}&prov=${encodeURIComponent(prov)}`),
+    getMesas: (idRecinto: string) => jsonGet<any[]>(`/api/dashboard/jerarquia/mesas?recinto=${encodeURIComponent(idRecinto)}`),
+    getMesaDetalle: (codigoMesa: string) => jsonGet<any>(`/api/dashboard/jerarquia/mesaDetalle?mesa=${encodeURIComponent(codigoMesa)}`),
 
     enviarSms: (payload: { numero_origen: string; texto: string }) =>
         jsonPost('/api/rrv/sms', payload),

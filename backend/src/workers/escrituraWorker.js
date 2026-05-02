@@ -24,9 +24,19 @@ async function start() {
 
             if (r.status === 'INSERTADA') {
                 log.db(`Mongo INSERT → mesa ${payload.codigo_mesa}, estado=${r.estado}`, {
-                    ingreso_id: String(r.ingreso_id),
+                    ingreso_id: String(r.ingreso_id).slice(0, 12),
+                    confianza: r.confianza_global,
                     nivel_alerta: r.nivel_alerta || null,
                 });
+                // Reportar hallazgos del padrón si hubo
+                if (r.padron?.hallazgos?.length > 0) {
+                    log.warn(`  Hallazgos padrón: ${r.padron.hallazgos.join(', ')}`,
+                             r.padron.detalle);
+                }
+                if (r.advertencias?.length > 0) {
+                    log.warn(`  Advertencias aritméticas: ${r.advertencias.length}`,
+                             r.advertencias);
+                }
             } else if (r.status === 'DUPLICADO_EXACTO_IGNORADO') {
                 log.warn(`Mongo SKIP → mesa ${payload.codigo_mesa} (duplicado exacto, idempotencia OK)`);
             } else if (r.status === 'DESCARTADO') {

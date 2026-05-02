@@ -17,6 +17,25 @@ export const oficialRepo = {
         return r.rowCount > 0;
     },
 
+    /**
+     * Información completa del padrón para una mesa: nombre del recinto,
+     * id_recinto, cantidad_habilitada del padrón, departamento, municipio.
+     * Lo usa el validador para detectar mesa que no pertenece a su recinto.
+     */
+    async padronInfo(codigoMesa) {
+        const r = await pgRead.query(
+            `SELECT m.codigo_mesa, m.nro_mesa, m.cantidad_habilitada,
+                    m.id_recinto, r.nombre AS recinto_nombre, r.codigo_territorial,
+                    d.departamento, d.provincia, d.municipio
+             FROM mesas_electorales m
+             JOIN recintos_electorales r ON r.id_recinto = m.id_recinto
+             JOIN distribucion_territorial d ON d.codigo_territorial = r.codigo_territorial
+             WHERE m.codigo_mesa = $1`,
+            [codigoMesa]
+        );
+        return r.rows[0] || null;
+    },
+
     async actasExistentesPorMesa(codigoMesa) {
         const r = await pgRead.query(
             `SELECT id, estado FROM votos_oficiales
@@ -136,23 +155,57 @@ export const oficialRepo = {
         return r.rows;
     },
 
-    async metricasTiempos() {
-        // La mesa que más trabajo/horas tuvo
+    async metricasTiempos(depto, provincia) {
+        let whereClause = '';
+        const params = [];
+        let joinTables = '';
+        
+        if (depto && provincia) {
+            whereClause = 'WHERE d.departamento = $1 AND d.provincia = $2';
+            params.push(depto, provincia);
+            joinTables = `
+                JOIN mesas_electorales me ON v.codigo_mesa = me.codigo_mesa
+                JOIN recintos_electorales r ON me.id_recinto = r.id_recinto
+                JOIN distribucion_territorial d ON r.codigo_territorial = d.codigo_territorial
+            `;
+        }
+
+        // Recintos más lentos (Promedio)
         const mesaMasHoras = await pgRead.query(`
-            SELECT codigo_mesa, nro_mesa, duracion_minutos
-            FROM v_tiempos_mesas
+            SELECT r.id_recinto, r.nombre AS recinto_nombre, ROUND(AVG(v.duracion_minutos)) AS duracion_minutos
+            FROM v_tiempos_mesas v
+            ${joinTables}
+            ${whereClause}
+            GROUP BY r.id_recinto, r.nombre
             ORDER BY duracion_minutos DESC
-            LIMIT 1
-        `);
+            LIMIT 5
+        `, params);
+        
+        // Recintos más rápidos (Promedio)
+        const whereClauseRapidas = whereClause ? whereClause + ' AND v.duracion_minutos > 0' : 'WHERE v.duracion_minutos > 0';
+        const mesaMenosHoras = await pgRead.query(`
+            SELECT r.id_recinto, r.nombre AS recinto_nombre, ROUND(AVG(v.duracion_minutos)) AS duracion_minutos
+            FROM v_tiempos_mesas v
+            ${joinTables}
+            ${whereClauseRapidas}
+            GROUP BY r.id_recinto, r.nombre
+            ORDER BY duracion_minutos ASC
+            LIMIT 5
+        `, params);
+        
         // La última mesa en cerrar
         const ultimaEnCerrar = await pgRead.query(`
-            SELECT codigo_mesa, nro_mesa, cierre_hora, cierre_minutos
-            FROM v_tiempos_mesas
-            ORDER BY cierre_hora DESC, cierre_minutos DESC
+            SELECT v.codigo_mesa, v.nro_mesa, v.cierre_hora, v.cierre_minutos
+            FROM v_tiempos_mesas v
+            ${joinTables}
+            ${whereClause}
+            ORDER BY v.cierre_hora DESC, v.cierre_minutos DESC
             LIMIT 1
-        `);
+        `, params);
+        
         return {
-            mesa_mas_horas: mesaMasHoras.rows[0] || null,
+            mas_lentas: mesaMasHoras.rows,
+            mas_rapidas: mesaMenosHoras.rows,
             ultima_mesa_en_cerrar: ultimaEnCerrar.rows[0] || null
         };
     },

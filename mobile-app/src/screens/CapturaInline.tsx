@@ -61,10 +61,6 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
     const paso = imagen ? (estado.tipo === 'ok' || estado.tipo === 'encolado_offline' ? 3 : 2) : (tieneCodigo ? 1 : 0);
 
     async function capturarFoto() {
-        if (!tieneCodigo) {
-            setEstado({ tipo: 'error', mensaje: 'Primero ingresa el código de mesa' });
-            return;
-        }
         const asset = await tomarFoto();
         if (asset) {
             setImagen(asset);
@@ -76,10 +72,6 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
     }
 
     async function elegirFoto() {
-        if (!tieneCodigo) {
-            setEstado({ tipo: 'error', mensaje: 'Primero ingresa el código de mesa' });
-            return;
-        }
         const asset = await elegirDeGaleria();
         if (asset) {
             setImagen(asset);
@@ -89,7 +81,11 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
     }
 
     async function enviar() {
-        if (!imagen || !tieneCodigo) return;
+        if (!imagen) return;
+        if (!tieneCodigo) {
+            setEstado({ tipo: 'error', mensaje: 'Debes ingresar el código de mesa antes de enviar.' });
+            return;
+        }
         const id = `${Date.now()}-${codigoNumerico}`;
         const mimeType = imagen.mimeType || 'image/jpeg';
 
