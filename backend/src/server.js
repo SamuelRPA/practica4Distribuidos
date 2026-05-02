@@ -15,6 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, _res, next) => {
     if (req.path !== '/api/dashboard/health' && !req.path.startsWith('/_next')) {

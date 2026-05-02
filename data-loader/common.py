@@ -24,12 +24,19 @@ def conectar_pg():
 
 
 def asegurar_txt(pdf_name: str, txt_name: str) -> Path:
-    """Si no existe el .txt, lo extrae con pdftotext."""
+    """Si no existe el .txt, lo extrae con pdfplumber."""
     pdf_path = DATA_DIR / pdf_name
     txt_path = DATA_DIR / txt_name
     if not txt_path.exists():
-        print(f'[data-loader] Extrayendo {pdf_name} -> {txt_name}')
-        subprocess.run(['pdftotext', '-layout', str(pdf_path), str(txt_path)], check=True)
+        print(f'[data-loader] Extrayendo {pdf_name} -> {txt_name} (usando pdfplumber)')
+        import pdfplumber
+        with pdfplumber.open(pdf_path) as pdf:
+            with open(txt_path, 'w', encoding='latin-1', errors='replace') as f:
+                for page in pdf.pages:
+                    text = page.extract_text(layout=True)
+                    if text:
+                        f.write(text)
+                        f.write('\n')
     return txt_path
 
 
