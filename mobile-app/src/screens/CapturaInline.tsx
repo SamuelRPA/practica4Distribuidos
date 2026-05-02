@@ -57,7 +57,7 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
     }, []);
 
     const codigoNumerico = parseInt(codigoMesa, 10);
-    const tieneCodigo = !isNaN(codigoNumerico) && codigoMesa.length >= 3;
+    const tieneCodigo = !isNaN(codigoNumerico) && codigoMesa.length > 0;
     const paso = imagen ? (estado.tipo === 'ok' || estado.tipo === 'encolado_offline' ? 3 : 2) : (tieneCodigo ? 1 : 0);
 
     async function capturarFoto() {
@@ -172,7 +172,6 @@ export function CapturaInline({ online, onCambio }: { online: boolean; onCambio:
                         onChangeText={(v) => setCodigoMesa(v.replace(/\D/g, ''))}
                         placeholder="ej. 101112"
                         keyboardType="number-pad"
-                        maxLength={11}
                         deshabilitado={estado.tipo === 'subiendo'}
                     />
                     <Input
