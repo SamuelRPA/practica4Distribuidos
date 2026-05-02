@@ -12,6 +12,8 @@
     "worker:escritura": "node --env-file=../.env src/workers/escrituraWorker.js",
     "test:flow": "node --env-file=../.env scripts/test-flow.mjs",
     "db:reset": "node --env-file=../.env scripts/reset-all.js",
+    "load:all": "node --env-file=../.env scripts/carga-completa.mjs",
+    "load:sin-pdfs": "node --env-file=../.env scripts/carga-completa.mjs --sin-pdfs",
     "test": "echo 'tests pendientes' "
   },
   "dependencies": {

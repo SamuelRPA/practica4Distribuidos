@@ -5,17 +5,25 @@ import time
 from flask import Flask, jsonify, request
 
 from extraer import ocr_pdf
+from padron_lookup import cargar_padron
 
 app = Flask(__name__)
+
+# Cargar el CSV de transcripciones al iniciar el servicio
+_n_mesas = cargar_padron()
+print(f'[ocr-service] Padrón cargado: {_n_mesas} mesas de referencia.')
 
 
 @app.get('/health')
 def health():
+    from padron_lookup import disponible, _PADRON
     return jsonify({
         'status': 'ok',
         'mock_mode': os.environ.get('OCR_MOCK') == '1',
         'service': 'ocr-service',
-        'version': '2.0',
+        'version': '3.0',
+        'padron_disponible': disponible(),
+        'padron_mesas': len(_PADRON),
     })
 
 

@@ -16,6 +16,16 @@ async function jsonPost<T>(path: string, body: unknown): Promise<T> {
     return r.json();
 }
 
+async function jsonDelete<T>(path: string, body?: unknown): Promise<T> {
+    const r = await fetch(`${BASE}${path}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined,
+        cache: 'no-store',
+    });
+    return r.json();
+}
+
 export const api = {
     rrvResumen: () => jsonGet<{ estados: any[]; totales: any; ingestaPorHora: any[] }>('/api/rrv/resumen'),
     oficialResumen: () => jsonGet<{
@@ -29,7 +39,7 @@ export const api = {
         }
         return jsonGet<any>(url);
     },
-    
+
     getProvincias: (depto: string) => jsonGet<string[]>(`/api/dashboard/jerarquia/provincias?depto=${encodeURIComponent(depto)}`),
     getRecintos: (depto: string, prov: string) => jsonGet<any[]>(`/api/dashboard/jerarquia/recintos?depto=${encodeURIComponent(depto)}&prov=${encodeURIComponent(prov)}`),
     getMesas: (idRecinto: string) => jsonGet<any[]>(`/api/dashboard/jerarquia/mesas?recinto=${encodeURIComponent(idRecinto)}`),
@@ -47,6 +57,34 @@ export const api = {
     },
 
     enviarActaOficial: (acta: any) => jsonPost('/api/oficial/acta', acta),
+    mesaInfo: (codigoMesa: number | string) => jsonGet<any>(`/api/oficial/mesa-info/${codigoMesa}`),
+
+    // CRUD oficial - actas
+    listarActas: (filtros: { limit?: number; estado?: string; mesa?: number } = {}) => {
+        const qs = new URLSearchParams();
+        if (filtros.limit) qs.set('limit', String(filtros.limit));
+        if (filtros.estado) qs.set('estado', filtros.estado);
+        if (filtros.mesa) qs.set('mesa', String(filtros.mesa));
+        const s = qs.toString();
+        return jsonGet<any[]>(`/api/oficial/actas${s ? '?' + s : ''}`);
+    },
+    anularActa: (id: string, motivo?: string) =>
+        jsonDelete<any>(`/api/oficial/acta/${id}`, { motivo, modificado_por: 'admin_web' }),
+
+    // CRUD oficial - mesas
+    listarMesasCrud: (filtros: { limit?: number; recinto?: number; q?: string } = {}) => {
+        const qs = new URLSearchParams();
+        if (filtros.limit) qs.set('limit', String(filtros.limit));
+        if (filtros.recinto) qs.set('recinto', String(filtros.recinto));
+        if (filtros.q) qs.set('q', filtros.q);
+        const s = qs.toString();
+        return jsonGet<any[]>(`/api/oficial/mesas${s ? '?' + s : ''}`);
+    },
+    crearMesa: (data: { codigo_mesa: number; nro_mesa: number; cantidad_habilitada: number; id_recinto: number }) =>
+        jsonPost<any>('/api/oficial/mesa', data),
+    eliminarMesa: (codigoMesa: number) =>
+        jsonDelete<any>(`/api/oficial/mesa/${codigoMesa}`),
+    listarRecintosTodos: () => jsonGet<any[]>('/api/oficial/recintos'),
 
     // SMS admin
     listarNumerosSms: () => jsonGet<any[]>('/api/sms/numeros'),

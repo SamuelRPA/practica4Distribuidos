@@ -38,16 +38,6 @@ export const oficialService = {
         const actaConHabilitados = { ...input, habilitados: mesa.cantidad_habilitada };
         const validacion = validarActa(actaConHabilitados, 'OFICIAL');
 
-        if (!validacion.aprobada) {
-            await oficialRepo.logError({
-                tipo_error: 'VALIDACION_FALLIDA',
-                codigo_mesa: codigoMesa,
-                detalle: `Errores: ${validacion.errores.join(', ')}`,
-                datos_entrada: input,
-            });
-            return { status: 'RECHAZADA', motivo: validacion.errores };
-        }
-
         // Calculo de duracion en minutos
         let duracion_minutos = null;
         if (input.apertura_hora != null && input.cierre_hora != null) {
@@ -56,6 +46,36 @@ export const oficialService = {
             duracion_minutos = cierre - apertura;
             // Si el cierre es al día siguiente (poco probable pero posible)
             if (duracion_minutos < 0) duracion_minutos += 24 * 60;
+        }
+
+        // Si falla validación: se inserta como EN_CUARENTENA (no se descarta).
+        // Esto permite que el acta quede registrada en BD para revisión por supervisor.
+        if (!validacion.aprobada) {
+            const motivo = validacion.errores.join(' | ');
+            await oficialRepo.logError({
+                tipo_error: 'VALIDACION_FALLIDA',
+                codigo_mesa: codigoMesa,
+                detalle: motivo,
+                datos_entrada: input,
+            });
+
+            const id = await oficialRepo.insertarActa({
+                codigo_mesa: codigoMesa,
+                habilitados: mesa.cantidad_habilitada,
+                ...pick(actaConHabilitados, CAMPOS_CONSENSO),
+                duracion_minutos,
+                estado: 'EN_CUARENTENA',
+                motivo_estado: motivo,
+                fuente: input.fuente || 'MANUAL',
+                creado_por: input.creado_por || 'sistema',
+            });
+
+            return {
+                status: 'EN_CUARENTENA',
+                acta_id: id,
+                motivo: validacion.errores,
+                habilitados_padron: mesa.cantidad_habilitada,
+            };
         }
 
         // Validación de duplicados — si ya hay un acta, todas pasan a CUARENTENA

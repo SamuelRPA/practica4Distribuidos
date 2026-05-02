@@ -38,7 +38,7 @@ async function resetMongo() {
         const db = client.db('electoral_rrv');
         console.log('[reset] Limpiando colecciones de MongoDB...');
         
-        const collections = ['actas', 'sms_logs', 'ocr_results'];
+        const collections = ['actas_rrv', 'logs_rrv', 'sms_mensajes_recibidos', 'sms_numeros_autorizados'];
         for (const col of collections) {
             await db.collection(col).deleteMany({});
             console.log(`  ✓ Colección "${col}" limpia.`);

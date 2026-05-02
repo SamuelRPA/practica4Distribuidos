@@ -218,4 +218,108 @@ export const oficialRepo = {
         );
         return r.rows[0] || null;
     },
+
+    // -------- CRUD: Listar / anular actas --------
+    async listarActas({ limit = 50, estado, mesa } = {}) {
+        const where = [];
+        const params = [];
+        if (estado) { params.push(estado); where.push(`vo.estado = $${params.length}`); }
+        if (mesa) { params.push(mesa); where.push(`vo.codigo_mesa = $${params.length}`); }
+        const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
+        params.push(limit);
+        const r = await pgRead.query(
+            `SELECT vo.id, vo.codigo_mesa, vo.habilitados, vo.votos_emitidos,
+                    vo.p1, vo.p2, vo.p3, vo.p4, vo.votos_blancos, vo.votos_nulos,
+                    vo.estado, vo.fuente, vo.creado_en, vo.creado_por,
+                    me.nro_mesa, re.nombre AS recinto_nombre, dt.departamento
+             FROM votos_oficiales vo
+             JOIN mesas_electorales me ON me.codigo_mesa = vo.codigo_mesa
+             JOIN recintos_electorales re ON re.id_recinto = me.id_recinto
+             JOIN distribucion_territorial dt ON dt.codigo_territorial = re.codigo_territorial
+             ${whereSql}
+             ORDER BY vo.creado_en DESC
+             LIMIT $${params.length}`,
+            params
+        );
+        return r.rows;
+    },
+
+    async anularActa(id, motivo, modificadoPor) {
+        const r = await pgWrite.query(
+            `UPDATE votos_oficiales
+             SET estado = 'ANULADA', motivo_estado = $1,
+                 modificado_en = NOW(), modificado_por = $2
+             WHERE id = $3
+             RETURNING id, codigo_mesa, estado`,
+            [motivo || 'Anulada manualmente desde panel', modificadoPor || 'admin_web', id]
+        );
+        return r.rows[0] || null;
+    },
+
+    // -------- CRUD: Mesas electorales --------
+    async listarMesas({ limit = 100, recinto, q } = {}) {
+        const where = [];
+        const params = [];
+        if (recinto) { params.push(recinto); where.push(`me.id_recinto = $${params.length}`); }
+        if (q) {
+            params.push(`%${q}%`);
+            where.push(`(CAST(me.codigo_mesa AS TEXT) ILIKE $${params.length} OR re.nombre ILIKE $${params.length})`);
+        }
+        const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
+        params.push(limit);
+        const r = await pgRead.query(
+            `SELECT me.codigo_mesa, me.nro_mesa, me.cantidad_habilitada, me.id_recinto,
+                    re.nombre AS recinto_nombre, dt.departamento, dt.provincia, dt.municipio,
+                    (SELECT COUNT(*) FROM votos_oficiales vo
+                     WHERE vo.codigo_mesa = me.codigo_mesa AND vo.estado != 'ANULADA') AS actas_activas
+             FROM mesas_electorales me
+             JOIN recintos_electorales re ON re.id_recinto = me.id_recinto
+             JOIN distribucion_territorial dt ON dt.codigo_territorial = re.codigo_territorial
+             ${whereSql}
+             ORDER BY me.codigo_mesa
+             LIMIT $${params.length}`,
+            params
+        );
+        return r.rows;
+    },
+
+    async crearMesa({ codigo_mesa, nro_mesa, cantidad_habilitada, id_recinto }) {
+        const r = await pgWrite.query(
+            `INSERT INTO mesas_electorales (codigo_mesa, nro_mesa, cantidad_habilitada, id_recinto)
+             VALUES ($1, $2, $3, $4)
+             RETURNING codigo_mesa, nro_mesa, cantidad_habilitada, id_recinto`,
+            [codigo_mesa, nro_mesa, cantidad_habilitada, id_recinto]
+        );
+        return r.rows[0];
+    },
+
+    async eliminarMesa(codigoMesa) {
+        const actas = await pgRead.query(
+            `SELECT COUNT(*)::int AS n FROM votos_oficiales
+             WHERE codigo_mesa = $1 AND estado != 'ANULADA'`,
+            [codigoMesa]
+        );
+        if (actas.rows[0].n > 0) {
+            const err = new Error(`No se puede eliminar: tiene ${actas.rows[0].n} acta(s) activa(s). Anúlalas primero.`);
+            err.code = 'MESA_CON_ACTAS';
+            throw err;
+        }
+        const r = await pgWrite.query(
+            `DELETE FROM mesas_electorales WHERE codigo_mesa = $1 RETURNING codigo_mesa`,
+            [codigoMesa]
+        );
+        return r.rows[0] || null;
+    },
+
+    async listarRecintos() {
+        const r = await pgRead.query(
+            `SELECT re.id_recinto, re.nombre, re.cantidad_mesas,
+                    dt.departamento, dt.provincia
+             FROM recintos_electorales re
+             JOIN distribucion_territorial dt ON dt.codigo_territorial = re.codigo_territorial
+             ORDER BY dt.departamento, re.nombre
+             LIMIT 500`
+        );
+        return r.rows;
+    },
 };

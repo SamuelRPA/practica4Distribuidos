@@ -38,7 +38,7 @@ async function main() {
         return;
     }
 
-    const files = fs.readdirSync(PDF_DIR).filter(f => f.endsWith('.pdf')).slice(0, 5); // Subir los primeros 5
+    const files = fs.readdirSync(PDF_DIR).filter(f => f.endsWith('.pdf')); // Subir todos los disponibles
     console.log(`==== Cargando ${files.length} actas reales al pipeline ====`);
 
     for (const file of files) {
