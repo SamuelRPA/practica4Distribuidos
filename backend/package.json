@@ -5,12 +5,13 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node --watch --env-file=../.env src/server.js",
+    "dev": "node scripts/cleanup-port.js && node --watch --env-file=../.env src/server.js",
     "start": "node --env-file=../.env src/server.js",
     "worker:ocr": "node --env-file=../.env src/workers/ocrWorker.js",
     "worker:validador": "node --env-file=../.env src/workers/validadorWorker.js",
     "worker:escritura": "node --env-file=../.env src/workers/escrituraWorker.js",
     "test:flow": "node --env-file=../.env scripts/test-flow.mjs",
+    "db:reset": "node --env-file=../.env scripts/reset-all.js",
     "test": "echo 'tests pendientes' "
   },
   "dependencies": {

@@ -158,16 +158,15 @@ export const oficialRepo = {
     async metricasTiempos(depto, provincia) {
         let whereClause = '';
         const params = [];
-        let joinTables = '';
+        const joinTables = `
+            JOIN mesas_electorales me ON v.codigo_mesa = me.codigo_mesa
+            JOIN recintos_electorales r ON me.id_recinto = r.id_recinto
+            JOIN distribucion_territorial d ON r.codigo_territorial = d.codigo_territorial
+        `;
         
         if (depto && provincia) {
             whereClause = 'WHERE d.departamento = $1 AND d.provincia = $2';
             params.push(depto, provincia);
-            joinTables = `
-                JOIN mesas_electorales me ON v.codigo_mesa = me.codigo_mesa
-                JOIN recintos_electorales r ON me.id_recinto = r.id_recinto
-                JOIN distribucion_territorial d ON r.codigo_territorial = d.codigo_territorial
-            `;
         }
 
         // Recintos más lentos (Promedio)

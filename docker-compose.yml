@@ -148,6 +148,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./n8n/workflows:/workflows:ro
+      - ./Data:/home/node/.n8n-files/Data:ro
     networks:
       - pg_cluster
 

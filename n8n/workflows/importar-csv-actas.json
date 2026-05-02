@@ -58,7 +58,7 @@
             { "name": "cierre_minutos", "value": "={{ $json.CierreMinutos }}" },
             { "name": "observaciones", "value": "={{ $json.Observaciones }}" },
             { "name": "fuente", "value": "N8N" },
-            { "name": "creado_por", "value": "n8n_workflow" }
+            { "name": "creado_por", "value": "pas00034109@est.univalle.edu" }
           ]
         },
         "options": {

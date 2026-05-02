@@ -9,7 +9,7 @@ export function validarActa(acta, modo) {
     const errores = [];
     const advertencias = [];
 
-    const num = (v) => (typeof v === 'number' ? v : 0);
+    const num = (v) => (v != null && v !== '' && !isNaN(v) ? Number(v) : 0);
 
     // R1: votos_emitidos + ausentismo = habilitados
     if (num(acta.votos_emitidos) + num(acta.ausentismo) !== num(acta.habilitados)) {
@@ -65,3 +65,4 @@ export function validarActa(acta, modo) {
         advertencias,
     };
 }
+// Triggering restart...
