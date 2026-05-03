@@ -40,8 +40,10 @@ yarn-debug.log*
 .DS_Store
 Thumbs.db
 
-# Datos extraídos temporales
+# Datos extraídos temporales y archivos pesados
 Data/*.txt
+Data/pdf/
+Data/*.pdf
 
 # Coverage
 coverage/
