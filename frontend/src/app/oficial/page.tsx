@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     FileSpreadsheet, Send, Trash2, Plus, RefreshCw, ClipboardList,
     Layers, Search, CheckCircle, AlertTriangle, XCircle, X,
@@ -346,41 +346,68 @@ function ResultadoEnvio({ resp }: { resp: any }) {
 // ============================================================
 function CrudActas() {
     const [actas, setActas] = useState<any[]>([]);
+    const [totalActas, setTotalActas] = useState<number | null>(null);
     const [estado, setEstado] = useState('');
     const [mesa, setMesa] = useState('');
     const [loading, setLoading] = useState(false);
-    const [tick, setTick] = useState(0);
+    const loadingRef = useRef(false);
 
-    async function cargar() {
-        setLoading(true);
+    async function cargar(silencioso = false) {
+        if (loadingRef.current) return;
+        loadingRef.current = true;
+        if (!silencioso) setLoading(true);
         try {
             const r = await api.listarActas({
                 estado: estado || undefined,
                 mesa: mesa ? parseInt(mesa, 10) : undefined,
-                limit: 100,
+                limit: 300,
             });
             setActas(r);
+            // Mostrar total si no hay filtros activos
+            if (!estado && !mesa) setTotalActas(r.length);
         } finally {
+            loadingRef.current = false;
             setLoading(false);
         }
     }
 
-    useEffect(() => { cargar(); /* eslint-disable-next-line */ }, [tick, estado]);
+    useEffect(() => { cargar(); /* eslint-disable-next-line */ }, [estado]);
     useEffect(() => {
-        const t = setInterval(() => setTick((x) => x + 1), 5000);
+        const t = setInterval(() => cargar(true), 8000);
         return () => clearInterval(t);
-    }, []);
+    }, [estado, mesa]);
 
     async function anular(id: string, codigoMesa: number) {
-        if (!confirm(`¿Anular el acta de la mesa ${codigoMesa}? Quedará marcada como ANULADA y dejará de contar en los totales.`)) return;
-        await api.anularActa(id, 'Anulada manualmente desde panel de administración');
-        setTick((x) => x + 1);
+        if (!confirm(`¿Anular el acta de la mesa ${codigoMesa}? Quedará marcada como ANULADA y dejará de contar.`)) return;
+        const r: any = await api.anularActa(id, 'Anulada manualmente desde panel de administración');
+        if (r?.error) { alert('Error: ' + r.error); return; }
+        setActas(prev => prev.map(a => a.id === id ? { ...a, estado: 'ANULADA' } : a));
+        await cargar();
+    }
+
+    async function rechazar(id: string, codigoMesa: number) {
+        const motivo = prompt(`Motivo del rechazo del acta de mesa ${codigoMesa}:`);
+        if (!motivo) return;
+        const r: any = await api.cambiarEstadoActaOficial(id, 'RECHAZADA', motivo);
+        if (r?.error) { alert('Error: ' + r.error); return; }
+        setActas(prev => prev.map(a => a.id === id ? { ...a, estado: 'RECHAZADA' } : a));
+        await cargar();
+    }
+
+    async function aprobar(id: string, codigoMesa: number) {
+        if (!confirm(`¿Aprobar manualmente el acta de mesa ${codigoMesa}? Volverá a contar en los totales.`)) return;
+        const r: any = await api.cambiarEstadoActaOficial(id, 'APROBADA', 'Aprobación manual desde panel');
+        if (r?.error) { alert('Error: ' + r.error); return; }
+        setActas(prev => prev.map(a => a.id === id ? { ...a, estado: 'APROBADA' } : a));
+        await cargar();
     }
 
     return (
         <div className="card" style={{ marginBottom: 0 }}>
             <div className="toolbar">
-                <h3 style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>Actas oficiales ({actas.length})</h3>
+                <h3 style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>
+                    Actas oficiales — {actas.length}{totalActas !== null && actas.length < totalActas ? ` de ${totalActas.toLocaleString()} total` : ''}
+                </h3>
                 <span className="spacer" />
                 <select value={estado} onChange={(e) => setEstado(e.target.value)}>
                     {ESTADO_FILTROS.map((e) => (
@@ -430,15 +457,31 @@ function CrudActas() {
                                     <span className="badge muted" style={{ fontSize: 10 }}>{a.fuente}</span>
                                 </td>
                                 <td><EstadoBadge estado={a.estado} /></td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
+                                    {a.estado !== 'APROBADA' && a.estado !== 'ANULADA' && (
+                                        <button
+                                            className="secondary"
+                                            style={{ fontSize: 11, padding: '5px 8px', marginRight: 4 }}
+                                            onClick={() => aprobar(a.id, a.codigo_mesa)}
+                                            title="Aprobar manualmente"
+                                        >Aprobar</button>
+                                    )}
+                                    {a.estado !== 'RECHAZADA' && a.estado !== 'ANULADA' && (
+                                        <button
+                                            className="secondary"
+                                            style={{ fontSize: 11, padding: '5px 8px', marginRight: 4 }}
+                                            onClick={() => rechazar(a.id, a.codigo_mesa)}
+                                            title="Rechazar"
+                                        >Rechazar</button>
+                                    )}
                                     {a.estado !== 'ANULADA' && (
                                         <button
                                             className="danger"
-                                            style={{ fontSize: 12, padding: '6px 10px' }}
+                                            style={{ fontSize: 11, padding: '5px 8px' }}
                                             onClick={() => anular(a.id, a.codigo_mesa)}
+                                            title="Anular permanentemente"
                                         >
-                                            <Trash2 size={12} style={{ marginRight: 4, verticalAlign: 'middle' }} />
-                                            Anular
+                                            <Trash2 size={11} style={{ verticalAlign: 'middle' }} />
                                         </button>
                                     )}
                                 </td>
@@ -493,13 +536,18 @@ function CrudMesas() {
     }, []);
 
     async function eliminar(codigoMesa: number) {
-        if (!confirm(`¿Eliminar la mesa ${codigoMesa}? Esta acción solo procede si no tiene actas activas.`)) return;
+        if (!confirm(`¿Eliminar la mesa ${codigoMesa}?\nSolo se puede si no tiene actas activas.`)) return;
         try {
             const r: any = await api.eliminarMesa(codigoMesa);
-            if (r.error) alert(r.error);
-            cargar();
+            if (r?.error) {
+                alert('⚠️ No se pudo eliminar:\n' + r.error);
+                return;
+            }
+            // Quitar localmente de inmediato
+            setMesas(prev => prev.filter(m => m.codigo_mesa !== codigoMesa));
+            await cargar();
         } catch (err: any) {
-            alert(err.message || 'Error eliminando');
+            alert('⚠️ Error: ' + (err.message || String(err)));
         }
     }
 

@@ -27,6 +27,7 @@ const ESTADOS = [
 
 export default function RrvPage() {
     const [actas, setActas] = useState<any[]>([]);
+    const [totalActas, setTotalActas] = useState<number>(0);
     const [resumen, setResumen] = useState<any>(null);
     const [origen, setOrigen] = useState('');
     const [estado, setEstado] = useState('');
@@ -35,28 +36,33 @@ export default function RrvPage() {
     const [conexion, setConexion] = useState<'conectando' | 'ok' | 'error'>('conectando');
     const [ultima, setUltima] = useState<Date | null>(null);
     const [actaDetalle, setActaDetalle] = useState<any>(null);
-
+    const loadingRef = useRef(false);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    async function cargar() {
-        setLoading(true);
+    async function cargar(silencioso = false) {
+        if (loadingRef.current) return;
+        loadingRef.current = true;
+        if (!silencioso) setLoading(true);
         try {
-            const [a, r] = await Promise.all([
+            const [a, r, crrv] = await Promise.all([
                 api.listarActasRrv({
                     origen: origen || undefined,
                     estado: estado || undefined,
                     mesa: mesa ? parseInt(mesa, 10) : undefined,
-                    limit: 200,
+                    limit: 500,
                 }),
                 api.rrvResumen().catch(() => null),
+                api.conteoRrv().catch(() => null),
             ]);
             setActas(a);
             setResumen(r);
+            if (crrv) setTotalActas(crrv.total);
             setUltima(new Date());
             setConexion('ok');
         } catch {
             setConexion('error');
         } finally {
+            loadingRef.current = false;
             setLoading(false);
         }
     }
@@ -65,40 +71,46 @@ export default function RrvPage() {
 
     useEffect(() => {
         if (intervalRef.current) clearInterval(intervalRef.current);
-        intervalRef.current = setInterval(cargar, 3000);
+        intervalRef.current = setInterval(() => cargar(true), 8000);
         return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
         // eslint-disable-next-line
     }, [origen, estado, mesa]);
+
 
     async function rechazar(a: any) {
         const motivo = prompt(`Motivo del rechazo del acta de mesa ${a.codigo_mesa}:`);
         if (!motivo) return;
         await api.cambiarEstadoActaRrv(String(a._id), 'RECHAZADA', motivo);
-        cargar();
+        await cargar();
     }
 
     async function aprobar(a: any) {
         if (!confirm(`¿Aprobar manualmente el acta de mesa ${a.codigo_mesa}?`)) return;
         await api.cambiarEstadoActaRrv(String(a._id), 'APROBADA', 'Aprobación manual desde panel');
-        cargar();
+        await cargar();
     }
 
     async function ponerEnObservacion(a: any) {
         const motivo = prompt(`Motivo para poner el acta en observación:`);
         if (!motivo) return;
         await api.cambiarEstadoActaRrv(String(a._id), 'EN_OBSERVACION', motivo);
-        cargar();
+        await cargar();
     }
 
     async function eliminar(a: any) {
-        if (!confirm(`¿Eliminar DEFINITIVAMENTE el acta de mesa ${a.codigo_mesa}? Esta acción no se puede deshacer.`)) return;
+        if (!confirm(`¿Eliminar DEFINITIVAMENTE el acta de mesa ${a.codigo_mesa}?\nEsta acción NO se puede deshacer.`)) return;
         try {
-            await api.eliminarActaRrv(String(a._id));
-            cargar();
+            const r: any = await api.eliminarActaRrv(String(a._id));
+            if (r?.error) { alert('Error: ' + r.error); return; }
+            // Quitar de la lista localmente sin esperar al servidor
+            setActas(prev => prev.filter(x => String(x._id) !== String(a._id)));
+            setTotalActas(prev => Math.max(0, prev - 1));
+            await cargar();
         } catch (err: any) {
             alert('Error eliminando: ' + (err.message || err));
         }
     }
+
 
     const stats = useMemo(() => {
         const por = (filtro: (a: any) => boolean) => actas.filter(filtro).length;
@@ -153,7 +165,7 @@ export default function RrvPage() {
                 <div className="toolbar">
                     <h3 style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>
                         <TrendingUp size={16} style={{ verticalAlign: 'middle', marginRight: 6 }} />
-                        Actas RRV ({actas.length})
+                        Actas RRV — mostrando {actas.length.toLocaleString()} de {totalActas.toLocaleString()} total
                     </h3>
                     <span className="spacer" />
                     <select value={origen} onChange={(e) => setOrigen(e.target.value)}>
