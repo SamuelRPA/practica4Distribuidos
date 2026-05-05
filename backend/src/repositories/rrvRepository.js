@@ -29,7 +29,15 @@ export const rrvRepo = {
         );
         await db.collection('actas_rrv').updateOne(
             { _id: actaId },
-            { $set: { es_version_activa: true } }
+            { $set: { es_version_activa: true, estado: 'APROBADA' } }
+        );
+    },
+
+    async quitarActivas(codigoMesa) {
+        const db = getMongo();
+        await db.collection('actas_rrv').updateMany(
+            { codigo_mesa: codigoMesa },
+            { $set: { es_version_activa: false, estado: 'EN_OBSERVACION' } }
         );
     },
 

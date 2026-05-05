@@ -205,20 +205,12 @@ export const rrvService = {
 
         log.success(`Insertada en Mongo — id=${String(ingresoId).slice(0,8)} estado=${estado}`);
 
-        // ---------- 10. Re-elegir versión activa por mayor confianza ----------
-        if (estado === 'APROBADA' || versionesPrevias.length > 0) {
-            const todas = await rrvRepo.obtenerVersiones(codigoMesa);
-            const aprobadas = todas.filter((v) => v.estado === 'APROBADA');
-            if (aprobadas.length > 0) {
-                const mejor = aprobadas.reduce(
-                    (best, cur) => (cur.confianza_global > (best?.confianza_global ?? -1) ? cur : best),
-                    null,
-                );
-                if (mejor) {
-                    await rrvRepo.marcarComoActiva(codigoMesa, mejor._id);
-                    log.info(`Versión activa re-elegida por mejor confianza: ${String(mejor._id).slice(0,8)} (conf=${mejor.confianza_global})`);
-                }
-            }
+        // ---------- 10. Bloqueo de duplicados ----------
+        // Ningún duplicado se acepta automáticamente. Si hay versiones previas,
+        // todas se marcan como no activas y su estado pasa a EN_OBSERVACION para revisión manual.
+        if (versionesPrevias.length > 0) {
+            await rrvRepo.quitarActivas(codigoMesa);
+            log.info(`Duplicado en RRV detectado para mesa ${codigoMesa}. Se quitaron las versiones activas para revisión manual.`);
         }
 
         return {

@@ -79,18 +79,16 @@ export const oficialService = {
         }
 
         // Verificación de duplicados:
-        // Si hay actas existentes, insertamos la nueva como EN_CUARENTENA para no inflar los totales,
-        // permitiendo que se inserten múltiples veces (incluso más de 5 veces) desde el CSV.
+        // No se acepta ningún duplicado. Si llega una segunda acta para una mesa,
+        // todas las actas de esa mesa se ponen en revisión (EN_CUARENTENA) para que un supervisor
+        // determine cuál es la correcta.
         const existentes = await oficialRepo.actasExistentesPorMesa(codigoMesa);
         
         if (existentes.length > 0) {
-            const motivo = `DUPLICADO_DETECTADO: Esta mesa ya tiene ${existentes.length} acta(s) registrada(s).`;
+            const motivo = `DUPLICADO_DETECTADO: Se encontraron ${existentes.length + 1} actas en total para la mesa ${codigoMesa}.`;
             
-            // Opcional: poner las anteriores en cuarentena también si no estaban anuladas
             for (const e of existentes) {
-                if (e.estado === 'APROBADA' || e.estado === 'PENDIENTE') {
-                    await oficialRepo.actualizarEstado(e.id, 'EN_CUARENTENA', 'DUPLICADO_DETECTADO: Se recibió una nueva versión', input.creado_por || 'sistema');
-                }
+                await oficialRepo.actualizarEstado(e.id, 'EN_CUARENTENA', motivo, input.creado_por || 'sistema');
             }
 
             const id = await oficialRepo.insertarActa({
