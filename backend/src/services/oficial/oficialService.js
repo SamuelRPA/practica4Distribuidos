@@ -78,32 +78,19 @@ export const oficialService = {
             };
         }
 
-        // Verificación de duplicados estricta:
-        // Si ya existe un acta APROBADA para esta mesa → rechazar la nueva (no duplicar)
-        // Si existe una EN_CUARENTENA o PENDIENTE → poner ambas en cuarentena
+        // Verificación de duplicados:
+        // Si hay actas existentes, insertamos la nueva como EN_CUARENTENA para no inflar los totales,
+        // permitiendo que se inserten múltiples veces (incluso más de 5 veces) desde el CSV.
         const existentes = await oficialRepo.actasExistentesPorMesa(codigoMesa);
-        const yaAprobada = existentes.find(e => e.estado === 'APROBADA');
-
-        if (yaAprobada) {
-            // Mesa ya tiene acta aprobada → rechazar silenciosamente (idempotencia para n8n)
-            await oficialRepo.logError({
-                tipo_error: 'DUPLICADO_IGNORADO',
-                codigo_mesa: codigoMesa,
-                detalle: `Mesa ${codigoMesa} ya tiene acta APROBADA (id: ${yaAprobada.id}). Nueva ignorada.`,
-                datos_entrada: input,
-            });
-            return {
-                status: 'RECHAZADA',
-                motivo: 'DUPLICADO_MESA_YA_APROBADA',
-                acta_existente: yaAprobada.id,
-            };
-        }
-
+        
         if (existentes.length > 0) {
-            const motivo = `DUPLICADO_DETECTADO: ${existentes.length + 1} actas para mesa ${codigoMesa}`;
-
+            const motivo = `DUPLICADO_DETECTADO: Esta mesa ya tiene ${existentes.length} acta(s) registrada(s).`;
+            
+            // Opcional: poner las anteriores en cuarentena también si no estaban anuladas
             for (const e of existentes) {
-                await oficialRepo.actualizarEstado(e.id, 'EN_CUARENTENA', motivo, input.creado_por || 'sistema');
+                if (e.estado === 'APROBADA' || e.estado === 'PENDIENTE') {
+                    await oficialRepo.actualizarEstado(e.id, 'EN_CUARENTENA', 'DUPLICADO_DETECTADO: Se recibió una nueva versión', input.creado_por || 'sistema');
+                }
             }
 
             const id = await oficialRepo.insertarActa({
