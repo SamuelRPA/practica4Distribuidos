@@ -26,6 +26,16 @@ async function jsonDelete<T>(path: string, body?: unknown): Promise<T> {
     return r.json();
 }
 
+async function jsonPatch<T>(path: string, body: unknown): Promise<T> {
+    const r = await fetch(`${BASE}${path}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        cache: 'no-store',
+    });
+    return r.json();
+}
+
 export const api = {
     rrvResumen: () => jsonGet<{ estados: any[]; totales: any; ingestaPorHora: any[] }>('/api/rrv/resumen'),
     oficialResumen: () => jsonGet<{
@@ -102,4 +112,46 @@ export const api = {
     listarMensajesSms: (limit = 50) => jsonGet<any[]>(`/api/sms/mensajes?limit=${limit}`),
     simularSms: (numero_origen: string, texto: string) =>
         jsonPost('/api/sms/webhook/generico', { numero_origen, texto }),
+
+    // ----- RRV (Cómputo Rápido) -----
+    listarActasRrv: (filtros: { limit?: number; estado?: string; origen?: string; mesa?: number; soloActivas?: boolean } = {}) => {
+        const qs = new URLSearchParams();
+        if (filtros.limit) qs.set('limit', String(filtros.limit));
+        if (filtros.estado) qs.set('estado', filtros.estado);
+        if (filtros.origen) qs.set('origen', filtros.origen);
+        if (filtros.mesa) qs.set('mesa', String(filtros.mesa));
+        if (filtros.soloActivas) qs.set('soloActivas', 'true');
+        const s = qs.toString();
+        return jsonGet<any[]>(`/api/rrv/actas${s ? '?' + s : ''}`);
+    },
+    cambiarEstadoActaRrv: (id: string, estado: string, motivo?: string) =>
+        jsonPatch<any>(`/api/rrv/acta/${id}/estado`, { estado, motivo, modificado_por: 'admin_web' }),
+    eliminarActaRrv: (id: string) =>
+        jsonDelete<any>(`/api/rrv/acta/${id}`),
+    eventosRrv: (limit = 100, tipo?: string) =>
+        jsonGet<any[]>(`/api/rrv/eventos?limit=${limit}${tipo ? `&tipo=${tipo}` : ''}`),
+    rrvPorOrigen: () => jsonGet<any[]>('/api/rrv/por-origen'),
+
+    // ----- Oficial extendido -----
+    cambiarEstadoActaOficial: (id: string, estado: string, motivo?: string) =>
+        jsonPatch<any>(`/api/oficial/acta/${id}/estado`, { estado, motivo, modificado_por: 'admin_web' }),
+    eventosOficial: (filtros: { limit?: number; tipo?: string; mesa?: number } = {}) => {
+        const qs = new URLSearchParams();
+        if (filtros.limit) qs.set('limit', String(filtros.limit));
+        if (filtros.tipo) qs.set('tipo', filtros.tipo);
+        if (filtros.mesa) qs.set('mesa', String(filtros.mesa));
+        const s = qs.toString();
+        return jsonGet<any[]>(`/api/oficial/eventos${s ? '?' + s : ''}`);
+    },
+    logsErroresOficial: (limit = 50) => jsonGet<any[]>(`/api/oficial/logs-errores?limit=${limit}`),
+    ganadorTerritorio: (nivel: 'departamento' | 'provincia' | 'municipio' | 'recinto') =>
+        jsonGet<{ nivel: string; data: any[] }>(`/api/oficial/ganador?nivel=${nivel}`),
+    topHorarios: () => jsonGet<any[]>('/api/oficial/top-horarios'),
+    ingesta24h: () => jsonGet<any[]>('/api/oficial/ingesta-24h'),
+
+    // ----- Health del cluster -----
+    healthPostgres: () => jsonGet<any>('/api/health/postgres-cluster'),
+    healthMongo: () => jsonGet<any>('/api/health/mongo-replica'),
+    testReplicacionPostgres: () => jsonGet<any>('/api/health/postgres-replicacion-test'),
+    testReplicacionMongo: () => jsonGet<any>('/api/health/mongo-replicacion-test'),
 };

@@ -181,3 +181,77 @@ rrvRouter.get('/resumen', async (_req, res) => {
     ]);
     res.json({ estados, totales: totales[0] || {}, ingestaPorHora: ingestaHora });
 });
+
+/**
+ * Listar actas RRV con filtros.
+ * GET /api/rrv/actas?limit=&estado=&origen=&mesa=&soloActivas=
+ */
+rrvRouter.get('/actas', async (req, res, next) => {
+    try {
+        const { limit, estado, origen, mesa, soloActivas } = req.query;
+        const actas = await rrvRepo.listarActas({
+            limit: limit ? parseInt(limit, 10) : 200,
+            estado: estado || undefined,
+            origen: origen || undefined,
+            mesa: mesa ? parseInt(mesa, 10) : undefined,
+            soloActivas: soloActivas === 'true',
+        });
+        res.json(actas);
+    } catch (err) { next(err); }
+});
+
+/**
+ * Cambiar estado de un acta RRV (aprobar / rechazar / observar).
+ * PATCH /api/rrv/acta/:id/estado
+ * Body: { estado, motivo?, modificado_por? }
+ */
+rrvRouter.patch('/acta/:id/estado', async (req, res, next) => {
+    try {
+        const { estado, motivo, modificado_por } = req.body || {};
+        const validos = ['APROBADA', 'EN_VERIFICACION', 'EN_OBSERVACION', 'RECHAZADA'];
+        if (!validos.includes(estado)) {
+            return res.status(400).json({ error: `estado debe ser: ${validos.join(', ')}` });
+        }
+        const r = await rrvRepo.cambiarEstadoActa(req.params.id, estado, motivo, modificado_por);
+        if (!r) return res.status(404).json({ error: 'acta RRV no encontrada' });
+        res.json({ status: 'OK', ...r });
+    } catch (err) { next(err); }
+});
+
+/**
+ * Eliminar (borrar físicamente) un acta RRV.
+ * DELETE /api/rrv/acta/:id
+ */
+rrvRouter.delete('/acta/:id', async (req, res, next) => {
+    try {
+        const db = (await import('../config/mongo.js')).getMongo();
+        const { ObjectId } = await import('mongodb');
+        const _id = new ObjectId(req.params.id);
+        const r = await db.collection('actas_rrv').findOneAndDelete({ _id });
+        if (!r) return res.status(404).json({ error: 'acta RRV no encontrada' });
+        res.json({ status: 'ELIMINADA', id: req.params.id });
+    } catch (err) { next(err); }
+});
+
+/**
+ * Eventos / log de auditoría RRV.
+ */
+rrvRouter.get('/eventos', async (req, res, next) => {
+    try {
+        const { limit, tipo } = req.query;
+        const evs = await rrvRepo.eventosRecientes(limit ? parseInt(limit, 10) : 100, tipo);
+        res.json(evs);
+    } catch (err) { next(err); }
+});
+
+/**
+ * Resumen agrupado por origen (fuente).
+ */
+rrvRouter.get('/por-origen', async (_req, res, next) => {
+    try {
+        const data = await rrvRepo.resumenPorOrigen();
+        res.json(data);
+    } catch (err) { next(err); }
+});
+
+

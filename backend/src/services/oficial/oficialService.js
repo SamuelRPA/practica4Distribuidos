@@ -78,8 +78,26 @@ export const oficialService = {
             };
         }
 
-        // Validación de duplicados — si ya hay un acta, todas pasan a CUARENTENA
+        // Verificación de duplicados estricta:
+        // Si ya existe un acta APROBADA para esta mesa → rechazar la nueva (no duplicar)
+        // Si existe una EN_CUARENTENA o PENDIENTE → poner ambas en cuarentena
         const existentes = await oficialRepo.actasExistentesPorMesa(codigoMesa);
+        const yaAprobada = existentes.find(e => e.estado === 'APROBADA');
+
+        if (yaAprobada) {
+            // Mesa ya tiene acta aprobada → rechazar silenciosamente (idempotencia para n8n)
+            await oficialRepo.logError({
+                tipo_error: 'DUPLICADO_IGNORADO',
+                codigo_mesa: codigoMesa,
+                detalle: `Mesa ${codigoMesa} ya tiene acta APROBADA (id: ${yaAprobada.id}). Nueva ignorada.`,
+                datos_entrada: input,
+            });
+            return {
+                status: 'RECHAZADA',
+                motivo: 'DUPLICADO_MESA_YA_APROBADA',
+                acta_existente: yaAprobada.id,
+            };
+        }
 
         if (existentes.length > 0) {
             const motivo = `DUPLICADO_DETECTADO: ${existentes.length + 1} actas para mesa ${codigoMesa}`;
