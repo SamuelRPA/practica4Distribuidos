@@ -148,6 +148,7 @@ export const api = {
         jsonGet<{ nivel: string; data: any[] }>(`/api/oficial/ganador?nivel=${nivel}`),
     topHorarios: () => jsonGet<any[]>('/api/oficial/top-horarios'),
     ingesta24h: () => jsonGet<any[]>('/api/oficial/ingesta-24h'),
+    conteoRrv: () => jsonGet<{ total: number; porEstado: any[] }>('/api/dashboard/conteo-rrv'),
 
     // ----- Health del cluster -----
     healthPostgres: () => jsonGet<any>('/api/health/postgres-cluster'),

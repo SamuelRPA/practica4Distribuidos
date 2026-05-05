@@ -30,7 +30,11 @@ dashboardRouter.get('/jerarquia/recintos', async (req, res) => {
 dashboardRouter.get('/jerarquia/mesas', async (req, res) => {
     try {
         const { recinto } = req.query;
-        const r = await pgRead.query('SELECT codigo_mesa, nro_mesa, cantidad_habilitada FROM mesas_electorales WHERE id_recinto = $1 ORDER BY nro_mesa', [recinto]);
+        if (!recinto) return res.json([]);
+        const r = await pgRead.query(
+            'SELECT codigo_mesa, nro_mesa, cantidad_habilitada FROM mesas_electorales WHERE id_recinto = $1::bigint ORDER BY nro_mesa',
+            [recinto]
+        );
         res.json(r.rows);
     } catch (e) { res.status(500).json({ error: e.message }); }
 });
@@ -70,4 +74,21 @@ dashboardRouter.get('/health', async (_req, res) => {
         status: 'ok',
         timestamp: new Date().toISOString(),
     });
+});
+
+/**
+ * Conteo real de actas RRV por estado (para el dashboard, sin límite de paginación).
+ */
+dashboardRouter.get('/conteo-rrv', async (_req, res) => {
+    try {
+        const db = (await import('../config/mongo.js')).getMongo();
+        const [porEstado, total] = await Promise.all([
+            db.collection('actas_rrv').aggregate([
+                { $group: { _id: '$estado', cantidad: { $sum: 1 } } },
+                { $sort: { _id: 1 } },
+            ]).toArray(),
+            db.collection('actas_rrv').countDocuments({}),
+        ]);
+        res.json({ total, porEstado });
+    } catch (e) { res.status(500).json({ error: e.message }); }
 });

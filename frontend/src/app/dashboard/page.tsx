@@ -5,7 +5,7 @@ import {
     Bar, BarChart, CartesianGrid, Legend,
     PieChart, Pie, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis, LineChart, Line,
 } from 'recharts';
-import { Activity, Clock, MapPin, Users, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Activity, Clock, MapPin, Users, CheckCircle, AlertTriangle, Trophy, Zap, FileSpreadsheet, Layers } from 'lucide-react';
 import { api } from '@/lib/api';
 import BoliviaMap from '@/components/BoliviaMap';
 
@@ -18,6 +18,7 @@ export default function Dashboard() {
     const [tiempos, setTiempos] = useState<any>(null);
     const [ultimaActualizacion, setUltimaActualizacion] = useState<Date | null>(null);
     const [estadoConexion, setEstadoConexion] = useState<'conectando' | 'ok' | 'error'>('conectando');
+    const [conteoRrv, setConteoRrv] = useState<{ total: number; porEstado: any[] } | null>(null);
     
     // Filtros interactivos
     const [selectedDepto, setSelectedDepto] = useState<string>('TODOS');
@@ -32,6 +33,12 @@ export default function Dashboard() {
     const [mesas, setMesas] = useState<any[]>([]);
     const [mesaDetalle, setMesaDetalle] = useState<any>(null);
     const [provTiempos, setProvTiempos] = useState<any>(null);
+
+    // Métricas adicionales
+    const [vista, setVista] = useState<'combinada' | 'oficial' | 'rrv'>('combinada');
+    const [ganadores, setGanadores] = useState<any>(null);
+    const [nivelGanador, setNivelGanador] = useState<'departamento' | 'provincia' | 'municipio' | 'recinto'>('departamento');
+    const [topHorarios, setTopHorarios] = useState<any[]>([]);
 
     useEffect(() => {
         if (selectedDepto !== 'TODOS') {
@@ -76,12 +83,15 @@ export default function Dashboard() {
     useEffect(() => {
         const cargar = async () => {
             try {
-                const [r, o, t] = await Promise.all([
+                const [r, o, t, th, crrv] = await Promise.all([
                     api.rrvResumen(),
                     api.oficialResumen(),
-                    api.tiempos().catch(() => null) // Lo agregaremos a la API localmente
+                    api.tiempos().catch(() => null),
+                    api.topHorarios().catch(() => []),
+                    api.conteoRrv().catch(() => null),
                 ]);
-                setRrv(r); setOficial(o); setTiempos(t);
+                setRrv(r); setOficial(o); setTiempos(t); setTopHorarios(th);
+                if (crrv) setConteoRrv(crrv);
                 setUltimaActualizacion(new Date());
                 setEstadoConexion('ok');
             } catch (err) {
@@ -90,9 +100,13 @@ export default function Dashboard() {
             }
         };
         cargar();
-        const t = setInterval(cargar, 5000);
+        const t = setInterval(cargar, 10000); // cada 10s, no 3s, para no saturar
         return () => clearInterval(t);
     }, []);
+
+    useEffect(() => {
+        api.ganadorTerritorio(nivelGanador).then(setGanadores).catch(() => setGanadores(null));
+    }, [nivelGanador]);
 
     if (!rrv && !oficial && estadoConexion === 'conectando') {
         return <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center', fontSize: 24, fontWeight: 'bold', color: '#1d4ed8' }}>Iniciando Cómputo Oficial...</div>;
@@ -160,6 +174,31 @@ export default function Dashboard() {
                 </div>
             </header>
 
+            {/* Selector de vista (Oficial / RRV / Combinada) */}
+            <div className="filter-bar" style={{ marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 600, color: '#475569' }}>
+                    <Layers size={18} />
+                    Vista:
+                </div>
+                <div className="tabs">
+                    <button className={`tab ${vista === 'combinada' ? 'active' : ''}`} onClick={() => setVista('combinada')}>
+                        <Activity size={14} /> Combinada
+                    </button>
+                    <button className={`tab ${vista === 'oficial' ? 'active' : ''}`} onClick={() => setVista('oficial')}>
+                        <FileSpreadsheet size={14} /> Oficial
+                    </button>
+                    <button className={`tab ${vista === 'rrv' ? 'active' : ''}`} onClick={() => setVista('rrv')}>
+                        <Zap size={14} /> Rápido (RRV)
+                    </button>
+                </div>
+                <span style={{ flex: 1 }} />
+                <span style={{ fontSize: 12, color: 'var(--c-text-muted)' }}>
+                    {vista === 'combinada' && 'Muestra Oficial y RRV uno al lado del otro'}
+                    {vista === 'oficial' && 'Solo cómputo oficial (PostgreSQL)'}
+                    {vista === 'rrv' && 'Solo recepción rápida (MongoDB)'}
+                </span>
+            </div>
+
             {/* Barra de Filtros */}
             <div className="filter-bar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 600, color: '#475569' }}>
@@ -183,31 +222,116 @@ export default function Dashboard() {
                 </select>
             </div>
 
-            {/* KPIs Principales */}
-            <div className="grid grid-cols-4">
-                <div className="card kpi">
-                    <span className="label"><Users size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Votos Emitidos</span>
-                    <span className="value">{Number(totalesOf.total_emitidos || 0).toLocaleString()}</span>
+            {/* KPIs Principales — varía según la vista */}
+            {vista === 'combinada' && (
+                <div className="grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: 20, marginBottom: 24 }}>
+                    {/* Bloque Oficial */}
+                    <div className="card" style={{ marginBottom: 0, borderTop: '3px solid #2563eb' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <FileSpreadsheet size={16} color="#2563eb" /> Cómputo Oficial
+                        </h3>
+                        <BloqueKpi
+                            emitidos={Number(totalesOf.total_emitidos || 0)}
+                            validos={['p1','p2','p3','p4'].reduce((a, p) => a + Number(totalesOf[`total_${p}`] || totalesOf[p] || 0), 0)}
+                            mesas={(oficial?.estados || []).find((e:any) => e.estado === 'APROBADA')?.cantidad || 0}
+                            cuarentena={(oficial?.estados || []).find((e:any) => e.estado === 'EN_CUARENTENA')?.cantidad || 0}
+                        />
+                    </div>
+                    {/* Bloque RRV */}
+                    <div className="card" style={{ marginBottom: 0, borderTop: '3px solid #f59e0b' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <Zap size={16} color="#f59e0b" /> Cómputo Rápido (RRV)
+                        </h3>
+                        <BloqueKpi
+                            emitidos={conteoRrv?.total ?? (rrv?.estados || []).reduce((s: number, e: any) => s + (e.cantidad || 0), 0)}
+                            validos={(conteoRrv?.porEstado || []).find((e: any) => e._id === 'APROBADA')?.cantidad || (rrv?.estados || []).find((e:any) => e._id === 'APROBADA')?.cantidad || 0}
+                            mesas={Number(totalesRrv.votos_emitidos || 0)}
+                            cuarentena={(conteoRrv?.porEstado || []).find((e: any) => e._id === 'EN_VERIFICACION')?.cantidad || 0}
+                            label1="Total Actas RRV"
+                            label2="Actas Aprobadas"
+                            label3="Votos Emitidos (RRV)"
+                            label4="En Verificación"
+                        />
+                    </div>
+                    {/* Bloque Combinado */}
+                    <div className="card" style={{ marginBottom: 0, borderTop: '3px solid #10b981' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <Activity size={16} color="#10b981" /> Combinado
+                        </h3>
+                        <BloqueKpi
+                            emitidos={Number(totalesOf.total_emitidos || 0) + Number(totalesRrv.votos_emitidos || 0)}
+                            validos={
+                                ['p1','p2','p3','p4'].reduce((a, p) => a + Number(totalesOf[`total_${p}`] || totalesOf[p] || 0), 0)
+                                + ['p1','p2','p3','p4'].reduce((a, p) => a + Number(totalesRrv[p] || 0), 0)
+                            }
+                            mesas={
+                                ((oficial?.estados || []).find((e:any) => e.estado === 'APROBADA')?.cantidad || 0)
+                                + ((rrv?.estados || []).find((e:any) => e._id === 'APROBADA')?.cantidad || 0)
+                            }
+                            cuarentena={
+                                ((oficial?.estados || []).find((e:any) => e.estado === 'EN_CUARENTENA')?.cantidad || 0)
+                                + ((rrv?.estados || []).find((e:any) => e._id === 'EN_VERIFICACION')?.cantidad || 0)
+                            }
+                            label3="Mesas (suma)"
+                            label4="Pendientes (suma)"
+                        />
+                    </div>
                 </div>
-                <div className="card kpi green">
-                    <span className="label"><CheckCircle size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Votos Válidos</span>
-                    <span className="value">
-                        {(['p1','p2','p3','p4'].reduce((a, p) => a + Number(totalesOf[`total_${p}`] || totalesOf[p] || 0), 0)).toLocaleString()}
-                    </span>
+            )}
+
+            {vista === 'oficial' && (
+                <div className="grid grid-cols-4">
+                    <div className="card kpi">
+                        <span className="label"><Users size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Votos Emitidos</span>
+                        <span className="value">{Number(totalesOf.total_emitidos || 0).toLocaleString()}</span>
+                    </div>
+                    <div className="card kpi green">
+                        <span className="label"><CheckCircle size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Votos Válidos</span>
+                        <span className="value">
+                            {(['p1','p2','p3','p4'].reduce((a, p) => a + Number(totalesOf[`total_${p}`] || totalesOf[p] || 0), 0)).toLocaleString()}
+                        </span>
+                    </div>
+                    <div className="card kpi purple">
+                        <span className="label">Mesas Aprobadas (Oficial)</span>
+                        <span className="value">
+                            {((oficial?.estados || []).find((e:any) => e.estado === 'APROBADA')?.cantidad || 0).toLocaleString()}
+                        </span>
+                    </div>
+                    <div className="card kpi orange">
+                        <span className="label">En Cuarentena</span>
+                        <span className="value">
+                            {((oficial?.estados || []).find((e:any) => e.estado === 'EN_CUARENTENA')?.cantidad || 0).toLocaleString()}
+                        </span>
+                    </div>
                 </div>
-                <div className="card kpi purple">
-                    <span className="label">Mesas Procesadas (Oficial)</span>
-                    <span className="value">
-                        {((oficial?.estados || []).find((e:any) => e.estado === 'APROBADA')?.cantidad || 0).toLocaleString()}
-                    </span>
+            )}
+
+            {vista === 'rrv' && (
+                <div className="grid grid-cols-4">
+                    <div className="card kpi">
+                        <span className="label"><Users size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Total Actas RRV</span>
+                        <span className="value">{(conteoRrv?.total ?? 0).toLocaleString()}</span>
+                    </div>
+                    <div className="card kpi green">
+                        <span className="label"><Zap size={16} style={{display:'inline', verticalAlign:'text-bottom', marginRight:4}}/>Actas Aprobadas</span>
+                        <span className="value">
+                            {((conteoRrv?.porEstado || []).find((e:any) => e._id === 'APROBADA')?.cantidad || 0).toLocaleString()}
+                        </span>
+                    </div>
+                    <div className="card kpi purple">
+                        <span className="label">Votos Emitidos (RRV)</span>
+                        <span className="value">
+                            {Number(totalesRrv.votos_emitidos || 0).toLocaleString()}
+                        </span>
+                    </div>
+                    <div className="card kpi orange">
+                        <span className="label">Duplicados / Inconsistentes</span>
+                        <span className="value">
+                            {(['DUPLICADO_PARCIAL','DATOS_INCONSISTENTES','MESA_FANTASMA'].reduce((s: number, k: string) => s + ((conteoRrv?.porEstado || []).find((e:any) => e._id === k)?.cantidad || 0), 0)).toLocaleString()}
+                        </span>
+                    </div>
                 </div>
-                <div className="card kpi orange">
-                    <span className="label">Actas por Verificar (RRV)</span>
-                    <span className="value">
-                        {((rrv?.estados || []).find((e:any) => e._id === 'EN_VERIFICACION')?.cantidad || 0).toLocaleString()}
-                    </span>
-                </div>
-            </div>
+            )}
 
             <div className="grid" style={{ gridTemplateColumns: '1.2fr 2fr' }}>
                 {/* Mapa de Bolivia */}
@@ -402,6 +526,113 @@ export default function Dashboard() {
                 </div>
                 )}
             </div>
+
+            {/* Ganador por territorio + Top horarios */}
+            <div className="grid" style={{ gridTemplateColumns: '1.4fr 1fr' }}>
+                <div className="card">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <h3 style={{ margin: 0, paddingBottom: 0, borderBottom: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+                            <Trophy size={18} color="#f59e0b" /> Partido ganador por territorio
+                        </h3>
+                        <select value={nivelGanador} onChange={(e) => setNivelGanador(e.target.value as any)} style={{ width: 'auto' }}>
+                            <option value="departamento">Por Departamento</option>
+                            <option value="provincia">Por Provincia</option>
+                            <option value="municipio">Por Municipio</option>
+                            <option value="recinto">Por Recinto</option>
+                        </select>
+                    </div>
+                    <div className="table-wrap" style={{ maxHeight: 400, overflow: 'auto' }}>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>{nivelGanador.charAt(0).toUpperCase() + nivelGanador.slice(1)}</th>
+                                    <th>Ganador</th>
+                                    <th>Votos</th>
+                                    <th>P1</th><th>P2</th><th>P3</th><th>P4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {(ganadores?.data || []).map((g: any, i: number) => {
+                                    const nombre = g.recinto_nombre || g.municipio || g.provincia || g.departamento;
+                                    const colorPartido: Record<string, string> = {
+                                        P1: '#1d4ed8', P2: '#047857', P3: '#b91c1c', P4: '#6d28d9',
+                                    };
+                                    return (
+                                        <tr key={i}>
+                                            <td style={{ fontWeight: 600 }}>{nombre}</td>
+                                            <td>
+                                                <span style={{
+                                                    background: `${colorPartido[g.partido_ganador]}1a`,
+                                                    color: colorPartido[g.partido_ganador],
+                                                    padding: '3px 10px', borderRadius: 6,
+                                                    fontSize: 12, fontWeight: 700,
+                                                }}>
+                                                    🏆 {g.partido_ganador}
+                                                </span>
+                                            </td>
+                                            <td><strong>{Number(g.votos_ganador).toLocaleString()}</strong></td>
+                                            <td style={{ fontSize: 12 }}>{g.p1}</td>
+                                            <td style={{ fontSize: 12 }}>{g.p2}</td>
+                                            <td style={{ fontSize: 12 }}>{g.p3}</td>
+                                            <td style={{ fontSize: 12 }}>{g.p4}</td>
+                                        </tr>
+                                    );
+                                })}
+                                {(!ganadores?.data || ganadores.data.length === 0) && (
+                                    <tr><td colSpan={7} className="empty">Aún no hay actas aprobadas para calcular ganadores.</td></tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div className="card">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Clock size={18} color="#2563eb" /> Cierre de mesas por hora
+                    </h3>
+                    {topHorarios.length > 0 ? (
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart data={topHorarios.map((h: any) => ({
+                                hora: `${h.hora}:00`,
+                                actas: Number(h.actas_cerradas),
+                                emitidos: Number(h.total_emitidos),
+                            }))}>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                                <XAxis dataKey="hora" axisLine={false} tickLine={false} />
+                                <YAxis axisLine={false} tickLine={false} />
+                                <Tooltip contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
+                                <Legend />
+                                <Bar dataKey="actas" fill="#2563eb" name="Actas cerradas" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="emitidos" fill="#10b981" name="Votos emitidos" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div className="empty">Aún no hay datos de cierre.</div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function BloqueKpi({ emitidos, validos, mesas, cuarentena, label1 = 'Votos emitidos', label2 = 'Votos válidos', label3 = 'Mesas Aprobadas', label4 = 'En Cuarentena' }: any) {
+    return (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <Mini label={label1} value={Number(emitidos || 0).toLocaleString()} color="#2563eb" />
+            <Mini label={label2} value={Number(validos || 0).toLocaleString()} color="#10b981" />
+            <Mini label={label3} value={Number(mesas || 0).toLocaleString()} color="#8b5cf6" />
+            <Mini label={label4} value={Number(cuarentena || 0).toLocaleString()} color="#f59e0b" />
+        </div>
+    );
+}
+
+function Mini({ label, value, color }: { label: string; value: any; color: string }) {
+    return (
+        <div style={{ background: 'var(--c-surface-2)', padding: 12, borderRadius: 10, borderLeft: `3px solid ${color}` }}>
+            <div style={{ fontSize: 11, color: 'var(--c-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 600 }}>
+                {label}
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--c-text)' }}>{value}</div>
         </div>
     );
 }
