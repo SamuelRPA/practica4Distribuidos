@@ -10,7 +10,7 @@ import { api } from '@/lib/api';
 
 const ORIGENES = [
     { value: '', label: 'Todos los orígenes' },
-    { value: 'PDF', label: 'PDF (App móvil)' },
+    { value: 'PDF', label: 'PDF' },
     { value: 'SMS', label: 'SMS' },
     { value: 'MANUAL', label: 'Manual' },
     { value: 'N8N', label: 'N8N' },
@@ -134,7 +134,7 @@ export default function RrvPage() {
                     </div>
                     <div>
                         <h1>Cómputo Rápido (RRV)</h1>
-                        <p className="lead">Pipeline rápido — actas desde PDF (móvil), SMS y N8N. Tiempo real cada 3s.</p>
+                        <p className="lead">Pipeline rápido — actas desde PDF, SMS y N8N. Tiempo real cada 8s.</p>
                     </div>
                 </div>
                 <div className="badge" style={{
@@ -156,7 +156,7 @@ export default function RrvPage() {
             </div>
 
             <div className="grid grid-cols-3" style={{ marginBottom: 24 }}>
-                <OrigenCard label="Desde móvil (PDF)" value={stats.pdf} icon={FileImage} color="#2563eb" />
+                <OrigenCard label="Desde PDF" value={stats.pdf} icon={FileImage} color="#2563eb" />
                 <OrigenCard label="Desde SMS" value={stats.sms} icon={MessageSquare} color="#10b981" />
                 <OrigenCard label="Manual / N8N" value={stats.manual} icon={Edit3} color="#8b5cf6" />
             </div>

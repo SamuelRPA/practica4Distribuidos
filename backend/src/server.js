@@ -9,6 +9,7 @@ import { rrvRouter } from './routes/rrv.routes.js';
 import { oficialRouter } from './routes/oficial.routes.js';
 import { dashboardRouter } from './routes/dashboard.routes.js';
 import { smsRouter } from './routes/sms.routes.js';
+import { healthRouter } from './routes/health.routes.js';
 
 const log = makeLogger('server');
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/rrv', rrvRouter);
 app.use('/api/oficial', oficialRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/sms', smsRouter);
+app.use('/api/health', healthRouter);
 
 app.use((err, _req, res, _next) => {
     log.error('Error no manejado', err);
@@ -67,7 +69,7 @@ async function start() {
     app.listen(config.backend.port, () => {
         log.success(`API HTTP escuchando en :${config.backend.port} (env=${config.backend.nodeEnv})`);
         log.info('Endpoints:');
-        log.info(`  POST  /api/rrv/acta-pdf         ← uploads desde la app móvil`);
+        log.info(`  POST  /api/rrv/acta-pdf         ← uploads de actas en PDF`);
         log.info(`  POST  /api/rrv/sms              ← SMS legacy directo`);
         log.info(`  POST  /api/sms/webhook/:proveedor ← webhook universal`);
         log.info(`  POST  /api/oficial/acta         ← cómputo oficial (CSV/n8n)`);
